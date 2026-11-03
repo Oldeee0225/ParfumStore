@@ -18,7 +18,7 @@ export function Footer() {
 
   return (
     <footer style={{ background: '#0a0a0a', color: 'rgba(255,255,255,0.65)', paddingTop: 'clamp(48px,8vw,80px)' }}>
-      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 clamp(20px,5vw,80px)', display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 48, marginBottom: 48 }}>
+      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 clamp(20px,5vw,80px)', display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 48, marginBottom: 48 }} className="r-stack">
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
             <img src={logo} alt="Elegant Parfum Pty" style={{ width: 42, height: 42, borderRadius: '50%', objectFit: 'cover', border: '1.5px solid var(--gold)', flexShrink: 0 }} />

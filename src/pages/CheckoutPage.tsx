@@ -44,7 +44,7 @@ export function CheckoutPage() {
     if (step === 1) return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
         <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.3rem', color: 'var(--fg)', marginBottom: 8 }}>Información del Cliente</h3>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+        <div className="r-stack-sm" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
           <div><label style={labelStyle}>Nombre</label><input style={inputStyle} value={info.firstName} onChange={e => setInfo(v => ({ ...v, firstName: e.target.value }))} placeholder="Tu nombre" /></div>
           <div><label style={labelStyle}>Apellido</label><input style={inputStyle} value={info.lastName} onChange={e => setInfo(v => ({ ...v, lastName: e.target.value }))} placeholder="Tu apellido" /></div>
         </div>
@@ -140,28 +140,28 @@ Envío: Por acordar
   return (
     <div style={{ minHeight: '100vh', paddingTop: 108, background: 'var(--bg2)' }}>
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: 'clamp(32px,6vw,56px) clamp(20px,5vw,40px)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 0, marginBottom: 48 }}>
+        <div className="checkout-steps" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 0, marginBottom: 48 }}>
           {steps.map((s, i) => (
             <div key={s} style={{ display: 'flex', alignItems: 'center' }}>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
                 <div style={{ width: 36, height: 36, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.78rem', fontWeight: 700, border: '2px solid', transition: 'all 0.3s', borderColor: step > i + 1 ? 'var(--gold)' : step === i + 1 ? 'var(--gold)' : 'var(--border)', background: step > i + 1 ? 'var(--gold)' : 'transparent', color: step > i + 1 ? '#111' : step === i + 1 ? 'var(--gold)' : 'var(--fg3)' }}>
                   {step > i + 1 ? '✓' : i + 1}
                 </div>
-                <span style={{ fontSize: '0.68rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: step === i + 1 ? 'var(--gold)' : 'var(--fg3)' }}>{s}</span>
+                <span className="step-label" style={{ fontSize: '0.68rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: step === i + 1 ? 'var(--gold)' : 'var(--fg3)' }}>{s}</span>
               </div>
               {i < steps.length - 1 && (
-                <div style={{ width: 60, height: 1, background: step > i + 1 ? 'var(--gold)' : 'var(--border)', margin: '0 8px', marginBottom: 24, transition: 'background 0.3s' }} />
+                <div className="step-line" style={{ width: 60, height: 1, background: step > i + 1 ? 'var(--gold)' : 'var(--border)', margin: '0 8px', marginBottom: 24, transition: 'background 0.3s' }} />
               )}
             </div>
           ))}
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 340px', gap: 32, alignItems: 'start' }}>
-          <div style={{ background: 'var(--bg-card)', borderRadius: 16, padding: 32, border: '1px solid var(--border)' }}>
+        <div className="r-stack" style={{ display: 'grid', gridTemplateColumns: '1fr 340px', gap: 32, alignItems: 'start' }}>
+          <div className="checkout-card" style={{ background: 'var(--bg-card)', borderRadius: 16, padding: 32, border: '1px solid var(--border)' }}>
             {renderStep()}
           </div>
 
-          <div style={{ background: 'var(--bg-card)', borderRadius: 16, padding: 24, border: '1px solid var(--border)', position: 'sticky', top: 100 }}>
+          <div className="r-unstick" style={{ background: 'var(--bg-card)', borderRadius: 16, padding: 24, border: '1px solid var(--border)', position: 'sticky', top: 100 }}>
             <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.2rem', color: 'var(--fg)', marginBottom: 16 }}>Resumen del Pedido</h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 16 }}>
               {cartItems.map((item, i) => (

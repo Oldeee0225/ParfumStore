@@ -41,10 +41,10 @@ export function Navbar() {
         ✦ AUTENTICIDAD GARANTIZADA ✦
       </div>
 
-      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 24px', display: 'flex', alignItems: 'center', height: 68, gap: 32 }}>
-        <button onClick={() => navigate('/')} style={{ border: 'none', background: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
+      <div className="nav-row" style={{ maxWidth: 1280, margin: '0 auto', padding: '0 24px', display: 'flex', alignItems: 'center', height: 68, gap: 32 }}>
+        <button onClick={() => { navigate('/'); setMobileOpen(false) }} style={{ border: 'none', background: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0, padding: 0 }}>
           <img src={logo} alt="Elegant Parfum Pty" style={{ width: 34, height: 34, borderRadius: '50%', objectFit: 'cover', border: '1.5px solid var(--gold)', flexShrink: 0 }} />
-          <span style={{ fontFamily: "'Playfair Display',serif", fontWeight: 700, fontSize: '1.1rem', color: 'var(--fg)', letterSpacing: '0.02em' }}>Elegant Parfum Pty</span>
+          <span className="nav-brand-text" style={{ fontFamily: "'Playfair Display',serif", fontWeight: 700, fontSize: '1.1rem', color: 'var(--fg)', letterSpacing: '0.02em', whiteSpace: 'nowrap' }}>Elegant Parfum Pty</span>
         </button>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, flex: 1, justifyContent: 'center' }} className="hidden md:flex">
@@ -86,9 +86,9 @@ export function Navbar() {
           })}
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
+        <div className="nav-icons" style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0, marginLeft: 'auto' }}>
           {searchOpen ? (
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <div className="nav-search" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               <input value={searchVal} onChange={e => setSearchVal(e.target.value)} placeholder="Buscar perfumes..."
                 style={{ border: '1px solid var(--border)', background: 'var(--bg2)', color: 'var(--fg)', padding: '6px 12px', borderRadius: 6, fontSize: '0.82rem', outline: 'none', width: 200 }}
                 autoFocus onBlur={() => { setSearchOpen(false); setSearchVal('') }} />
@@ -139,11 +139,29 @@ export function Navbar() {
             {cartCount > 0 && <span style={{ position: 'absolute', top: -4, right: -4, background: 'var(--gold)', color: '#111', borderRadius: '50%', fontSize: '0.6rem', width: 16, height: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700 }}>{cartCount}</span>}
           </button>
 
+          <button onClick={() => setMobileOpen(o => !o)} className="md:hidden" aria-label={mobileOpen ? 'Cerrar menú' : 'Abrir menú'} aria-expanded={mobileOpen}
+            style={{ border: 'none', background: 'none', cursor: 'pointer', padding: 4, color: 'var(--fg)', alignItems: 'center' }}>
+            <svg viewBox="0 0 24 24" width={22} height={22} fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              {mobileOpen ? (
+                <>
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </>
+              ) : (
+                <>
+                  <line x1="3" y1="6" x2="21" y2="6" />
+                  <line x1="3" y1="12" x2="21" y2="12" />
+                  <line x1="3" y1="18" x2="21" y2="18" />
+                </>
+              )}
+            </svg>
+          </button>
+
         </div>
       </div>
 
       {mobileOpen && (
-        <div style={{ background: 'var(--bg-card)', borderTop: '1px solid var(--border)', padding: '16px 24px 20px' }}>
+        <div style={{ background: 'var(--bg-card)', borderTop: '1px solid var(--border)', padding: '8px 20px 16px', maxHeight: 'calc(100vh - 96px)', overflowY: 'auto' }}>
           {NAV_LINKS.map(link => (
             <button key={link.path} onClick={() => { navigate(link.path); setMobileOpen(false) }}
               style={{ display: 'block', width: '100%', textAlign: 'left', border: 'none', background: 'none', cursor: 'pointer', padding: '12px 0', fontSize: '0.9rem', color: pathname === link.path ? 'var(--gold)' : 'var(--fg)', borderBottom: '1px solid var(--border)', fontWeight: 500 }}>

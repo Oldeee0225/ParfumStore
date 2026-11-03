@@ -79,7 +79,7 @@ export function DecantsPage() {
     <div style={{ minHeight: '100vh', paddingTop: 108 }}>
       <section style={{ position: 'relative', padding: 'clamp(64px,10vw,120px) clamp(20px,5vw,80px)', background: '#0e0e0e', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle at 70% 50%, rgba(200,164,93,0.08) 0%, transparent 60%)' }} />
-        <div style={{ maxWidth: 1280, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'center' }}>
+        <div className="r-stack" style={{ maxWidth: 1280, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'center' }}>
           <div>
             <SectionLabel text="Prueba antes de comprar" />
             <h1 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(2rem,5vw,3.5rem)', color: '#fff', fontWeight: 700, lineHeight: 1.15, marginBottom: 20 }}>
@@ -138,7 +138,7 @@ export function DecantsPage() {
             <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.8rem,4vw,2.5rem)', color: 'var(--fg)', fontWeight: 600 }}>Discovery Sets</h2>
             <GoldLine center />
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(280px,1fr))', gap: 24 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(min(280px,100%),1fr))', gap: 24 }}>
             {discoverySets.map((set, i) => (
               <div key={i} style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 16, overflow: 'hidden', transition: 'all 0.3s', cursor: 'pointer' }}
                 onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-4px)'; (e.currentTarget as HTMLDivElement).style.boxShadow = 'var(--shadow-lg)' }}

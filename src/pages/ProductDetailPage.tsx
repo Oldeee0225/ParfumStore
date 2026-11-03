@@ -122,9 +122,9 @@ export function ProductDetailPage() {
         </div>
       </div>
 
-      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '48px clamp(20px,5vw,80px)' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'start' }}>
-          <div style={{ position: 'sticky', top: 100 }}>
+      <div style={{ maxWidth: 1280, margin: '0 auto', padding: 'clamp(24px,5vw,48px) clamp(20px,5vw,80px)' }}>
+        <div className="r-stack" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'start' }}>
+          <div className="r-unstick" style={{ position: 'sticky', top: 100 }}>
             <div style={{ borderRadius: 16, overflow: 'hidden', background: '#f0ede8', position: 'relative' }}>
               <img src={getProductImages(product)[activeImageIndex] || product.image} alt={product.name} style={{ width: '100%', height: 'auto', objectFit: 'contain', display: 'block', transition: 'transform 0.6s ease', padding: activeImageIndex === 2 ? '40px' : '0' }}
                 onMouseEnter={e => ((e.currentTarget as HTMLImageElement).style.transform = 'scale(1.05)')}
@@ -203,8 +203,8 @@ export function ProductDetailPage() {
               COMPRAR AHORA
             </button>
 
-            <div style={{ display: 'flex', gap: 20, padding: '16px 0', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
-              {[['✓', 'Autenticidad', 'garantizada'], ['↩', 'Devolución', '30 días'], ['■', 'Empaque', 'premium'], ['⚡', 'Envío', 'rápido']].map(([icon, l1, l2]) => (
+            <div style={{ display: 'flex', gap: 8, padding: '16px 0', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
+              {[['✓', 'Autenticidad', 'garantizada'], ['■', 'Empaque', 'premium'], ['⚡', 'Envío', 'rápido']].map(([icon, l1, l2]) => (
                 <div key={l1} style={{ flex: 1, textAlign: 'center' }}>
                   <p style={{ fontSize: 18, color: 'var(--gold)', marginBottom: 4 }}>{icon}</p>
                   <p style={{ fontSize: '0.68rem', fontWeight: 600, color: 'var(--fg)', letterSpacing: '0.05em' }}>{l1}</p>
@@ -216,7 +216,7 @@ export function ProductDetailPage() {
         </div>
 
         <div style={{ marginTop: 64 }}>
-          <div style={{ display: 'flex', gap: 0, borderBottom: '1px solid var(--border)', marginBottom: 36 }}>
+          <div className="tabs-scroll" style={{ display: 'flex', gap: 0, borderBottom: '1px solid var(--border)', marginBottom: 36 }}>
             {(['notes', 'details', 'reviews'] as const).map(tab => (
               <button key={tab} onClick={() => setActiveTab(tab)}
                 style={{ padding: '12px 28px', border: 'none', background: 'none', cursor: 'pointer', fontSize: '0.85rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: activeTab === tab ? 'var(--gold)' : 'var(--fg3)', borderBottom: `2px solid ${activeTab === tab ? 'var(--gold)' : 'transparent'}`, transition: 'all 0.2s', marginBottom: -1 }}>
@@ -226,7 +226,7 @@ export function ProductDetailPage() {
           </div>
 
           {activeTab === 'notes' && (
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 32 }}>
+            <div className="r-stack" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 32 }}>
               {[
                 { title: 'Notas de Salida', notes: product.topNotes, icon: '◎', color: '#C8A45D' },
                 { title: 'Notas de Corazón', notes: product.heartNotes, icon: '◉', color: '#A88840' },
@@ -279,7 +279,7 @@ export function ProductDetailPage() {
           )}
 
           {activeTab === 'reviews' && (
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(280px,1fr))', gap: 20 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(min(280px,100%),1fr))', gap: 20 }}>
               {REVIEWS.slice(0, 3).map(r => (
                 <div key={r.id} style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 12, padding: 20 }}>
                   <Stars rating={r.rating} />
@@ -301,7 +301,7 @@ export function ProductDetailPage() {
           <div style={{ marginTop: 64 }}>
             <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.8rem', color: 'var(--fg)', fontWeight: 600, marginBottom: 8 }}>Perfumes Relacionados</h3>
             <GoldLine />
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(220px,1fr))', gap: 20, marginTop: 32 }}>
+            <div className="product-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(220px,1fr))', gap: 20, marginTop: 32 }}>
               {related.map(p => (
                 <ProductCard key={p.id} p={p} />
               ))}

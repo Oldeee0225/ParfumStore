@@ -8,9 +8,8 @@ export function ContactPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null)
 
   const faqs = [
-    { q: '¿Cómo garantizan la autenticidad?', a: 'Compramos directamente a distribuidores oficiales y casas perfumistas. Cada producto incluye todos sus sellos, empaques y documentos originales. Ofrecemos devolución total si el producto no es 100% auténtico.' },
+    { q: '¿Cómo garantizan la autenticidad?', a: 'Compramos directamente a distribuidores oficiales y casas perfumistas. Cada producto incluye todos sus sellos, empaques y documentos originales.' },
     { q: '¿Cuánto tarda el envío?', a: 'Procesamos tu pedido en 24 horas hábiles. El envío express tarda 2-3 días hábiles dentro del país. Envíos internacionales en 5-7 días hábiles.' },
-    { q: '¿Puedo devolver un perfume?', a: 'Aceptamos devoluciones en 30 días si el producto está sin abrir y en su empaque original. Para decants, aceptamos devoluciones si hay algún defecto de calidad.' },
     { q: '¿Qué es un decant?', a: 'Un decant es una muestra auténtica de un perfume original, envasada en un atomizador de 5 ml o 10 ml. Perfecta para probar una fragancia antes de comprar la botella completa.' },
     { q: '¿Tienen tienda física?', a: 'Somos una tienda 100% online, lo que nos permite mantener precios más competitivos. Sin embargo, ofrecemos atención personalizada por WhatsApp, videollamada o chat.' },
     { q: '¿Hacen envíos internacionales?', a: 'Sí, enviamos a toda Latinoamérica y España. Los costos y tiempos de envío varían según el destino. Consulta los detalles en el checkout.' },
@@ -30,7 +29,7 @@ export function ContactPage() {
       </div>
 
       <div style={{ maxWidth: 1280, margin: '0 auto', padding: 'clamp(48px,8vw,80px) clamp(20px,5vw,80px)' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64 }}>
+        <div className="r-stack" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64 }}>
           <div>
             <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.8rem', color: 'var(--fg)', fontWeight: 600, marginBottom: 8 }}>Información de Contacto</h2>
             <GoldLine />
@@ -45,7 +44,7 @@ export function ContactPage() {
                   <div style={{ width: 48, height: 48, borderRadius: 12, background: 'rgba(200,164,93,0.1)', border: '1px solid rgba(200,164,93,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20, flexShrink: 0 }}>{item.icon}</div>
                   <div>
                     <p style={{ fontSize: '0.72rem', color: 'var(--gold)', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 3 }}>{item.label}</p>
-                    <p style={{ fontSize: '0.92rem', color: 'var(--fg)', fontWeight: 500 }}>{item.value}</p>
+                    <p style={{ fontSize: '0.92rem', color: 'var(--fg)', fontWeight: 500, overflowWrap: 'anywhere' }}>{item.value}</p>
                     <p style={{ fontSize: '0.78rem', color: 'var(--fg3)', marginTop: 2 }}>{item.sub}</p>
                   </div>
                 </div>
@@ -77,7 +76,7 @@ export function ContactPage() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} style={{ marginTop: 32, display: 'flex', flexDirection: 'column', gap: 16 }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+                <div className="r-stack-sm" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
                   {[
                     { field: 'name', label: 'Nombre completo', type: 'text', placeholder: 'Tu nombre' },
                     { field: 'email', label: 'Correo electrónico', type: 'email', placeholder: 'tu@email.com' },
@@ -98,7 +97,6 @@ export function ContactPage() {
                     <option value="">Seleccionar...</option>
                     <option>Consulta sobre un perfume</option>
                     <option>Estado de mi pedido</option>
-                    <option>Devolución o cambio</option>
                     <option>Asesoría de fragrancias</option>
                     <option>Otro</option>
                   </select>

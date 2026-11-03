@@ -38,7 +38,7 @@ export function HomePage() {
 
   return (
     <div>
-      <section style={{ position: 'relative', height: '100vh', minHeight: 600, display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
+      <section className="home-hero" style={{ position: 'relative', height: '100vh', minHeight: 600, display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
         <img src={heroImg} alt="Perfume de lujo"
           style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 55%, rgba(0,0,0,0.15) 100%)' }} />
@@ -66,7 +66,7 @@ export function HomePage() {
             <span className="trust-badge"><span className="tb-icon">💳</span>Pago Seguro</span>
           </div>
         </div>
-        <div style={{ position: 'absolute', bottom: 32, left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, opacity: 0.6 }}>
+        <div className="hero-scroll-hint" style={{ position: 'absolute', bottom: 32, left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, opacity: 0.6 }}>
           <span style={{ fontSize: '0.65rem', color: '#fff', letterSpacing: '0.15em', textTransform: 'uppercase' }}>Explorar</span>
           <div style={{ width: 1, height: 40, background: 'linear-gradient(to bottom, #fff, transparent)' }} />
         </div>
@@ -96,7 +96,7 @@ export function HomePage() {
 
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '40px', alignItems: 'center', justifyContent: 'center' }}>
             {/* Lista a la Izquierda */}
-            <div style={{ flex: '1 1 250px', display: 'flex', flexDirection: 'column', gap: 12 }}>
+            <div className="bestseller-list" style={{ flex: '1 1 250px', minWidth: 0, display: 'flex', flexDirection: 'column', gap: 12 }}>
               {bestsellers.map(p => {
                 const isActive = p.id === activeBestsellerId;
                 return (
@@ -122,7 +122,7 @@ export function HomePage() {
             </div>
 
             {/* Render Central */}
-            <div style={{ flex: '1 1 400px', minWidth: 300, position: 'relative', height: 500, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <div className="bestseller-stage" style={{ flex: '1 1 400px', minWidth: 300, position: 'relative', height: 500, display: 'flex', justifyContent: 'center', alignItems: 'center', overflow: 'hidden' }}>
                {/* Resplandor de fondo decorativo */}
                <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 250, height: 250, background: 'var(--gold)', filter: 'blur(100px)', opacity: 0.2, borderRadius: '50%' }} />
                
@@ -140,7 +140,7 @@ export function HomePage() {
             </div>
 
             {/* Información a la Derecha */}
-            <div className="anim-fade-up" key={`info-${activeBestsellerId}`} style={{ flex: '1 1 300px', display: 'flex', flexDirection: 'column', gap: 20 }}>
+            <div className="anim-fade-up" key={`info-${activeBestsellerId}`} style={{ flex: '1 1 300px', minWidth: 0, display: 'flex', flexDirection: 'column', gap: 20 }}>
               <div>
                 <p style={{ color: 'var(--gold)', fontSize: '0.85rem', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 8 }}>{activeBestseller.brand}</p>
                 <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(2rem,3vw,2.5rem)', color: '#fff', fontWeight: 700, lineHeight: 1.1 }}>{activeBestseller.name}</h3>
@@ -186,7 +186,7 @@ export function HomePage() {
             <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.8rem,4vw,2.8rem)', color: 'var(--fg)', fontWeight: 600 }}>Nuevos Lanzamientos</h2>
             <GoldLine center />
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(240px,1fr))', gap: 24 }}>
+          <div className="product-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(240px,1fr))', gap: 24 }}>
             {newLaunches.map(p => (
               <ProductCard key={p.id} p={p} />
             ))}
@@ -226,7 +226,7 @@ export function HomePage() {
 
       <section style={{ background: '#0e0e0e', padding: 'clamp(48px,8vw,96px) clamp(20px,5vw,80px)' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'center' }}>
+          <div className="r-stack" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'center' }}>
             <div>
               <SectionLabel text="Elegante y femenino" />
               <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.8rem,4vw,2.8rem)', color: '#fff', fontWeight: 600, lineHeight: 1.2, marginBottom: 16 }}>
@@ -273,7 +273,7 @@ export function HomePage() {
 
       <section style={{ background: '#0e0e0e', padding: 'clamp(48px,8vw,96px) clamp(20px,5vw,80px)' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'center' }}>
+          <div className="r-stack" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'center' }}>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
               {menFeatured.length > 0 ? menFeatured.map(p => (
                 <div key={p.id} style={{ borderRadius: 10, overflow: 'hidden', cursor: 'pointer' }} onClick={() => navigate(`/producto/${p.id}`)}>
@@ -356,6 +356,7 @@ export function HomePage() {
         </div>
 
         <div
+          className="gallery-wrap"
           style={{ position: 'relative', maxWidth: 920, margin: '0 auto', padding: '0 48px' }}
           onMouseEnter={() => setGalleryPaused(true)}
           onMouseLeave={() => setGalleryPaused(false)}>

@@ -14,6 +14,7 @@ export function ShopPage() {
   const [search, setSearch] = useState('')
   const [filters, setFilters] = useState({ brand: brandFromUrl, gender: genderFromUrl, category: catFromUrl, priceMax: 500, family: '' })
   const [sort, setSort] = useState('default')
+  const [filtersOpen, setFiltersOpen] = useState(false)
 
   // Sync filters when URL changes
   useEffect(() => {
@@ -56,6 +57,8 @@ export function ShopPage() {
   else if (sort === 'rating') filtered.sort((a, b) => b.rating - a.rating)
   else if (sort === 'newest') filtered = [...filtered].sort((a, b) => (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0))
 
+  const activeFilterCount = [filters.brand, filters.gender, filters.category, filters.family].filter(Boolean).length + (filters.priceMax < 500 ? 1 : 0)
+
   return (
     <div style={{ minHeight: '100vh', paddingTop: 108 }}>
       <div style={{ background: 'var(--bg2)', padding: '48px clamp(20px,5vw,80px) 36px', textAlign: 'center' }}>
@@ -64,8 +67,13 @@ export function ShopPage() {
         <GoldLine center />
       </div>
 
-      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '32px clamp(20px,5vw,80px)', display: 'grid', gridTemplateColumns: '260px 1fr', gap: 40, alignItems: 'start' }}>
-        <aside style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 12, padding: 24, position: 'sticky', top: 100 }}>
+      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '32px clamp(20px,5vw,80px)', display: 'grid', gridTemplateColumns: '260px 1fr', gap: 40, alignItems: 'start' }} className="r-stack">
+        <button onClick={() => setFiltersOpen(o => !o)} className="md:hidden" aria-expanded={filtersOpen}
+          style={{ alignItems: 'center', justifyContent: 'space-between', width: '100%', padding: '12px 16px', border: '1px solid var(--border)', borderRadius: 10, background: 'var(--bg-card)', color: 'var(--fg)', cursor: 'pointer', fontSize: '0.85rem', fontWeight: 600, letterSpacing: '0.05em', marginBottom: -16 }}>
+          <span>Filtros{activeFilterCount > 0 && <span style={{ color: 'var(--gold)' }}> ({activeFilterCount})</span>}</span>
+          <span style={{ color: 'var(--gold)' }}>{filtersOpen ? '−' : '+'}</span>
+        </button>
+        <aside className={`shop-filters r-unstick${filtersOpen ? ' open' : ''}`} style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 12, padding: 24, position: 'sticky', top: 100 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
             <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.1rem', color: 'var(--fg)' }}>Filtros</h3>
             <button onClick={clearFilters} style={{ fontSize: '0.72rem', color: 'var(--gold)', border: 'none', background: 'none', cursor: 'pointer', letterSpacing: '0.05em' }}>Limpiar todo</button>
@@ -128,7 +136,7 @@ export function ShopPage() {
 
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 24, flexWrap: 'wrap' }}>
-            <div style={{ position: 'relative', flex: 1, minWidth: 200 }}>
+            <div style={{ position: 'relative', flex: '1 1 200px', minWidth: 0 }}>
               <span style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', color: 'var(--fg3)', fontSize: 16 }}>⌕</span>
               <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Buscar perfume o marca..."
                 style={{ width: '100%', padding: '10px 12px 10px 36px', border: '1px solid var(--border)', borderRadius: 8, background: 'var(--bg2)', color: 'var(--fg)', fontSize: '0.88rem', outline: 'none' }} />
@@ -152,7 +160,7 @@ export function ShopPage() {
               <p style={{ color: 'var(--fg3)', fontSize: '0.88rem' }}>Intenta cambiar los filtros de búsqueda</p>
             </div>
           ) : (
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(220px,1fr))', gap: 20 }}>
+            <div className="product-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(220px,1fr))', gap: 20 }}>
               {filtered.map(p => (
                 <ProductCard key={p.id} p={p} />
               ))}

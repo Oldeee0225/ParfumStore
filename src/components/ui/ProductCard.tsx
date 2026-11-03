@@ -39,7 +39,7 @@ export function ProductCard({ p }: { p: Product }) {
           {isWished ? '♥' : '♡'}
         </button>
       </div>
-      <div style={{ padding: '14px 16px 16px' }} onClick={openProduct}>
+      <div className="prod-info" style={{ padding: '14px 16px 16px' }} onClick={openProduct}>
         <p style={{ fontSize: '0.68rem', color: 'var(--gold)', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 4 }}>{p.brand}</p>
         <p style={{ fontFamily: "'Playfair Display',serif", fontWeight: 600, fontSize: '1rem', color: 'var(--fg)', marginBottom: 4 }}>{p.name}</p>
         <p style={{ fontSize: '0.72rem', color: 'var(--fg3)', marginBottom: 8 }}>{p.type} · {p.family}</p>

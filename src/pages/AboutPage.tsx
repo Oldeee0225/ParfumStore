@@ -21,7 +21,7 @@ export function AboutPage() {
           </p>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))', gap: 32, marginBottom: 64 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(280px,100%),1fr))', gap: 32, marginBottom: 64 }}>
           {[
             { title: 'Nuestra Misión', icon: '◈', text: 'Conectar a los amantes de las fragancias con las mejores creaciones olfativas del mundo, ofreciendo autenticidad, conocimiento experto y una experiencia de compra excepcional.' },
             { title: 'Nuestra Visión', icon: '◎', text: 'Ser la perfumería online de referencia en Latinoamérica, reconocida por nuestra curación experta, servicio personalizado y la más amplia selección de fragancias de lujo.' },
@@ -38,7 +38,7 @@ export function AboutPage() {
 
         <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: '2rem', color: 'var(--fg)', textAlign: 'center', marginBottom: 16, fontWeight: 600 }}>Por qué elegirnos</h2>
         <GoldLine center />
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 20, marginTop: 36 }}>
+        <div className="r-stack" style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 20, marginTop: 36 }}>
           {[
             { icon: '✓', title: 'Garantía de Autenticidad', desc: 'Cada producto cuenta con certificado de autenticidad. Compramos directamente a distribuidores oficiales y casas de perfumes reconocidas mundialmente.' },
             { icon: '■', title: 'Empaque Premium', desc: 'Cada pedido se entrega en una elegante caja negra con separadores de lujo, papel tissue dorado y tarjeta de fragancia con las notas olfativas.' },

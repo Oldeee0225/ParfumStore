@@ -174,12 +174,69 @@ a { text-decoration: none; }
   to { transform: translateX(0); }
 }
 
+/* ─── Responsive ─────────────────────────────────────────────────────
+   La app usa estilos inline, así que estas reglas llevan !important
+   para poder sobrescribirlos en pantallas pequeñas. */
+html { overflow-x: clip; }
+.md\:hidden { display: none; }
+
 @media (max-width: 920px) {
   .md\:flex { display: none !important; }
-  .md\:hidden { display: inline-block !important; }
+  .md\:hidden { display: inline-flex !important; }
+}
+
+@media (max-width: 900px) {
+  /* Grids de 2 columnas → 1 columna */
+  .r-stack { grid-template-columns: minmax(0, 1fr) !important; gap: 32px !important; }
+  /* Paneles sticky que en móvil deben fluir con la página */
+  .r-unstick { position: static !important; }
+  /* Filtros de la tienda: ocultos hasta que se abren */
+  .shop-filters { display: none; }
+  .shop-filters.open { display: block; }
 }
 
 @media (max-width: 760px) {
   .prod-card .prod-overlay { opacity: 1 !important; }
   .prod-card { min-height: 100%; }
+}
+
+@media (max-width: 560px) {
+  .r-stack-sm { grid-template-columns: minmax(0, 1fr) !important; }
+
+  /* Navbar compacto */
+  .nav-row { padding: 0 14px !important; gap: 10px !important; }
+  .nav-brand-text { font-size: 0.9rem !important; }
+  .nav-icons { gap: 6px !important; }
+  .nav-search { position: absolute; left: 0; right: 0; top: 100%; padding: 10px 14px; background: var(--bg-card); border-bottom: 1px solid var(--border); }
+  .nav-search input { width: 100% !important; padding: 10px 12px !important; font-size: 16px !important; }
+
+  /* Catálogo en 2 columnas */
+  .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 12px !important; }
+  .product-grid .prod-overlay { padding: 8px !important; }
+  .product-grid .prod-overlay .btn-gold { font-size: 0.6rem !important; letter-spacing: 0.04em !important; padding: 8px 0 !important; }
+  .product-grid .prod-info { padding: 10px 10px 12px !important; }
+
+  /* Home */
+  .home-hero { height: auto !important; min-height: calc(100svh - 88px) !important; padding: 40px 0 96px; }
+  .hero-btn-primary, .hero-btn-secondary { width: 100%; padding-left: 20px; padding-right: 20px; }
+  .bestseller-stage { height: 320px !important; min-width: 0 !important; }
+  .bestseller-list { flex-direction: row !important; flex-basis: 100% !important; overflow-x: auto; gap: 8px !important; scroll-snap-type: x mandatory; scrollbar-width: none; }
+  .bestseller-list > div { flex: 0 0 auto; min-width: 210px; padding: 10px 12px !important; gap: 12px !important; scroll-snap-align: start; }
+  .bestseller-list img { width: 48px !important; height: 48px !important; }
+  .hero-scroll-hint { display: none !important; }
+  .hero-btn-secondary { background: rgba(0, 0, 0, 0.35); }
+  .gallery-wrap { padding: 0 16px !important; }
+  .gallery-wrap > button { width: 34px !important; height: 34px !important; }
+  .gallery-wrap > button:first-of-type { left: 22px !important; }
+  .gallery-wrap > button:last-of-type { right: 22px !important; }
+
+  /* Producto */
+  .tabs-scroll { overflow-x: auto; scrollbar-width: none; }
+  .tabs-scroll > button { padding: 12px 16px !important; white-space: nowrap; font-size: 0.75rem !important; flex-shrink: 0; }
+
+  /* Checkout */
+  .checkout-steps { margin-bottom: 32px !important; }
+  .checkout-steps .step-line { width: 14px !important; margin: 0 4px 24px !important; }
+  .checkout-steps .step-label { font-size: 0.56rem !important; letter-spacing: 0.02em !important; }
+  .checkout-card { padding: 20px !important; }
 }
