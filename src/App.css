@@ -196,7 +196,6 @@ html { overflow-x: clip; }
 }
 
 @media (max-width: 760px) {
-  .prod-card .prod-overlay { opacity: 1 !important; }
   .prod-card { min-height: 100%; }
 }
 
@@ -212,9 +211,12 @@ html { overflow-x: clip; }
 
   /* Catálogo en 2 columnas */
   .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 12px !important; }
-  .product-grid .prod-overlay { padding: 8px !important; }
-  .product-grid .prod-overlay .btn-gold { font-size: 0.6rem !important; letter-spacing: 0.04em !important; padding: 8px 0 !important; }
+  .product-grid .prod-media { margin: 8px 8px 0 !important; }
+  .product-grid .prod-media > div > span:first-child { font-size: 0.55rem !important; padding: 3px 7px !important; }
   .product-grid .prod-info { padding: 10px 10px 12px !important; }
+  .product-grid .prod-info p:first-child { font-size: 0.56rem !important; letter-spacing: 0.1em !important; }
+  .product-grid .size-chip { font-size: 0.66rem !important; padding: 6px 7px !important; }
+  .product-grid .add-btn { font-size: 0.66rem !important; padding: 10px 6px !important; letter-spacing: 0.03em !important; gap: 5px !important; }
 
   /* Home */
   .home-hero { height: auto !important; min-height: calc(100svh - 88px) !important; padding: 40px 0 96px; }

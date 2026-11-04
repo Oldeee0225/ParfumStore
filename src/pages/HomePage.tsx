@@ -11,6 +11,40 @@ import decantsImg from '@/assets/Decants.png'
 
 const SHOW_REVIEWS = false
 
+// Cada foto se muestra encima de su propio texto, en la misma columna
+const FEATURED_WOMEN = [
+  { id: 1, title: 'Miss Dior', tagline: 'La firma floral más icónica de Dior' },
+  { id: 12, title: 'Flowerbomb', tagline: 'La bomba floral más deseada' },
+]
+const FEATURED_MEN = [
+  { id: 22, title: 'Sauvage Elixir', tagline: 'El icono salvaje más deseado de Dior' },
+  { id: 40, title: 'Acqua di Giò Profondo', tagline: 'El clásico acuático de Armani' },
+]
+
+function FeaturedGrid({ items }: { items: { id: number; title: string; tagline: string }[] }) {
+  const navigate = useNavigate()
+  const featured = items.flatMap(item => {
+    const product = PRODUCTS.find(p => p.id === item.id)
+    return product ? [{ ...item, product }] : []
+  })
+  return (
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+      {featured.map(({ product }) => (
+        <div key={product.id} style={{ borderRadius: 10, overflow: 'hidden', cursor: 'pointer' }} onClick={() => navigate(`/producto/${product.id}`)}>
+          <img src={product.image} alt={product.name} style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover' }} />
+        </div>
+      ))}
+      {featured.map(({ product, title, tagline }, i) => (
+        <div key={`text-${product.id}`} onClick={() => navigate(`/producto/${product.id}`)}
+          style={{ cursor: 'pointer', borderRadius: 10, padding: 20, display: 'flex', flexDirection: 'column', justifyContent: 'center', ...(i === 0 ? { background: 'rgba(200,164,93,0.1)', border: '1px solid rgba(200,164,93,0.3)' } : { background: '#1a1a1a' }) }}>
+          <p style={{ fontFamily: "'Playfair Display',serif", color: i === 0 ? 'var(--gold)' : '#fff', fontSize: '1.2rem', fontWeight: 600, marginBottom: 8 }}>{title}</p>
+          <p style={{ color: i === 0 ? 'rgba(255,255,255,0.6)' : 'rgba(255,255,255,0.5)', fontSize: '0.78rem', lineHeight: 1.6 }}>{tagline}</p>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 export function HomePage() {
   const navigate = useNavigate()
   const [email, setEmail] = useState('')
@@ -20,8 +54,6 @@ export function HomePage() {
 
   const bestsellers = PRODUCTS.filter(p => [48, 11, 13, 35].includes(p.id))
   const newLaunches = PRODUCTS.filter(p => [49, 88, 66, 92].includes(p.id))
-  const womenProducts = PRODUCTS.filter(p => [48, 13].includes(p.id))
-  const menFeatured = PRODUCTS.filter(p => [11, 22].includes(p.id))
 
   const [activeBestsellerId, setActiveBestsellerId] = useState(bestsellers[0]?.id || 48)
 
@@ -248,25 +280,7 @@ export function HomePage() {
                 VER PERFUMES DE MUJER
               </button>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-              {womenProducts.length > 0 ? womenProducts.slice(0, 2).map(p => (
-                <div key={p.id} style={{ borderRadius: 10, overflow: 'hidden', cursor: 'pointer' }} onClick={() => navigate(`/producto/${p.id}`)}>
-                  <img src={p.image} alt={p.name} style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover' }} />
-                </div>
-              )) : (
-                <div style={{ gridColumn: '1/-1', aspectRatio: '3/2', borderRadius: 10, overflow: 'hidden' }}>
-                  <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=600&h=400&fit=crop&auto=format" alt="Perfumes de mujer" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                </div>
-              )}
-              <div style={{ background: 'rgba(200,164,93,0.1)', border: '1px solid rgba(200,164,93,0.3)', borderRadius: 10, padding: 20, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                <p style={{ fontFamily: "'Playfair Display',serif", color: 'var(--gold)', fontSize: '1.2rem', fontWeight: 600, marginBottom: 8 }}>Miss Dior</p>
-                <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.78rem', lineHeight: 1.6 }}>La firma floral más icónica de Dior</p>
-              </div>
-              <div style={{ background: '#1a1a1a', borderRadius: 10, padding: 20, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                <p style={{ fontFamily: "'Playfair Display',serif", color: '#fff', fontSize: '1.2rem', fontWeight: 600, marginBottom: 8 }}>Flowerbomb</p>
-                <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.78rem', lineHeight: 1.6 }}>La bomba floral más deseada</p>
-              </div>
-            </div>
+            <FeaturedGrid items={FEATURED_WOMEN} />
           </div>
         </div>
       </section>
@@ -274,25 +288,7 @@ export function HomePage() {
       <section style={{ background: '#0e0e0e', padding: 'clamp(48px,8vw,96px) clamp(20px,5vw,80px)' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto' }}>
           <div className="r-stack" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'center' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-              {menFeatured.length > 0 ? menFeatured.map(p => (
-                <div key={p.id} style={{ borderRadius: 10, overflow: 'hidden', cursor: 'pointer' }} onClick={() => navigate(`/producto/${p.id}`)}>
-                  <img src={p.image} alt={p.name} style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover' }} />
-                </div>
-              )) : (
-                <div style={{ gridColumn: '1/-1', aspectRatio: '3/2', borderRadius: 10, overflow: 'hidden' }}>
-                  <img src="https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=600&h=400&fit=crop&auto=format" alt="Perfumes de hombre" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                </div>
-              )}
-              <div style={{ background: 'rgba(200,164,93,0.1)', border: '1px solid rgba(200,164,93,0.3)', borderRadius: 10, padding: 20, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                <p style={{ fontFamily: "'Playfair Display',serif", color: 'var(--gold)', fontSize: '1.2rem', fontWeight: 600, marginBottom: 8 }}>Sauvage Elixir</p>
-                <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.78rem', lineHeight: 1.6 }}>El icono salvaje más deseado de Dior</p>
-              </div>
-              <div style={{ background: '#1a1a1a', borderRadius: 10, padding: 20, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                <p style={{ fontFamily: "'Playfair Display',serif", color: '#fff', fontSize: '1.2rem', fontWeight: 600, marginBottom: 8 }}>Acqua di Giò Profondo</p>
-                <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.78rem', lineHeight: 1.6 }}>El clásico acuático de Armani</p>
-              </div>
-            </div>
+            <FeaturedGrid items={FEATURED_MEN} />
             <div>
               <SectionLabel text="Fuerza y elegancia" />
               <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.8rem,4vw,2.8rem)', color: '#fff', fontWeight: 600, lineHeight: 1.2, marginBottom: 16 }}>
