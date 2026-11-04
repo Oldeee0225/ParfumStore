@@ -6,7 +6,7 @@ import type { Product } from '@/types'
 const STORAGE_KEY = 'worklist-v2'
 const LONG_PRESS_MS = 500
 
-type Status = 'delete' | 'photos'
+type Status = 'delete' | 'photos' | 'decants'
 type PriceKey = 'bottle' | 'd10' | 'd5'
 type Prices = Partial<Record<PriceKey, number>>
 
@@ -19,7 +19,11 @@ const STATUS_STYLE: Record<Status | 'pending', { label: string; color: string; b
   pending: { label: 'Pendiente', color: '#27272a', bg: '#18181b' },
   delete: { label: '🗑 Eliminar', color: '#ef4444', bg: '#2a1215' },
   photos: { label: '📷 Cambiar fotos', color: '#10b981', bg: '#0f2a20' },
+  decants: { label: '🧪 Cambiar decants', color: '#a855f7', bg: '#24123a' },
 }
+
+const STATUSES: Status[] = ['delete', 'photos', 'decants']
+const EXPORT_TITLE: Record<Status, string> = { delete: 'ELIMINAR', photos: 'CAMBIAR FOTOS', decants: 'CAMBIAR DECANTS' }
 
 const PRICE_LABELS: Record<PriceKey, string> = { bottle: 'Botella', d10: '10 ml', d5: '5 ml' }
 
@@ -212,7 +216,9 @@ function OptionsPanel({ p, status, prices, onStatus, onPrices, onClose }: {
         onClick={() => onStatus(active ? undefined : s)}
         style={{
           flex: 1,
-          padding: '12px 10px',
+          minWidth: 0,
+          padding: '12px 6px',
+          lineHeight: 1.25,
           borderRadius: 8,
           border: `2px solid ${st.color}`,
           background: active ? st.color : 'transparent',
@@ -251,8 +257,7 @@ function OptionsPanel({ p, status, prices, onStatus, onPrices, onClose }: {
 
         <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: 1, textTransform: 'uppercase', color: '#71717a', marginBottom: 8 }}>Estado</p>
         <div style={{ display: 'flex', gap: 8, marginBottom: 20 }}>
-          {statusBtn('delete')}
-          {statusBtn('photos')}
+          {STATUSES.map(statusBtn)}
         </div>
 
         <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: 1, textTransform: 'uppercase', color: '#71717a', marginBottom: 8 }}>Precios</p>
@@ -298,9 +303,9 @@ function buildExport(state: WorkState): string {
   const byId = new Map(PRODUCTS.map(p => [p.id, p]))
   const ids = (s: Status) => Object.entries(state.status).filter(([, v]) => v === s).map(([id]) => byId.get(Number(id))).filter((p): p is Product => !!p)
   const lines: string[] = []
-  for (const s of ['delete', 'photos'] as const) {
+  for (const s of STATUSES) {
     const list = ids(s)
-    lines.push(`${s === 'delete' ? 'ELIMINAR' : 'CAMBIAR FOTOS'} (${list.length})`)
+    lines.push(`${EXPORT_TITLE[s]} (${list.length})`)
     list.forEach(p => lines.push(`- ${fullName(p)} (ID ${p.id})`))
     lines.push('')
   }
@@ -358,7 +363,7 @@ export function WorkListPage() {
   const filtered = PRODUCTS.filter(p => {
     if (genderFilter !== 'all' && p.gender !== genderFilter) return false
     if (filter === 'pending') return !state.status[p.id]
-    if (filter === 'delete' || filter === 'photos') return state.status[p.id] === filter
+    if (filter !== 'all' && filter !== 'priced') return state.status[p.id] === filter
     if (filter === 'priced') return isPriced(p.id)
     return true
   })
@@ -368,6 +373,7 @@ export function WorkListPage() {
     pending: PRODUCTS.filter(p => !state.status[p.id]).length,
     delete: Object.values(state.status).filter(s => s === 'delete').length,
     photos: Object.values(state.status).filter(s => s === 'photos').length,
+    decants: Object.values(state.status).filter(s => s === 'decants').length,
     priced: PRODUCTS.filter(p => isPriced(p.id)).length,
   }
 
@@ -406,10 +412,11 @@ export function WorkListPage() {
       <div style={{ display: 'flex', gap: 12, marginBottom: 20, flexWrap: 'wrap', alignItems: 'center' }}>
         <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
           {([
-            ['all', 'Todos', '#7c3aed'],
-            ['pending', 'Pendientes', '#7c3aed'],
+            ['all', 'Todos', '#52525b'],
+            ['pending', 'Pendientes', '#52525b'],
             ['delete', '🗑 Eliminar', '#ef4444'],
             ['photos', '📷 Cambiar fotos', '#10b981'],
+            ['decants', '🧪 Cambiar decants', '#a855f7'],
             ['priced', '$ Precio editado', '#a17d34'],
           ] as const).map(([f, label, bg]) => (
             <button key={f} onClick={() => setFilter(f)} style={filterBtn(filter === f, bg)}>
