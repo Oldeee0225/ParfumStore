@@ -1,6 +1,6 @@
 # Lista de Precios — Elegant Parfum Pty
 
-93 perfumes en orden alfabético.
+94 perfumes en orden alfabético.
 
 | Perfume | Botella completa | 10 ml | 5 ml |
 |---|---:|---:|---:|
@@ -63,6 +63,7 @@
 | Michael Malul Ocean Noir | $110 | $15 | $8 |
 | Orto Parisi Megamare | $195 | $25 | $14 |
 | Paco Rabanne Invictus Elixir | $130 | $16 | $8 |
+| Paco Rabanne One Million Black | $115 | $18 | $9 |
 | Paco Rabanne Phantom Le Parfum | $120 | — | — |
 | Parfums de Marly Layton | $340 | $25 | $14 |
 | Parfums de Marly Valaya | $295 | $28 | $15 |

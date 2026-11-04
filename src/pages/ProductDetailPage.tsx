@@ -149,10 +149,12 @@ export function ProductDetailPage() {
           <div>
             <p style={{ fontSize: '0.72rem', color: 'var(--gold)', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 8 }}>{product.brand}</p>
             <h1 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.8rem,4vw,2.6rem)', color: 'var(--fg)', fontWeight: 600, lineHeight: 1.2, marginBottom: 12 }}>{product.name}</h1>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
-              <Stars rating={product.rating} />
-              <span style={{ fontSize: '0.78rem', color: 'var(--fg3)' }}>{product.reviews.toLocaleString()} reseñas</span>
-            </div>
+            {product.reviews > 0 && (
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
+                <Stars rating={product.rating} />
+                <span style={{ fontSize: '0.78rem', color: 'var(--fg3)' }}>{product.reviews.toLocaleString()} reseñas</span>
+              </div>
+            )}
             <p style={{ fontSize: '0.8rem', color: 'var(--fg3)', marginBottom: 20 }}>{product.type} · {product.family}</p>
 
             <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: 28 }}>

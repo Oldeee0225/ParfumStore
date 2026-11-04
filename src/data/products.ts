@@ -100,6 +100,7 @@ import chanelBleuEDP from '../assets/Caballeros/Chanel_Bleu_EauDeParfum.png'
 import armaniAcquaDiGioParfum from '../assets/Caballeros/AcquadiGiòParfumGiorgioArmani.png'
 import creedWildVetiver from '../assets/Caballeros/Creed_WildVetiver.png'
 import ortoParisiMegamare from '../assets/Caballeros/OrtoParasi_Megamare.png'
+import pacoOneMillionBlack from '../assets/Caballeros/OneMillionBlack.png'
 
 export const PRODUCTS: Product[] = [
   // ─── Perfumes para Damas ───────────────────────────────────────────
@@ -1153,6 +1154,18 @@ export const PRODUCTS: Product[] = [
     sizes: [{ label: '100 ml', price: 105 }, { label: '10 ml Decant', price: 15 }, { label: '5 ml Decant', price: 8 }]
   },
   {
+    id: 94, name: 'One Million Black', brand: 'Paco Rabanne', price: 115,
+    image: pacoOneMillionBlack, category: 'designer', gender: 'men', type: 'EDP', family: 'Amaderado Gourmand',
+    rating: 4.8, reviews: 0, isNew: true,
+    topNotes: ['Manzana Verde', 'Piña'],
+    heartNotes: ['Flor Blanca'],
+    baseNotes: ['Vainilla', 'Ámbar', 'Madera'],
+    longevity: '8-10 horas', sillage: 'Fuerte',
+    seasons: ['Otoño', 'Invierno'], occasions: ['Noche', 'Eventos'],
+    description: 'La versión oscura del icono dorado de Rabanne. Frutas jugosas sobre un fondo cálido de vainilla, ámbar y maderas.',
+    sizes: [{ label: '100 ml', price: 115 }, { label: '10 ml Decant', price: 18 }, { label: '5 ml Decant', price: 9 }]
+  },
+  {
     id: 82, name: 'Ocean Noir', brand: 'Michael Malul', price: 110,
     image: michaelMalulOceanNoir, category: 'niche', gender: 'men', type: 'EDP', family: 'Amaderado Acuático',
     rating: 4.8, reviews: 200, isNew: true,
@@ -1362,7 +1375,7 @@ export const BRANDS = [
   { name: 'Jennifer Lopez', country: 'Estados Unidos', count: 1, letter: 'J', image: imgJLo },
   { name: 'Versace', country: 'Italia', count: 3, letter: 'V', image: imgVersace },
   { name: 'Azzaro', country: 'Francia', count: 2, letter: 'A', image: imgAzzaro },
-  { name: 'Paco Rabanne', country: 'Francia', count: 2, letter: 'P', image: imgPacoRabanne },
+  { name: 'Paco Rabanne', country: 'Francia', count: 3, letter: 'P', image: imgPacoRabanne },
   { name: 'Guerlain', country: 'Francia', count: 1, letter: 'G', image: imgGuerlain },
   { name: 'Lacoste', country: 'Francia', count: 1, letter: 'L', image: imgLacoste },
   { name: 'Givenchy', country: 'Francia', count: 1, letter: 'G', image: imgGivenchy },
