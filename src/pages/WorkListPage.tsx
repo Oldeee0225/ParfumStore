@@ -5,13 +5,14 @@ import type { Product } from '@/types'
 
 const STORAGE_KEY = 'worklist-v2'
 const LONG_PRESS_MS = 500
+const MAX_STATUSES = 2
 
 type Status = 'delete' | 'photos' | 'decants'
 type PriceKey = 'bottle' | 'd10' | 'd5'
 type Prices = Partial<Record<PriceKey, number>>
 
 interface WorkState {
-  status: Record<number, Status>
+  status: Record<number, Status[]>
   prices: Record<number, Prices>
 }
 
@@ -31,7 +32,13 @@ function loadState(): WorkState {
   try {
     const raw = localStorage.getItem(STORAGE_KEY)
     const parsed = raw ? JSON.parse(raw) : null
-    return { status: parsed?.status ?? {}, prices: parsed?.prices ?? {} }
+    // Versiones anteriores guardaban un solo estado por perfume ('delete'); ahora es una lista
+    const status: Record<number, Status[]> = {}
+    for (const [id, v] of Object.entries(parsed?.status ?? {})) {
+      const list = (Array.isArray(v) ? v : [v]).filter((x): x is Status => STATUSES.includes(x as Status))
+      if (list.length > 0) status[Number(id)] = [...new Set(list)].slice(0, MAX_STATUSES)
+    }
+    return { status, prices: parsed?.prices ?? {} }
   } catch {
     return { status: {}, prices: {} }
   }
@@ -89,9 +96,20 @@ function useLongPress(onLongPress: () => void) {
   }
 }
 
-function WorkCard({ p, status, prices, onOpen }: { p: Product; status?: Status; prices: Prices; onOpen: () => void }) {
+// Con 2 estados, el borde y el fondo se parten en diagonal con los dos colores
+function cardColors(statuses: Status[]) {
+  const [a, b] = statuses.map(x => STATUS_STYLE[x])
+  if (!a) return { border: `2px solid ${STATUS_STYLE.pending.color}`, background: STATUS_STYLE.pending.bg }
+  if (!b) return { border: `2px solid ${a.color}`, background: a.bg }
+  return {
+    border: '2px solid transparent',
+    background: `linear-gradient(135deg, ${a.bg} 50%, ${b.bg} 50%) padding-box, linear-gradient(135deg, ${a.color} 50%, ${b.color} 50%) border-box`,
+  }
+}
+
+function WorkCard({ p, statuses, prices, onOpen }: { p: Product; statuses: Status[]; prices: Prices; onOpen: () => void }) {
   const { pressing, handlers } = useLongPress(onOpen)
-  const st = STATUS_STYLE[status ?? 'pending']
+  const isDelete = statuses.includes('delete')
   const orig = originalPrices(p)
   const edited = (Object.keys(prices) as PriceKey[]).length > 0
 
@@ -105,8 +123,7 @@ function WorkCard({ p, status, prices, onOpen }: { p: Product; status?: Status; 
         borderRadius: 10,
         overflow: 'hidden',
         cursor: 'pointer',
-        border: `2px solid ${st.color}`,
-        background: st.bg,
+        ...cardColors(statuses),
         transform: pressing ? 'scale(0.96)' : 'scale(1)',
         transition: `transform ${pressing ? LONG_PRESS_MS : 150}ms ease, border-color 0.2s, background 0.2s`,
         userSelect: 'none',
@@ -116,9 +133,9 @@ function WorkCard({ p, status, prices, onOpen }: { p: Product; status?: Status; 
       }}
     >
       <div style={{ position: 'absolute', top: 8, left: 8, right: 8, display: 'flex', flexWrap: 'wrap', gap: 4, zIndex: 2 }}>
-        {status && (
-          <span style={{ background: st.color, color: '#fff', fontSize: 10, fontWeight: 700, padding: '3px 8px', borderRadius: 999 }}>{st.label}</span>
-        )}
+        {statuses.map(x => (
+          <span key={x} style={{ background: STATUS_STYLE[x].color, color: '#fff', fontSize: 10, fontWeight: 700, padding: '3px 8px', borderRadius: 999 }}>{STATUS_STYLE[x].label}</span>
+        ))}
         {edited && (
           <span style={{ background: 'var(--gold)', color: '#111', fontSize: 10, fontWeight: 700, padding: '3px 8px', borderRadius: 999 }}>$ Precio editado</span>
         )}
@@ -134,7 +151,7 @@ function WorkCard({ p, status, prices, onOpen }: { p: Product; status?: Status; 
           objectFit: 'contain',
           background: '#0f0f0f',
           padding: 8,
-          opacity: status === 'delete' ? 0.45 : 1,
+          opacity: isDelete ? 0.45 : 1,
           pointerEvents: 'none',
         }}
       />
@@ -155,7 +172,7 @@ function WorkCard({ p, status, prices, onOpen }: { p: Product; status?: Status; 
           color: '#e4e4e7',
           lineHeight: 1.3,
           marginTop: 2,
-          textDecoration: status === 'delete' ? 'line-through' : 'none',
+          textDecoration: isDelete ? 'line-through' : 'none',
         }}>
           {p.name}
         </div>
@@ -174,11 +191,11 @@ function WorkCard({ p, status, prices, onOpen }: { p: Product; status?: Status; 
   )
 }
 
-function OptionsPanel({ p, status, prices, onStatus, onPrices, onClose }: {
+function OptionsPanel({ p, statuses, prices, onToggleStatus, onPrices, onClose }: {
   p: Product
-  status?: Status
+  statuses: Status[]
   prices: Prices
-  onStatus: (s: Status | undefined) => void
+  onToggleStatus: (s: Status) => void
   onPrices: (prices: Prices) => void
   onClose: () => void
 }) {
@@ -209,11 +226,16 @@ function OptionsPanel({ p, status, prices, onStatus, onPrices, onClose }: {
   const bottleLabel = p.sizes.find(s => !s.label.includes('Decant'))?.label
 
   const statusBtn = (s: Status) => {
-    const active = status === s
+    const active = statuses.includes(s)
+    const full = !active && statuses.length >= MAX_STATUSES
     const st = STATUS_STYLE[s]
     return (
       <button
-        onClick={() => onStatus(active ? undefined : s)}
+        key={s}
+        onClick={() => onToggleStatus(s)}
+        disabled={full}
+        title={full ? `Máximo ${MAX_STATUSES} estados: quita uno primero` : undefined}
+        aria-pressed={active}
         style={{
           flex: 1,
           minWidth: 0,
@@ -223,7 +245,8 @@ function OptionsPanel({ p, status, prices, onStatus, onPrices, onClose }: {
           border: `2px solid ${st.color}`,
           background: active ? st.color : 'transparent',
           color: active ? '#fff' : st.color,
-          cursor: 'pointer',
+          cursor: full ? 'not-allowed' : 'pointer',
+          opacity: full ? 0.35 : 1,
           fontSize: 13,
           fontWeight: 700,
         }}
@@ -255,7 +278,7 @@ function OptionsPanel({ p, status, prices, onStatus, onPrices, onClose }: {
           <button onClick={onClose} aria-label="Cerrar" style={{ border: 'none', background: 'none', color: '#a1a1aa', fontSize: 22, cursor: 'pointer', alignSelf: 'flex-start' }}>✕</button>
         </div>
 
-        <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: 1, textTransform: 'uppercase', color: '#71717a', marginBottom: 8 }}>Estado</p>
+        <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: 1, textTransform: 'uppercase', color: '#71717a', marginBottom: 8 }}>Estado <span style={{ textTransform: 'none', letterSpacing: 0, fontWeight: 500 }}>· hasta {MAX_STATUSES}</span></p>
         <div style={{ display: 'flex', gap: 8, marginBottom: 20 }}>
           {STATUSES.map(statusBtn)}
         </div>
@@ -301,7 +324,7 @@ function OptionsPanel({ p, status, prices, onStatus, onPrices, onClose }: {
 
 function buildExport(state: WorkState): string {
   const byId = new Map(PRODUCTS.map(p => [p.id, p]))
-  const ids = (s: Status) => Object.entries(state.status).filter(([, v]) => v === s).map(([id]) => byId.get(Number(id))).filter((p): p is Product => !!p)
+  const ids = (s: Status) => Object.entries(state.status).filter(([, v]) => v.includes(s)).map(([id]) => byId.get(Number(id))).filter((p): p is Product => !!p)
   const lines: string[] = []
   for (const s of STATUSES) {
     const list = ids(s)
@@ -340,14 +363,20 @@ export function WorkListPage() {
     return () => window.clearTimeout(t)
   }, [toast])
 
-  const setStatus = (id: number, s: Status | undefined) => {
+  const toggleStatus = (id: number, s: Status) => {
     setState(prev => {
+      const current = prev.status[id] ?? []
+      const next = current.includes(s)
+        ? current.filter(x => x !== s)
+        : current.length < MAX_STATUSES ? STATUSES.filter(x => x === s || current.includes(x)) : current
       const status = { ...prev.status }
-      if (s) status[id] = s
+      if (next.length > 0) status[id] = next
       else delete status[id]
       return { ...prev, status }
     })
   }
+
+  const statusesOf = (id: number) => state.status[id] ?? []
 
   const setPrices = (id: number, pr: Prices) => {
     setState(prev => {
@@ -362,18 +391,18 @@ export function WorkListPage() {
 
   const filtered = PRODUCTS.filter(p => {
     if (genderFilter !== 'all' && p.gender !== genderFilter) return false
-    if (filter === 'pending') return !state.status[p.id]
-    if (filter !== 'all' && filter !== 'priced') return state.status[p.id] === filter
+    if (filter === 'pending') return statusesOf(p.id).length === 0
+    if (filter !== 'all' && filter !== 'priced') return statusesOf(p.id).includes(filter)
     if (filter === 'priced') return isPriced(p.id)
     return true
   })
 
   const counts = {
     all: PRODUCTS.length,
-    pending: PRODUCTS.filter(p => !state.status[p.id]).length,
-    delete: Object.values(state.status).filter(s => s === 'delete').length,
-    photos: Object.values(state.status).filter(s => s === 'photos').length,
-    decants: Object.values(state.status).filter(s => s === 'decants').length,
+    pending: PRODUCTS.filter(p => statusesOf(p.id).length === 0).length,
+    delete: PRODUCTS.filter(p => statusesOf(p.id).includes('delete')).length,
+    photos: PRODUCTS.filter(p => statusesOf(p.id).includes('photos')).length,
+    decants: PRODUCTS.filter(p => statusesOf(p.id).includes('decants')).length,
     priced: PRODUCTS.filter(p => isPriced(p.id)).length,
   }
 
@@ -465,7 +494,7 @@ export function WorkListPage() {
         gap: 12,
       }}>
         {filtered.map(p => (
-          <WorkCard key={p.id} p={p} status={state.status[p.id]} prices={state.prices[p.id] ?? {}} onOpen={() => setOpenId(p.id)} />
+          <WorkCard key={p.id} p={p} statuses={statusesOf(p.id)} prices={state.prices[p.id] ?? {}} onOpen={() => setOpenId(p.id)} />
         ))}
       </div>
 
@@ -477,9 +506,9 @@ export function WorkListPage() {
         <OptionsPanel
           key={openProduct.id}
           p={openProduct}
-          status={state.status[openProduct.id]}
+          statuses={statusesOf(openProduct.id)}
           prices={state.prices[openProduct.id] ?? {}}
-          onStatus={s => setStatus(openProduct.id, s)}
+          onToggleStatus={s => toggleStatus(openProduct.id, s)}
           onPrices={pr => setPrices(openProduct.id, pr)}
           onClose={() => setOpenId(null)}
         />
