@@ -8,6 +8,7 @@ import { useCart } from '@/providers/CartProvider'
 import { useWishlist } from '@/providers/WishlistProvider'
 import { PRODUCTS, REVIEWS } from '@/data/products'
 import { getNoteImage, cleanNoteName } from '@/data/notes'
+import placeholderPerfume from '@/assets/placeholder-perfume.svg'
 import type { Product } from '@/types'
 
 const additionalImages = import.meta.glob('../assets/Aditionals/*_001.png', { eager: true, import: 'default' }) as Record<string, string>;
@@ -16,10 +17,15 @@ const brandLogos = import.meta.glob('../assets/Marcas/*.{png,jpg,jpeg}', { eager
 function getProductImages(product: Product) {
   const normName = product.name.toLowerCase().replace(/[^a-z0-9]/g, '');
   const normBrand = product.brand.toLowerCase().replace(/[^a-z0-9]/g, '');
-  
+  // "Torino 22" no debe tomar la foto de "Torino 21"
+  const nameNumbers = product.name.match(/\d+/g) ?? [];
+  const sameNumbers = (file: string) => nameNumbers.every(n => file.includes(n));
+  // Sin foto propia todavía: no mostrar fotos adicionales de otro perfume
+  const hasOwnPhoto = product.image !== placeholderPerfume;
+
   let addImg = '';
   // Intentar match directo
-  for (const [path, url] of Object.entries(additionalImages)) {
+  for (const [path, url] of hasOwnPhoto ? Object.entries(additionalImages) : []) {
     const file = path.toLowerCase().replace(/[^a-z0-9]/g, '');
     if (file.includes(normName)) {
       addImg = url;
@@ -27,21 +33,21 @@ function getProductImages(product: Product) {
     }
   }
   // Fallbacks con split de palabras
-  if (!addImg) {
+  if (!addImg && hasOwnPhoto) {
     for (const [path, url] of Object.entries(additionalImages)) {
       const file = path.toLowerCase().replace(/[^a-z0-9]/g, '');
       const words = product.name.toLowerCase().split(' ').map(w => w.replace(/[^a-z0-9]/g, '')).filter(w => w.length > 3);
-      if (words.length > 0 && words.some(w => file.includes(w)) && file.includes(normBrand.substring(0,4))) {
+      if (words.length > 0 && words.some(w => file.includes(w)) && file.includes(normBrand.substring(0,4)) && sameNumbers(file)) {
         addImg = url;
         break;
       }
     }
   }
-  if (!addImg) {
+  if (!addImg && hasOwnPhoto) {
     for (const [path, url] of Object.entries(additionalImages)) {
       const file = path.toLowerCase().replace(/[^a-z0-9]/g, '');
       const firstWord = product.name.split(' ')[0].toLowerCase().replace(/[^a-z0-9]/g, '');
-      if (firstWord.length > 2 && file.includes(firstWord)) {
+      if (firstWord.length > 2 && file.includes(firstWord) && sameNumbers(file)) {
         addImg = url;
         break;
       }
@@ -103,6 +109,11 @@ export function ProductDetailPage() {
 
   const isWished = wishlist.includes(product.id)
   const related = PRODUCTS.filter(p => p.id !== product.id && (p.brand === product.brand || p.category === product.category)).slice(0, 4)
+  const noteGroups = [
+    { title: 'Notas de Salida', notes: product.topNotes, icon: '◎', color: '#C8A45D' },
+    { title: 'Notas de Corazón', notes: product.heartNotes, icon: '◉', color: '#A88840' },
+    { title: 'Notas de Fondo', notes: product.baseNotes, icon: '●', color: '#7a6030' },
+  ].filter(g => g.notes.length > 0)
 
   const handleAdd = () => {
     addToCart({ product, quantity: qty, size: selectedSize.label, price: selectedSize.price })
@@ -227,13 +238,13 @@ export function ProductDetailPage() {
             ))}
           </div>
 
-          {activeTab === 'notes' && (
+          {activeTab === 'notes' && noteGroups.length === 0 && (
+            <p style={{ color: 'var(--fg3)', fontSize: '0.9rem' }}>Notas olfativas próximamente.</p>
+          )}
+
+          {activeTab === 'notes' && noteGroups.length > 0 && (
             <div className="r-stack" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 32 }}>
-              {[
-                { title: 'Notas de Salida', notes: product.topNotes, icon: '◎', color: '#C8A45D' },
-                { title: 'Notas de Corazón', notes: product.heartNotes, icon: '◉', color: '#A88840' },
-                { title: 'Notas de Fondo', notes: product.baseNotes, icon: '●', color: '#7a6030' },
-              ].map(({ title, notes, icon, color }) => (
+              {noteGroups.map(({ title, notes, icon, color }) => (
                 <div key={title} style={{ background: 'var(--bg2)', borderRadius: 12, padding: 24, textAlign: 'center' }}>
                   <div style={{ fontSize: 28, color, marginBottom: 12 }}>{icon}</div>
                   <p style={{ fontFamily: "'Playfair Display',serif", fontSize: '1rem', color: 'var(--fg)', fontWeight: 600, marginBottom: 16 }}>{title}</p>
@@ -271,7 +282,7 @@ export function ProductDetailPage() {
                 ['Familia', product.family],
                 ['Estaciones', product.seasons.join(', ')],
                 ['Ocasiones', product.occasions.join(', ')],
-              ].map(([label, value]) => (
+              ].filter(([, value]) => value).map(([label, value]) => (
                 <div key={label} style={{ padding: '16px 0', borderBottom: '1px solid var(--border)' }}>
                   <p style={{ fontSize: '0.7rem', color: 'var(--fg3)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 4 }}>{label}</p>
                   <p style={{ fontSize: '0.92rem', color: 'var(--fg)', fontWeight: 500 }}>{value}</p>

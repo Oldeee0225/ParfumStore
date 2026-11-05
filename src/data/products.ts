@@ -1,9 +1,9 @@
 import type { Product } from '../types'
+import placeholderPerfume from '../assets/placeholder-perfume.svg'
 
 // ─── Imágenes locales ────────────────────────────────────────────────
 import arianaCloudPink from '../assets/Damas/ArianaGrande_CloudPink.png'
 import burberryHerElixir from '../assets/Damas/Burberry_Her_Elixir.png'
-import cacharelAmorAmor from '../assets/Damas/Cacharel_AmorAmor.png'
 import carolinaForeverYoung from '../assets/Damas/Carolina_Herrera_Forever_Young.png'
 import carolinaGoodBlush from '../assets/Damas/Carolina_Herrera_Good_Blush.png'
 import carolinaLaBomba from '../assets/Damas/CarolinaHerreraBomb.png'
@@ -18,7 +18,6 @@ import jimmyChooLeParfum from '../assets/Damas/Jimmy_Choo_Le_Parfum.png'
 import lancomeLaNuitTresor from '../assets/Damas/Lancôme_La_Nuit_Trésor.png'
 import lancomeLaVieEstBelle from '../assets/Damas/Lancôme_La_Vie_Est_Belle_Elixir.png'
 import missDior from '../assets/Damas/Miss_Dior_Eau_de_Parfum.png'
-import versaceCrystalNoir from '../assets/Damas/Versace_Crystal_Noir.png'
 import yslLibre from '../assets/Damas/Yves_Saint_Laurent_Libre.png'
 import margielaVanillaPowder from '../assets/Damas/MaisonMargiela_VanillaPowder.png'
 import pradaParadoxeIntense from '../assets/Damas/Prada_ParadoxeIntense.png'
@@ -60,7 +59,6 @@ import afnan9pmRebel from '../assets/Caballeros/9PM_Rebel.png'
 import afnan9pmClasico from '../assets/Caballeros/9PM_Clasico.png'
 import armafOdysseyMandarin from '../assets/Caballeros/Armaf_Odyssey_Mandarin_Sky.png'
 import armafOdysseyAcqua from '../assets/Caballeros/Armaf_OdesseyAcqua.png'
-import lattafaArtOfUniverse from '../assets/Caballeros/Lattafa_ArtOfUniverse.png'
 import alHaramainGold from '../assets/Caballeros/AlHaramain_GoldEdition.png'
 import bhararaReyDeReyes from '../assets/Caballeros/Bharara_ReydeReyes.png'
 import rayhaan from '../assets/Caballeros/Rayhaan_Italia.png'
@@ -73,8 +71,6 @@ import sospiroVibrato from '../assets/Caballeros/Sospiro_Vibrato.png'
 import btsDrunkLovers from '../assets/Caballeros/BornToStandOut.png'
 import tomFordCostaAzzurra from '../assets/Caballeros/TomFord_CostaAzzurra.png'
 import lorenzoGinFusion from '../assets/Caballeros/Lorenzo_GinFusion.png'
-import yslBabycat from '../assets/Caballeros/YvesSaintLaurent_Babycat.png'
-import joMilanoFullHouse from '../assets/Caballeros/JoMilano_FullHouse.png'
 import jpgParadiseGarden from '../assets/Caballeros/Jean_Paul_Gaultier_Paradise_Garden.png'
 
 
@@ -105,7 +101,7 @@ import pacoOneMillionBlack from '../assets/Caballeros/OneMillionBlack.png'
 export const PRODUCTS: Product[] = [
   // ─── Perfumes para Damas ───────────────────────────────────────────
   {
-    id: 1, name: 'Miss Dior Eau de Parfum', brand: 'Dior', price: 125,
+    id: 1, name: 'Miss Dior Eau de Parfum', brand: 'Dior', price: 220,
     image: missDior,
     category: 'designer', gender: 'women', type: 'EDP', family: 'Floral Amaderado',
     rating: 4.9, reviews: 2847, isBestseller: true,
@@ -115,10 +111,10 @@ export const PRODUCTS: Product[] = [
     longevity: '8-10 horas', sillage: 'Excelente',
     seasons: ['Primavera', 'Verano'], occasions: ['Noche', 'Eventos', 'Romántico'],
     description: 'La firma floral de Dior. Un ramo de rosas frescas y peonía sobre una base suave de almizcle y sándalo. Elegancia atemporal en cada rociada.',
-    sizes: [{ label: '100 ml', price: 125 }, { label: '10 ml Decant', price: 15 }, { label: '5 ml Decant', price: 8 }],
+    sizes: [{ label: '100 ml', price: 220 }, { label: '10 ml Decant', price: 20 }, { label: '5 ml Decant', price: 10 }],
   },
   {
-    id: 2, name: 'La Bomba', brand: 'Carolina Herrera', price: 105,
+    id: 2, name: 'La Bomba', brand: 'Carolina Herrera', price: 135,
     image: carolinaLaBomba,
     category: 'designer', gender: 'women', type: 'EDP', family: 'Floral Oriental',
     rating: 4.7, reviews: 1890,
@@ -128,10 +124,10 @@ export const PRODUCTS: Product[] = [
     longevity: '8-10 horas', sillage: 'Excelente',
     seasons: ['Otoño', 'Invierno'], occasions: ['Noche', 'Fiesta', 'Citas'],
     description: 'Una explosión de feminidad con tuberosa embriagadora y un fondo cálido de cacao y vainilla. Atrevida, sensual y llena de carácter.',
-    sizes: [{ label: '80 ml', price: 105 }, { label: '10 ml Decant', price: 13 }, { label: '5 ml Decant', price: 7 }],
+    sizes: [{ label: '80 ml', price: 135 }, { label: '10 ml Decant', price: 22 }, { label: '5 ml Decant', price: 12 }],
   },
   {
-    id: 3, name: 'Good Blush', brand: 'Carolina Herrera', price: 100, originalPrice: 115, isOnSale: true,
+    id: 3, name: 'Good Blush', brand: 'Carolina Herrera', price: 115, originalPrice: 115, isOnSale: true,
     image: carolinaGoodBlush,
     category: 'designer', gender: 'women', type: 'EDP', family: 'Floral Afrutado',
     rating: 4.6, reviews: 1340,
@@ -141,7 +137,7 @@ export const PRODUCTS: Product[] = [
     longevity: '6-8 horas', sillage: 'Moderado',
     seasons: ['Primavera', 'Verano'], occasions: ['Día', 'Casual', 'Trabajo'],
     description: 'Un ramo floral vibrante con un toque afrutado. Femenino y luminoso, perfecto para el día a día.',
-    sizes: [{ label: '80 ml', price: 100 }, { label: '10 ml Decant', price: 12 }, { label: '5 ml Decant', price: 6 }],
+    sizes: [{ label: '80 ml', price: 115 }, { label: '10 ml Decant', price: 16 }, { label: '5 ml Decant', price: 9 }],
   },
   {
     id: 4, name: 'Good Very', brand: 'Carolina Herrera', price: 105,
@@ -183,7 +179,7 @@ export const PRODUCTS: Product[] = [
     sizes: [{ label: '100 ml', price: 120 }, { label: '10 ml Decant', price: 15 }, { label: '5 ml Decant', price: 8 }],
   },
   {
-    id: 7, name: 'Eau de Parfum', brand: 'Jimmy Choo', price: 95,
+    id: 7, name: 'Eau de Parfum', brand: 'Jimmy Choo', price: 105,
     image: jimmyChooEDP,
     category: 'designer', gender: 'women', type: 'EDP', family: 'Oriental Floral',
     rating: 4.5, reviews: 2100,
@@ -193,10 +189,10 @@ export const PRODUCTS: Product[] = [
     longevity: '6-8 horas', sillage: 'Bueno',
     seasons: ['Otoño', 'Invierno'], occasions: ['Noche', 'Trabajo', 'Citas'],
     description: 'Un oriental floral adictivo con la firma del icónico tacón de Jimmy Choo. Dulce, sofisticado y con carácter.',
-    sizes: [{ label: '90 ml', price: 95 }, { label: '10 ml Decant', price: 12 }, { label: '5 ml Decant', price: 6 }],
+    sizes: [{ label: '90 ml', price: 105 }, { label: '10 ml Decant', price: 16 }, { label: '5 ml Decant', price: 8 }],
   },
   {
-    id: 8, name: 'La Nuit Trésor', brand: 'Lancôme', price: 125,
+    id: 8, name: 'La Nuit Trésor', brand: 'Lancôme', price: 130,
     image: lancomeLaNuitTresor,
     category: 'designer', gender: 'women', type: 'EDP', family: 'Oriental Frutal',
     rating: 4.8, reviews: 1870, isBestseller: true,
@@ -206,10 +202,10 @@ export const PRODUCTS: Product[] = [
     longevity: '10-12 horas', sillage: 'Excelente',
     seasons: ['Otoño', 'Invierno'], occasions: ['Noche', 'Romántico', 'Eventos'],
     description: 'El tesoro de la noche. Una rosa embriagadora con pera y vainilla sobre un lecho de praliné y ámbar. Misterio y deseo.',
-    sizes: [{ label: '75 ml', price: 125 }, { label: '10 ml Decant', price: 15 }, { label: '5 ml Decant', price: 8 }],
+    sizes: [{ label: '75 ml', price: 130 }, { label: '10 ml Decant', price: 17 }, { label: '5 ml Decant', price: 9 }],
   },
   {
-    id: 9, name: 'La Vie Est Belle Elixir', brand: 'Lancôme', price: 130,
+    id: 9, name: 'La Vie Est Belle Elixir', brand: 'Lancôme', price: 125,
     image: lancomeLaVieEstBelle,
     category: 'designer', gender: 'women', type: 'Elixir', family: 'Floral Gourmand',
     rating: 4.8, reviews: 1640, isSoldOut: true,
@@ -219,7 +215,7 @@ export const PRODUCTS: Product[] = [
     longevity: '10-12 horas', sillage: 'Excelente',
     seasons: ['Otoño', 'Invierno'], occasions: ['Noche', 'Eventos', 'Especial'],
     description: 'La vida es bella. Un elixir gourmand de iris, flor de azahar y vainilla praliné que celebra la felicidad femenina.',
-    sizes: [{ label: '100 ml Pedido solo Contraentrega', price: 130 }],
+    sizes: [{ label: '100 ml Pedido solo Contraentrega', price: 125 }],
   },
   {
     id: 10, name: 'Her Elixir', brand: 'Burberry', price: 120,
@@ -232,7 +228,7 @@ export const PRODUCTS: Product[] = [
     longevity: '8-10 horas', sillage: 'Excelente',
     seasons: ['Primavera', 'Otoño'], occasions: ['Día', 'Noche', 'Citas'],
     description: 'Fresas jugosas y violetas empolvadas sobre ámbar cálido. Una firma moderna, brillante y adictiva.',
-    sizes: [{ label: '90 ml', price: 120 }, { label: '10 ml Decant', price: 15 }, { label: '5 ml Decant', price: 8 }],
+    sizes: [{ label: '90 ml', price: 120 }, { label: '10 ml Decant', price: 16 }, { label: '5 ml Decant', price: 9 }],
   },
   {
     id: 11, name: 'Uomo Purple Melancholia', brand: 'Valentino', price: 130,
@@ -271,7 +267,7 @@ export const PRODUCTS: Product[] = [
     longevity: '8-10 horas', sillage: 'Excelente',
     seasons: ['Primavera', 'Verano', 'Otoño'], occasions: ['Día', 'Noche', 'Trabajo'],
     description: 'Libre como quieras ser. Lavanda con azahar y jazmín sobre vainilla cálida. La libertad femenina en su máxima expresión.',
-    sizes: [{ label: '90 ml', price: 125 }, { label: '10 ml Decant', price: 15 }, { label: '5 ml Decant', price: 8 }],
+    sizes: [{ label: '90 ml', price: 125 }, { label: '10 ml Decant', price: 19 }, { label: '5 ml Decant', price: 10 }],
   },
   {
     id: 14, name: 'Sí Intense', brand: 'Giorgio Armani', price: 120,
@@ -284,7 +280,7 @@ export const PRODUCTS: Product[] = [
     longevity: '10-12 horas', sillage: 'Excelente',
     seasons: ['Otoño', 'Invierno'], occasions: ['Noche', 'Eventos', 'Romántico'],
     description: 'El sí inolvidable. Almendra, rosa y nardo con un abrazo de vainilla y pachulí. Intenso y profundamente femenino.',
-    sizes: [{ label: '100 ml', price: 120 }, { label: '10 ml Decant', price: 15 }, { label: '5 ml Decant', price: 8 }],
+    sizes: [{ label: '100 ml', price: 120 }, { label: '10 ml Decant', price: 16 }, { label: '5 ml Decant', price: 8 }],
   },
   {
     id: 15, name: 'Divine Couture', brand: 'Jean Paul Gaultier', price: 150,
@@ -310,23 +306,10 @@ export const PRODUCTS: Product[] = [
     longevity: '6-8 horas', sillage: 'Moderado',
     seasons: ['Primavera', 'Verano'], occasions: ['Día', 'Casual', 'Citas'],
     description: 'Algodón de azúcar con un toque rosa. Dulce, ligera y envolvente, perfecta para el día a día.',
-    sizes: [{ label: '100 ml', price: 75 }, { label: '10 ml Decant', price: 9 }, { label: '5 ml Decant', price: 5 }],
+    sizes: [{ label: '100 ml', price: 75 }, { label: '10 ml Decant', price: 13 }, { label: '5 ml Decant', price: 7 }],
   },
   {
-    id: 17, name: 'Amor Amor', brand: 'Cacharel', price: 55,
-    image: cacharelAmorAmor,
-    category: 'designer', gender: 'women', type: 'EDP', family: 'Floral Frutal',
-    rating: 4.4, reviews: 1320,
-    topNotes: ['Naranja', '🫐 Grosella Negra', 'Jazmín'],
-    heartNotes: ['Mimosa', 'Hibisco', 'Rosa'],
-    baseNotes: ['️ Almizcle', 'Vainilla'],
-    longevity: '4-6 horas', sillage: 'Moderado',
-    seasons: ['Primavera', 'Verano'], occasions: ['Día', 'Casual', 'Romántico'],
-    description: 'Un clásico del amor. Frutas frescas y flores alegres con un fondo suave de almizcle. Romanticismo accesible.',
-    sizes: [{ label: '100 ml', price: 55 }, { label: '10 ml Decant', price: 7 }, { label: '5 ml Decant', price: 4 }],
-  },
-  {
-    id: 18, name: 'Still', brand: 'Jennifer Lopez', price: 65,
+    id: 18, name: 'Still', brand: 'Jennifer Lopez', price: 80,
     image: jloStill,
     category: 'designer', gender: 'women', type: 'EDP', family: 'Floral',
     rating: 4.3, reviews: 890,
@@ -336,23 +319,10 @@ export const PRODUCTS: Product[] = [
     longevity: '4-6 horas', sillage: 'Moderado',
     seasons: ['Primavera', 'Verano'], occasions: ['Día', 'Trabajo', 'Casual'],
     description: 'Serenidad y pureza. Un floral suave y atemporal que evoca calma y elegancia sencilla.',
-    sizes: [{ label: '100 ml', price: 65 }, { label: '10 ml Decant', price: 8 }, { label: '5 ml Decant', price: 4 }],
+    sizes: [{ label: '100 ml', price: 80 }, { label: '10 ml Decant', price: 13 }, { label: '5 ml Decant', price: 7 }],
   },
   {
-    id: 19, name: 'Crystal Noir', brand: 'Versace', price: 110,
-    image: versaceCrystalNoir,
-    category: 'designer', gender: 'women', type: 'EDP', family: 'Oriental Floral',
-    rating: 4.7, reviews: 1760, isNew: true,
-    topNotes: ['️ Pimienta', 'Nardo'],
-    heartNotes: ['Gardenia', 'Peonía'],
-    baseNotes: ['Ámbar', '🪵 Sándalo', '️ Almizcle'],
-    longevity: '8-10 horas', sillage: 'Excelente',
-    seasons: ['Otoño', 'Invierno'], occasions: ['Noche', 'Gala', 'Eventos'],
-    description: 'Oscura y magnética. Nardo y gardenia con un fondo de ámbar y sándalo. La sensualidad nocturna de Versace.',
-    sizes: [{ label: '90 ml', price: 110 }, { label: '10 ml Decant', price: 14 }, { label: '5 ml Decant', price: 7 }],
-  },
-  {
-    id: 42, name: 'Hawas Diva', brand: 'Rasasi', price: 55,
+    id: 42, name: 'Hawas Diva', brand: 'Rasasi', price: 65,
     image: hawasDiva,
     category: 'arabic', gender: 'women', type: 'EDP', family: 'Floral Dulce',
     rating: 4.6, reviews: 720, isNew: true,
@@ -362,7 +332,7 @@ export const PRODUCTS: Product[] = [
     longevity: '8-10 horas', sillage: 'Excelente',
     seasons: ['Primavera', 'Verano'], occasions: ['Día', 'Noche', 'Citas'],
     description: 'La diva del mundo árabe. Frutas jugosas con un corazón floral de rosa y peonía sobre vainilla y almizcle. Femenina, dulce y magnética.',
-    sizes: [{ label: '100 ml', price: 55 }, { label: '10 ml Decant', price: 7 }, { label: '5 ml Decant', price: 4 }],
+    sizes: [{ label: '100 ml', price: 65 }, { label: '10 ml Decant', price: 7 }, { label: '5 ml Decant', price: 4 }],
   },
 
   // ─── Perfumes para Caballeros ──────────────────────────────────────
@@ -455,7 +425,7 @@ export const PRODUCTS: Product[] = [
     longevity: '10-12 horas', sillage: 'Excelente',
     seasons: ['Otoño', 'Invierno'], occasions: ['Noche', 'Fiesta', 'Citas'],
     description: 'El más buscado. Coco y caramelo con un corazón ambarado y un fondo amaderado. Dulce, cálido e irresistible.',
-    sizes: [{ label: '100 ml', price: 105 }, { label: '10 ml Decant', price: 13 }, { label: '5 ml Decant', price: 7 }],
+    sizes: [{ label: '100 ml', price: 105 }, { label: '10 ml Decant', price: 16 }, { label: '5 ml Decant', price: 8 }],
   },
   {
     id: 27, name: 'The Most Wanted EDP', brand: 'Azzaro', price: 100,
@@ -481,10 +451,10 @@ export const PRODUCTS: Product[] = [
     longevity: '10-12 horas', sillage: 'Excelente',
     seasons: ['Otoño', 'Invierno'], occasions: ['Noche', 'Formal', 'Especial'],
     description: 'El marinero elegante. Cardamomo y lavanda con iris empolvado sobre un fondo de vainilla y ámbar. Distinción francesa.',
-    sizes: [{ label: '125 ml', price: 125 }, { label: '10 ml Decant', price: 15 }, { label: '5 ml Decant', price: 8 }],
+    sizes: [{ label: '125 ml', price: 125 }, { label: '10 ml Decant', price: 16 }, { label: '5 ml Decant', price: 8 }],
   },
   {
-    id: 29, name: 'Le Male Elixir', brand: 'Jean Paul Gaultier', price: 130,
+    id: 29, name: 'Le Male Elixir', brand: 'Jean Paul Gaultier', price: 125,
     image: leMaleElixir,
     category: 'designer', gender: 'men', type: 'Elixir', family: 'Amaderado Aromático',
     rating: 4.8, reviews: 1520, isNew: true,
@@ -494,10 +464,10 @@ export const PRODUCTS: Product[] = [
     longevity: '12+ horas', sillage: 'Muy Proyectado',
     seasons: ['Otoño', 'Invierno'], occasions: ['Noche', 'Eventos', 'Especial'],
     description: 'El elixir del icono. Lavanda helada con canela y caramelo sobre una base profunda de vainilla y pachulí. Una firma inconfundible.',
-    sizes: [{ label: '125 ml', price: 130 }, { label: '10 ml Decant', price: 16 }, { label: '5 ml Decant', price: 8 }],
+    sizes: [{ label: '125 ml', price: 125 }, { label: '10 ml Decant', price: 16 }, { label: '5 ml Decant', price: 8 }],
   },
   {
-    id: 30, name: 'Scandal Intense', brand: 'Jean Paul Gaultier', price: 110,
+    id: 30, name: 'Scandal Intense', brand: 'Jean Paul Gaultier', price: 130,
     image: jpgScandalIntense,
     category: 'designer', gender: 'men', type: 'EDP', family: 'Oriental Especiado',
     rating: 4.6, reviews: 980,
@@ -507,7 +477,7 @@ export const PRODUCTS: Product[] = [
     longevity: '10-12 horas', sillage: 'Excelente',
     seasons: ['Otoño', 'Invierno'], occasions: ['Noche', 'Fiesta', 'Citas'],
     description: 'El escándalo perfecto. Miel y mandarina con caramelo sobre pachulí y vainilla. Provocador y dulce.',
-    sizes: [{ label: '100 ml', price: 110 }, { label: '10 ml Decant', price: 14 }, { label: '5 ml Decant', price: 7 }],
+    sizes: [{ label: '100 ml', price: 130 }, { label: '10 ml Decant', price: 17 }, { label: '5 ml Decant', price: 9 }],
   },
   {
     id: 31, name: 'Eros Flame EDP', brand: 'Versace', price: 105,
@@ -520,7 +490,7 @@ export const PRODUCTS: Product[] = [
     longevity: '8-10 horas', sillage: 'Excelente',
     seasons: ['Primavera', 'Verano', 'Otoño'], occasions: ['Noche', 'Citas', 'Fiesta'],
     description: 'La pasión ardiente de Eros. Mandarina y pimienta rosa con un corazón de geranio y un fondo cálido de vainilla.',
-    sizes: [{ label: '100 ml', price: 105 }, { label: '10 ml Decant', price: 13 }, { label: '5 ml Decant', price: 7 }],
+    sizes: [{ label: '100 ml', price: 105 }, { label: '10 ml Decant', price: 15 }, { label: '5 ml Decant', price: 8 }],
   },
   {
     id: 32, name: 'Eros Parfum', brand: 'Versace', price: 110, originalPrice: 125, isOnSale: true,
@@ -533,7 +503,7 @@ export const PRODUCTS: Product[] = [
     longevity: '10-12 horas', sillage: 'Excelente',
     seasons: ['Otoño', 'Invierno'], occasions: ['Noche', 'Formal', 'Citas'],
     description: 'La versión más intensa del dios del amor. Manzana y salvia con un fondo de ámbar y cedro. Magnetismo puro.',
-    sizes: [{ label: '100 ml', price: 110 }, { label: '10 ml Decant', price: 14 }, { label: '5 ml Decant', price: 7 }],
+    sizes: [{ label: '100 ml', price: 110 }, { label: '10 ml Decant', price: 15 }, { label: '5 ml Decant', price: 8 }],
   },
   {
     id: 33, name: 'Spicebomb Extreme EDP', brand: 'Viktor & Rolf', price: 130,
@@ -585,10 +555,10 @@ export const PRODUCTS: Product[] = [
     longevity: '8-10 horas', sillage: 'Moderado',
     seasons: ['Primavera', 'Otoño'], occasions: ['Trabajo', 'Formal', 'Día'],
     description: 'El hombre ideal de Guerlain. Almendra y cuero con cardamomo y un fondo de vetiver. Elegancia clásica francesa.',
-    sizes: [{ label: '100 ml', price: 95 }, { label: '10 ml Decant', price: 12 }, { label: '5 ml Decant', price: 6 }],
+    sizes: [{ label: '100 ml', price: 95 }, { label: '10 ml Decant', price: 16 }, { label: '5 ml Decant', price: 8 }],
   },
   {
-    id: 37, name: 'Blanc EDP', brand: 'Lacoste', price: 75,
+    id: 37, name: 'Blanc EDP', brand: 'Lacoste', price: 80,
     image: lacoste,
     category: 'designer', gender: 'men', type: 'EDP', family: 'Aromático Fresco',
     rating: 4.4, reviews: 720,
@@ -598,7 +568,7 @@ export const PRODUCTS: Product[] = [
     longevity: '6-8 horas', sillage: 'Moderado',
     seasons: ['Primavera', 'Verano'], occasions: ['Día', 'Deporte', 'Casual'],
     description: 'La elegancia deportiva. Toronja y jengibre con un corazón aromático. Fresco, limpio y versátil.',
-    sizes: [{ label: '100 ml', price: 75 }, { label: '10 ml Decant', price: 9 }, { label: '5 ml Decant', price: 5 }],
+    sizes: [{ label: '100 ml', price: 80 }, { label: '10 ml Decant', price: 15 }, { label: '5 ml Decant', price: 8 }],
   },
   {
     id: 38, name: 'Gentleman Réservée Privée', brand: 'Givenchy', price: 105,
@@ -614,7 +584,7 @@ export const PRODUCTS: Product[] = [
     sizes: [{ label: '100 ml', price: 105 }, { label: '10 ml Decant', price: 16 }, { label: '5 ml Decant', price: 8 }],
   },
   {
-    id: 39, name: 'Intenso', brand: 'Dolce & Gabbana', price: 115,
+    id: 39, name: 'Intenso', brand: 'Dolce & Gabbana', price: 80,
     image: dgIntenso,
     category: 'designer', gender: 'men', type: 'EDP', family: 'Amaderado Oriental',
     rating: 4.6, reviews: 760,
@@ -624,7 +594,7 @@ export const PRODUCTS: Product[] = [
     longevity: '8-10 horas', sillage: 'Excelente',
     seasons: ['Otoño', 'Invierno'], occasions: ['Noche', 'Formal', 'Citas'],
     description: 'La pasión mediterránea. Pimienta y bergamota con un corazón de rosa y lavanda sobre tabaco y ámbar. Italiano e intenso.',
-    sizes: [{ label: '100 ml', price: 115 }, { label: '10 ml Decant', price: 14 }, { label: '5 ml Decant', price: 7 }],
+    sizes: [{ label: '100 ml', price: 80 }, { label: '10 ml Decant', price: 14 }, { label: '5 ml Decant', price: 7 }],
   },
   {
     id: 40, name: 'Acqua di Giò Profondo', brand: 'Giorgio Armani', price: 105,
@@ -640,7 +610,7 @@ export const PRODUCTS: Product[] = [
     sizes: [{ label: '100 ml', price: 105 }, { label: '10 ml Decant', price: 16 }, { label: '5 ml Decant', price: 8 }],
   },
   {
-    id: 41, name: "L'Eau d'Issey", brand: 'Issey Miyake', price: 85,
+    id: 41, name: "L'Eau d'Issey", brand: 'Issey Miyake', price: 80,
     image: isseyMiyake,
     category: 'designer', gender: 'men', type: 'EDP', family: 'Floral Acuático',
     rating: 4.5, reviews: 1450,
@@ -650,10 +620,10 @@ export const PRODUCTS: Product[] = [
     longevity: '6-8 horas', sillage: 'Moderado',
     seasons: ['Primavera', 'Verano'], occasions: ['Día', 'Trabajo', 'Casual'],
     description: 'Una gota de agua de vida. Yuzu y loto con un corazón floral acuático. Pureza japonesa, frescura infinita.',
-    sizes: [{ label: '100 ml', price: 85 }, { label: '10 ml Decant', price: 11 }, { label: '5 ml Decant', price: 6 }],
+    sizes: [{ label: '100 ml', price: 80 }, { label: '10 ml Decant', price: 11 }, { label: '5 ml Decant', price: 6 }],
   },
   {
-    id: 43, name: 'Hawas Ice', brand: 'Rasasi', price: 59,
+    id: 43, name: 'Hawas Ice', brand: 'Rasasi', price: 60,
     image: hawasIce,
     category: 'arabic', gender: 'men', type: 'EDP', family: 'Aromático Acuático',
     rating: 4.6, reviews: 640, isNew: true,
@@ -663,7 +633,7 @@ export const PRODUCTS: Product[] = [
     longevity: '8-10 horas', sillage: 'Excelente',
     seasons: ['Primavera', 'Verano'], occasions: ['Día', 'Casual', 'Trabajo'],
     description: 'Frescura helada para el hombre moderno. Menta y bergamota con lavanda sobre una base limpia de almizcle. Energía y frescura pura.',
-    sizes: [{ label: '100 ml', price: 59 }, { label: '10 ml Decant', price: 12 }, { label: '5 ml Decant', price: 6.50 }],
+    sizes: [{ label: '100 ml', price: 60 }, { label: '10 ml Decant', price: 12 }, { label: '5 ml Decant', price: 7 }],
   },
   {
     id: 44, name: 'Hawas Malibu', brand: 'Rasasi', price: 55,
@@ -679,7 +649,7 @@ export const PRODUCTS: Product[] = [
     sizes: [{ label: '100 ml', price: 55 }, { label: '10 ml Decant', price: 7 }, { label: '5 ml Decant', price: 4 }],
   },
   {
-    id: 45, name: 'Hawas Fire', brand: 'Rasasi', price: 75,
+    id: 45, name: 'Hawas Fire', brand: 'Rasasi', price: 70,
     image: hawasFire,
     category: 'arabic', gender: 'men', type: 'EDP', family: 'Amaderado Especiado',
     rating: 4.7, reviews: 830, isNew: true,
@@ -689,7 +659,7 @@ export const PRODUCTS: Product[] = [
     longevity: '10-12 horas', sillage: 'Muy Proyectado',
     seasons: ['Otoño', 'Invierno'], occasions: ['Noche', 'Fiesta', 'Citas'],
     description: 'La pasión del desierto hecha fragancia. Pimienta y canela con ámbar cálido sobre vainilla y pachulí. Ardiente, intenso e inolvidable.',
-    sizes: [{ label: '100 ml', price: 75 }, { label: '10 ml Decant', price: 12 }, { label: '5 ml Decant', price: 6.50 }],
+    sizes: [{ label: '100 ml', price: 70 }, { label: '10 ml Decant', price: 12 }, { label: '5 ml Decant', price: 7 }],
   },
   {
     id: 46, name: 'Le Beau Le Parfum', brand: 'Jean Paul Gaultier', price: 105,
@@ -706,7 +676,7 @@ export const PRODUCTS: Product[] = [
   },
   // ─── Nuevos perfumes ──────────────────────────────────────────────
   {
-    id: 47, name: 'Vanilla Powder', brand: 'Matiere Premiere', price: 135,
+    id: 47, name: 'Vanilla Powder', brand: 'Matiere Premiere', price: 280,
     image: margielaVanillaPowder,
     category: 'niche', gender: 'women', type: 'EDP', family: 'Oriental Vainilla',
     rating: 4.7, reviews: 620, isNew: true,
@@ -716,7 +686,7 @@ export const PRODUCTS: Product[] = [
     longevity: '8-10 horas', sillage: 'Moderado',
     seasons: ['Otoño', 'Invierno'], occasions: ['Casual', 'Día', 'Citas'],
     description: 'Una vainilla elegante y empolvada de la línea Replica. Cálida, reconfortante y sofisticada.',
-    sizes: [{ label: '100 ml', price: 135 }, { label: '10 ml Decant', price: 16 }, { label: '5 ml Decant', price: 9 }],
+    sizes: [{ label: '100 ml', price: 280 }, { label: '10 ml Decant', price: 38 }, { label: '5 ml Decant', price: 18 }],
   },
   {
     id: 48, name: 'Paradoxe Intense', brand: 'Prada', price: 140,
@@ -729,10 +699,10 @@ export const PRODUCTS: Product[] = [
     longevity: '10-12 horas', sillage: 'Excelente',
     seasons: ['Otoño', 'Invierno'], occasions: ['Noche', 'Eventos', 'Citas'],
     description: 'La versión más intensa y envolvente de Paradoxe. Una dualidad entre frescura y calidez ambarada.',
-    sizes: [{ label: '90 ml', price: 140 }, { label: '10 ml Decant', price: 17 }, { label: '5 ml Decant', price: 9 }],
+    sizes: [{ label: '90 ml', price: 140 }, { label: '10 ml Decant', price: 19 }, { label: '5 ml Decant', price: 9 }],
   },
   {
-    id: 49, name: 'Idôle Peach & Roses', brand: 'Lancôme', price: 115,
+    id: 49, name: 'Idôle Peach & Roses', brand: 'Lancôme', price: 120,
     image: lancomeIdolePeach,
     category: 'designer', gender: 'women', type: 'EDP', family: 'Floral Afrutado',
     rating: 4.6, reviews: 540, isNew: true,
@@ -742,10 +712,10 @@ export const PRODUCTS: Product[] = [
     longevity: '6-8 horas', sillage: 'Moderado',
     seasons: ['Primavera', 'Verano'], occasions: ['Día', 'Casual', 'Romántico'],
     description: 'Una edición frutal y romántica de Idôle. Durazno jugoso y rosas frescas en una composición luminosa.',
-    sizes: [{ label: '100 ml', price: 115 }, { label: '10 ml Decant', price: 14 }, { label: '5 ml Decant', price: 8 }],
+    sizes: [{ label: '100 ml', price: 120 }, { label: '10 ml Decant', price: 16 }, { label: '5 ml Decant', price: 8 }],
   },
   {
-    id: 50, name: 'Donna Born in Roma Coral Fantasy', brand: 'Valentino', price: 120,
+    id: 50, name: 'Donna Born in Roma Coral Fantasy', brand: 'Valentino', price: 130,
     image: valentinoDonnaCoralFantasy,
     category: 'designer', gender: 'women', type: 'EDP', family: 'Floral Frutal',
     rating: 4.7, reviews: 670, isNew: true,
@@ -755,7 +725,7 @@ export const PRODUCTS: Product[] = [
     longevity: '8-10 horas', sillage: 'Bueno',
     seasons: ['Primavera', 'Verano'], occasions: ['Día', 'Fiesta', 'Casual'],
     description: 'Una fantasía coral vibrante. Notas frutales y florales con un fondo dulce y cálido.',
-    sizes: [{ label: '100 ml', price: 120 }, { label: '10 ml Decant', price: 15 }, { label: '5 ml Decant', price: 8 }],
+    sizes: [{ label: '100 ml', price: 130 }, { label: '10 ml Decant', price: 18 }, { label: '5 ml Decant', price: 9 }],
   },
   {
     id: 51, name: 'King', brand: 'Bharara', price: 95,
@@ -784,7 +754,7 @@ export const PRODUCTS: Product[] = [
     sizes: [{ label: '105 ml', price: 45 }, { label: '10 ml Decant', price: 6 }, { label: '5 ml Decant', price: 4 }],
   },
   {
-    id: 53, name: 'Hawas Tropical', brand: 'Rasasi', price: 65,
+    id: 53, name: 'Hawas Tropical', brand: 'Rasasi', price: 60,
     image: hawasTropical,
     category: 'arabic', gender: 'men', type: 'EDP', family: 'Acuático Tropical',
     rating: 4.6, reviews: 480, isNew: true,
@@ -794,7 +764,7 @@ export const PRODUCTS: Product[] = [
     longevity: '8-10 horas', sillage: 'Bueno',
     seasons: ['Primavera', 'Verano'], occasions: ['Día', 'Playa', 'Casual'],
     description: 'La versión tropical de la exitosa línea Hawas. Frutas tropicales con notas marinas y un fondo amaderado.',
-    sizes: [{ label: '100 ml', price: 65 }, { label: '10 ml Decant', price: 8 }, { label: '5 ml Decant', price: 5 }],
+    sizes: [{ label: '100 ml', price: 60 }, { label: '10 ml Decant', price: 8 }, { label: '5 ml Decant', price: 5 }],
   },
   {
     id: 54, name: '9PM Elixir', brand: 'Afnan', price: 59,
@@ -810,7 +780,7 @@ export const PRODUCTS: Product[] = [
     sizes: [{ label: '100 ml', price: 59 }, { label: '10 ml Decant', price: 10 }, { label: '5 ml Decant', price: 5 }],
   },
   {
-    id: 55, name: '9PM Rebel', brand: 'Afnan', price: 49,
+    id: 55, name: '9PM Rebel', brand: 'Afnan', price: 60,
     image: afnan9pmRebel,
     category: 'arabic', gender: 'men', type: 'EDP', family: 'Oriental Especiado',
     rating: 4.5, reviews: 920, isNew: true,
@@ -820,7 +790,7 @@ export const PRODUCTS: Product[] = [
     longevity: '8-10 horas', sillage: 'Bueno',
     seasons: ['Otoño', 'Invierno'], occasions: ['Noche', 'Fiesta', 'Casual'],
     description: 'El rebelde de la línea 9PM. Más oscuro y especiado con notas de cuero y oud. Para quien rompe las reglas.',
-    sizes: [{ label: '100 ml', price: 49 }, { label: '10 ml Decant', price: 10 }, { label: '5 ml Decant', price: 5 }],
+    sizes: [{ label: '100 ml', price: 60 }, { label: '10 ml Decant', price: 12 }, { label: '5 ml Decant', price: 7 }],
   },
   {
     id: 56, name: '9PM Clásico', brand: 'Afnan', price: 48.50,
@@ -862,19 +832,6 @@ export const PRODUCTS: Product[] = [
     sizes: [{ label: '100 ml', price: 50 }, { label: '10 ml Decant', price: 10 }, { label: '5 ml Decant', price: 5 }],
   },
   {
-    id: 59, name: 'Art of Universe', brand: 'Lattafa', price: 63,
-    image: lattafaArtOfUniverse,
-    category: 'arabic', gender: 'men', type: 'EDP', family: 'Oriental Amaderado',
-    rating: 4.6, reviews: 560, isNew: true,
-    topNotes: ['Bergamota', '️ Pimienta Negra'],
-    heartNotes: ['Ámbar', 'Incienso', '🪻 Iris'],
-    baseNotes: ['🪵 Oud', '🪵 Sándalo', '️ Almizcle'],
-    longevity: '10-12 horas', sillage: 'Excelente',
-    seasons: ['Otoño', 'Invierno'], occasions: ['Noche', 'Eventos', 'Formal'],
-    description: 'Una obra de arte olfativa. Oud e incienso con ámbar dorado. Misterioso y envolvente como el universo mismo.',
-    sizes: [{ label: '100 ml', price: 63 }, { label: '10 ml Decant', price: 12 }, { label: '5 ml Decant', price: 6.50 }],
-  },
-  {
     id: 60, name: 'Gold Edition', brand: 'Al Haramain', price: 75,
     image: alHaramainGold,
     category: 'arabic', gender: 'men', type: 'EDP', family: 'Oriental Ambarado',
@@ -888,7 +845,7 @@ export const PRODUCTS: Product[] = [
     sizes: [{ label: '75 ml', price: 75 }, { label: '10 ml Decant', price: 12 }, { label: '5 ml Decant', price: 7 }],
   },
   {
-    id: 61, name: 'Rey de Reyes', brand: 'Bharara', price: 75,
+    id: 61, name: 'Rey de Reyes', brand: 'Bharara', price: 70,
     image: bhararaReyDeReyes,
     category: 'arabic', gender: 'men', type: 'Parfum', family: 'Oriental Especiado',
     rating: 4.8, reviews: 1100, isNew: true,
@@ -898,7 +855,7 @@ export const PRODUCTS: Product[] = [
     longevity: '12+ horas', sillage: 'Bestia',
     seasons: ['Otoño', 'Invierno'], occasions: ['Noche', 'Eventos', 'Especial'],
     description: 'El soberano absoluto de Bharara. Oud, azafrán y ámbar en una composición regia. Proyección y duración de otra dimensión.',
-    sizes: [{ label: '100 ml', price: 75 }, { label: '10 ml Decant', price: 13 }, { label: '5 ml Decant', price: 6.50 }],
+    sizes: [{ label: '100 ml', price: 70 }, { label: '10 ml Decant', price: 13 }, { label: '5 ml Decant', price: 6.50 }],
   },
   {
     id: 62, name: 'Italia', brand: 'Rayhaan', price: 50,
@@ -914,7 +871,7 @@ export const PRODUCTS: Product[] = [
     sizes: [{ label: '100 ml', price: 50 }, { label: '10 ml Decant', price: 13 }, { label: '5 ml Decant', price: 7 }],
   },
   {
-    id: 63, name: 'Torino 21', brand: 'Xerjoff', price: 150,
+    id: 63, name: 'Torino 21', brand: 'Xerjoff', price: 255,
     image: xerjoffTorino,
     category: 'niche', gender: 'men', type: 'EDP', family: 'Cítrico Ambarado',
     rating: 4.9, reviews: 1200,
@@ -927,7 +884,7 @@ export const PRODUCTS: Product[] = [
     sizes: [{ label: '100 ml', price: 255 }, { label: '10 ml Decant', price: 28 }, { label: '5 ml Decant', price: 15 }],
   },
   {
-    id: 64, name: 'Alexandria II', brand: 'Xerjoff', price: 250,
+    id: 64, name: 'Alexandria II', brand: 'Xerjoff', price: 480,
     image: xerjoffAlexandria,
     category: 'niche', gender: 'men', type: 'EDP', family: 'Oriental Ambarado',
     rating: 4.9, reviews: 980,
@@ -937,10 +894,10 @@ export const PRODUCTS: Product[] = [
     longevity: '12+ horas', sillage: 'Bestia',
     seasons: ['Otoño', 'Invierno'], occasions: ['Noche', 'Eventos', 'Especial'],
     description: 'La joya de la corona de Xerjoff. Oud egipcio con rosa y ámbar. Una fragancia de colección para los más exigentes.',
-    sizes: [{ label: '100 ml', price: 450 }, { label: '10 ml Decant', price: 35 }, { label: '5 ml Decant', price: 16 }],
+    sizes: [{ label: '100 ml', price: 480 }, { label: '10 ml Decant', price: 45 }, { label: '5 ml Decant', price: 20 }],
   },
   {
-    id: 65, name: 'Green Irish Tweed', brand: 'Creed', price: 300,
+    id: 65, name: 'Green Irish Tweed', brand: 'Creed', price: 400,
     image: creedGIT,
     category: 'niche', gender: 'men', type: 'EDP', family: 'Aromático Verde',
     rating: 4.9, reviews: 5600,
@@ -950,10 +907,10 @@ export const PRODUCTS: Product[] = [
     longevity: '8-10 horas', sillage: 'Excelente',
     seasons: ['Primavera', 'Verano'], occasions: ['Día', 'Trabajo', 'Formal'],
     description: 'El caballero británico definitivo. Verde, fresco y atemporal. Un ícono de la perfumería de lujo desde 1985.',
-    sizes: [{ label: '100 ml', price: 350 }, { label: '10 ml Decant', price: 35 }, { label: '5 ml Decant', price: 18 }],
+    sizes: [{ label: '100 ml', price: 400 }, { label: '10 ml Decant', price: 49.99 }, { label: '5 ml Decant', price: 19.99 }],
   },
   {
-    id: 66, name: 'Layton', brand: 'Parfums de Marly', price: 250,
+    id: 66, name: 'Layton', brand: 'Parfums de Marly', price: 350,
     image: laytonPDM,
     category: 'niche', gender: 'unisex', type: 'EDP', family: 'Oriental Floral',
     rating: 4.8, reviews: 1500,
@@ -963,10 +920,10 @@ export const PRODUCTS: Product[] = [
     longevity: '10-12 horas', sillage: 'Excelente',
     seasons: ['Otoño', 'Invierno'], occasions: ['Noche', 'Eventos', 'Citas'],
     description: 'Elegancia cautivadora. Una apertura fresca de manzana y lavanda que evoluciona hacia una vainilla cálida y adictiva.',
-    sizes: [{ label: '125 ml', price: 340 }, { label: '10 ml Decant', price: 25 }, { label: '5 ml Decant', price: 14 }],
+    sizes: [{ label: '125 ml', price: 350 }, { label: '10 ml Decant', price: 35 }, { label: '5 ml Decant', price: 15 }],
   },
   {
-    id: 67, name: 'Valaya', brand: 'Parfums de Marly', price: 265,
+    id: 67, name: 'Valaya', brand: 'Parfums de Marly', price: 300,
     image: pdmValaya,
     category: 'niche', gender: 'unisex', type: 'EDP', family: 'Floral Frutal',
     rating: 4.7, reviews: 800,
@@ -976,10 +933,10 @@ export const PRODUCTS: Product[] = [
     longevity: '8-10 horas', sillage: 'Excelente',
     seasons: ['Primavera', 'Verano'], occasions: ['Día', 'Especial'],
     description: 'Luminoso y elegante. Una fragancia que evoca la suavidad del algodón puro sobre la piel.',
-    sizes: [{ label: '75 ml', price: 295 }, { label: '10 ml Decant', price: 28 }, { label: '5 ml Decant', price: 15 }],
+    sizes: [{ label: '75 ml', price: 300 }, { label: '10 ml Decant', price: 40 }, { label: '5 ml Decant', price: 25 }],
   },
   {
-    id: 68, name: 'Vibrato', brand: 'Sospiro', price: 280,
+    id: 68, name: 'Vibrato', brand: 'Sospiro', price: 380,
     image: sospiroVibrato,
     category: 'niche', gender: 'unisex', type: 'EDP', family: 'Cítrico Aromático',
     rating: 4.9, reviews: 1200,
@@ -992,7 +949,7 @@ export const PRODUCTS: Product[] = [
     sizes: [{ label: '100 ml', price: 380 }, { label: '10 ml Decant', price: 30 }, { label: '5 ml Decant', price: 16 }],
   },
   {
-    id: 69, name: 'Drunk Lovers', brand: 'BornToStandOut', price: 190,
+    id: 69, name: 'Drunk Lovers', brand: 'BornToStandOut', price: 400,
     image: btsDrunkLovers,
     category: 'niche', gender: 'unisex', type: 'EDP', family: 'Especiado Amaderado',
     rating: 4.6, reviews: 400,
@@ -1002,10 +959,10 @@ export const PRODUCTS: Product[] = [
     longevity: '8-10 horas', sillage: 'Moderado',
     seasons: ['Otoño', 'Invierno'], occasions: ['Noche', 'Citas'],
     description: 'Seductor y embriagador. Un encuentro apasionado capturado en notas alicoradas y dulces.',
-    sizes: [{ label: '50 ml', price: 400 }, { label: '10 ml Decant', price: 20 }, { label: '5 ml Decant', price: 12 }],
+    sizes: [{ label: '50 ml', price: 400 }, { label: '10 ml Decant', price: 45 }, { label: '5 ml Decant', price: 25 }],
   },
   {
-    id: 70, name: 'Costa Azzurra', brand: 'Tom Ford', price: 195,
+    id: 70, name: 'Costa Azzurra', brand: 'Tom Ford', price: 350,
     image: tomFordCostaAzzurra,
     category: 'niche', gender: 'unisex', type: 'EDP', family: 'Amaderado Aromático',
     rating: 4.7, reviews: 900,
@@ -1015,10 +972,10 @@ export const PRODUCTS: Product[] = [
     longevity: '6-8 horas', sillage: 'Moderado',
     seasons: ['Verano'], occasions: ['Día', 'Vacaciones'],
     description: 'El escape perfecto. Captura el paisaje desinhibido de un paraíso costero donde los pinos y robles se mezclan con la brisa salada.',
-    sizes: [{ label: '50 ml', price: 260 }, { label: '10 ml Decant', price: 22 }, { label: '5 ml Decant', price: 12 }],
+    sizes: [{ label: '50 ml', price: 350 }, { label: '10 ml Decant', price: 22 }, { label: '5 ml Decant', price: 12 }],
   },
   {
-    id: 71, name: 'Gin Fusion', brand: 'Lorenzo Pazzaglia', price: 180,
+    id: 71, name: 'Gin Fusion', brand: 'Lorenzo Pazzaglia', price: 250,
     image: lorenzoGinFusion,
     category: 'niche', gender: 'unisex', type: 'Extrait de Parfum', family: 'Cítrico Aromático',
     rating: 4.8, reviews: 600,
@@ -1028,36 +985,10 @@ export const PRODUCTS: Product[] = [
     longevity: '10-12 horas', sillage: 'Excelente',
     seasons: ['Primavera', 'Verano'], occasions: ['Día', 'Tarde', 'Casual'],
     description: 'Refrescante y efervescente. Una representación hiperrealista de un gin tonic servido con mucho hielo.',
-    sizes: [{ label: '50 ml', price: 250 }, { label: '10 ml Decant', price: 20 }, { label: '5 ml Decant', price: 11 }],
+    sizes: [{ label: '50 ml', price: 250 }, { label: '10 ml Decant', price: 45 }, { label: '5 ml Decant', price: 25 }],
   },
   {
-    id: 72, name: 'Babycat', brand: 'Yves Saint Laurent', price: 320,
-    image: yslBabycat,
-    category: 'designer', gender: 'men', type: 'EDP', family: 'Ambarado Especiado',
-    rating: 4.9, reviews: 1100, isSoldOut: true,
-    topNotes: ['️ Pimienta Rosa', '️ Pimienta Negra', 'Elemí'],
-    heartNotes: ['Incienso de Olíbano', 'Azafrán'],
-    baseNotes: ['Vainilla', '🪵 Cedro', 'Ante'],
-    longevity: '12+ horas', sillage: 'Excelente',
-    seasons: ['Otoño', 'Invierno'], occasions: ['Noche', 'Eventos Especiales'],
-    description: 'Atrevido y sensual. Una fusión magistral de vainilla cálida con un toque animálico de ante e incienso ahumado.',
-    sizes: [{ label: '125 ml (Pedido solo contraentrega)', price: 320 }],
-  },
-  {
-    id: 73, name: 'Full House', brand: 'Jo Milano', price: 120,
-    image: joMilanoFullHouse,
-    category: 'designer', gender: 'men', type: 'EDP', family: 'Amaderado Aromático',
-    rating: 4.5, reviews: 300,
-    topNotes: ['Cítricos', 'Notas Frescas'],
-    heartNotes: ['Especias Ligeras', 'Florales'],
-    baseNotes: ['Maderas', 'Ámbar'],
-    longevity: '8-10 horas', sillage: 'Bueno',
-    seasons: ['Todo el año'], occasions: ['Versátil'],
-    description: 'Una apuesta ganadora. Una composición equilibrada y muy versátil para cualquier ocasión.',
-    sizes: [{ label: '100 ml', price: 120 }, { label: '10 ml Decant', price: 15 }, { label: '5 ml Decant', price: 8 }],
-  },
-  {
-    id: 74, name: 'Paradise Garden', brand: 'Jean Paul Gaultier', price: 135,
+    id: 74, name: 'Paradise Garden', brand: 'Jean Paul Gaultier', price: 120,
     image: jpgParadiseGarden,
     category: 'designer', gender: 'men', type: 'EDP', family: 'Aromático Acuático',
     rating: 4.7, reviews: 850, isNew: true,
@@ -1079,7 +1010,7 @@ export const PRODUCTS: Product[] = [
     longevity: '8-10 horas', sillage: 'Excelente',
     seasons: ['Otoño', 'Invierno'], occasions: ['Noche', 'Eventos Especiales'],
     description: 'Una evolución sensual y gourmand, centrada en el jazmín absoluto y notas dulces y profundas.',
-    sizes: [{ label: '80 ml', price: 130 }, { label: '10 ml Decant', price: 18 }, { label: '5 ml Decant', price: 10 }]
+    sizes: [{ label: '80 ml', price: 130 }, { label: '10 ml Decant', price: 20 }, { label: '5 ml Decant', price: 10 }]
   },
   {
     id: 76, name: 'Fame in Love', brand: 'Rabanne', price: 120,
@@ -1091,7 +1022,7 @@ export const PRODUCTS: Product[] = [
     longevity: '10-12 horas', sillage: 'Excelente',
     seasons: ['Primavera', 'Otoño'], occasions: ['Día', 'Noche', 'Citas'],
     description: 'Fragancia adictiva y jugosa con fresa vibrante, incienso y vainilla seductora.',
-    sizes: [{ label: '80 ml', price: 120 }, { label: '10 ml Decant', price: 16 }, { label: '5 ml Decant', price: 9 }]
+    sizes: [{ label: '80 ml', price: 120 }, { label: '10 ml Decant', price: 19 }, { label: '5 ml Decant', price: 10 }]
   },
   {
     id: 77, name: 'Hawas Kobra', brand: 'Rasasi', price: 70,
@@ -1118,7 +1049,7 @@ export const PRODUCTS: Product[] = [
     sizes: [{ label: '100 ml', price: 70 }, { label: '10 ml Decant', price: 12 }, { label: '5 ml Decant', price: 7 }]
   },
   {
-    id: 79, name: 'Arabian Sky', brand: 'Armaf', price: 55,
+    id: 79, name: 'Arabian Sky', brand: 'Armaf', price: 65,
     image: afnanArabianSky, category: 'arabic', gender: 'unisex', type: 'EDP', family: 'Amaderado Aromático',
     rating: 4.7, reviews: 150, isNew: true,
     topNotes: ['Pimienta', 'Limón', 'Bergamota', 'Toronja', 'Piña'],
@@ -1127,10 +1058,10 @@ export const PRODUCTS: Product[] = [
     longevity: '8-10 horas', sillage: 'Bueno',
     seasons: ['Todo el año'], occasions: ['Día', 'Tarde', 'Versátil'],
     description: 'Combinación aromática y amaderada rica en matices cítricos y un secado dulce y profundo.',
-    sizes: [{ label: '100 ml', price: 55 }, { label: '10 ml Decant', price: 10 }, { label: '5 ml Decant', price: 6 }]
+    sizes: [{ label: '100 ml', price: 65 }, { label: '10 ml Decant', price: 13 }, { label: '5 ml Decant', price: 7 }]
   },
   {
-    id: 80, name: 'Supremacy Collector\'s Edition Pour Homme', brand: 'Afnan', price: 60,
+    id: 80, name: 'Supremacy Collector\'s Edition Pour Homme', brand: 'Afnan', price: 68,
     image: afnanSupremacyCollector, category: 'arabic', gender: 'men', type: 'EDP', family: 'Chipre Frutal',
     rating: 4.8, reviews: 400, isNew: true,
     topNotes: ['Piña', 'Bergamota', 'Manzana', 'Flores Blancas'],
@@ -1139,7 +1070,7 @@ export const PRODUCTS: Product[] = [
     longevity: '10-12 horas', sillage: 'Excelente',
     seasons: ['Todo el año'], occasions: ['Versátil'],
     description: 'Edición de coleccionista con un perfil frutal ahumado de alto rendimiento.',
-    sizes: [{ label: '100 ml', price: 60 }, { label: '10 ml Decant', price: 11 }, { label: '5 ml Decant', price: 6 }]
+    sizes: [{ label: '100 ml', price: 68 }, { label: '10 ml Decant', price: 11 }, { label: '5 ml Decant', price: 6 }]
   },
   {
     id: 81, name: 'Invictus Parfum', brand: 'Rabanne', price: 105,
@@ -1154,7 +1085,7 @@ export const PRODUCTS: Product[] = [
     sizes: [{ label: '100 ml', price: 105 }, { label: '10 ml Decant', price: 15 }, { label: '5 ml Decant', price: 8 }]
   },
   {
-    id: 94, name: 'One Million Black', brand: 'Paco Rabanne', price: 115,
+    id: 94, name: 'One Million Black', brand: 'Paco Rabanne', price: 110,
     image: pacoOneMillionBlack, category: 'designer', gender: 'men', type: 'EDP', family: 'Amaderado Gourmand',
     rating: 4.8, reviews: 0, isNew: true,
     topNotes: ['Manzana Verde', 'Piña'],
@@ -1163,7 +1094,7 @@ export const PRODUCTS: Product[] = [
     longevity: '8-10 horas', sillage: 'Fuerte',
     seasons: ['Otoño', 'Invierno'], occasions: ['Noche', 'Eventos'],
     description: 'La versión oscura del icono dorado de Rabanne. Frutas jugosas sobre un fondo cálido de vainilla, ámbar y maderas.',
-    sizes: [{ label: '100 ml', price: 115 }, { label: '10 ml Decant', price: 18 }, { label: '5 ml Decant', price: 9 }]
+    sizes: [{ label: '100 ml', price: 110 }, { label: '10 ml Decant', price: 18 }, { label: '5 ml Decant', price: 9 }]
   },
   {
     id: 82, name: 'Ocean Noir', brand: 'Michael Malul', price: 110,
@@ -1175,7 +1106,7 @@ export const PRODUCTS: Product[] = [
     longevity: '8-10 horas', sillage: 'Moderado',
     seasons: ['Verano', 'Primavera'], occasions: ['Día', 'Playa'],
     description: 'Un escape tropical sofisticado que mezcla notas marinas con coco negro y cítricos jugosos.',
-    sizes: [{ label: '100 ml', price: 110 }, { label: '10 ml Decant', price: 15 }, { label: '5 ml Decant', price: 8 }]
+    sizes: [{ label: '100 ml', price: 110 }, { label: '10 ml Decant', price: 20 }, { label: '5 ml Decant', price: 10 }]
   },
   {
     id: 83, name: 'Club de Nuit Precieux I', brand: 'Armaf', price: 85,
@@ -1187,7 +1118,7 @@ export const PRODUCTS: Product[] = [
     longevity: '12+ horas', sillage: 'Bestia',
     seasons: ['Otoño', 'Invierno'], occasions: ['Noche', 'Especial'],
     description: 'Extrait de Parfum ultra lujoso, combinando frutas brillantes con un cuero ambarado oscuro y persistente.',
-    sizes: [{ label: '100 ml', price: 85 }, { label: '10 ml Decant', price: 14 }, { label: '5 ml Decant', price: 8 }]
+    sizes: [{ label: '100 ml', price: 85 }, { label: '10 ml Decant', price: 16 }, { label: '5 ml Decant', price: 8 }]
   },
   {
     id: 84, name: '9AM Dive', brand: 'Afnan', price: 45,
@@ -1199,10 +1130,10 @@ export const PRODUCTS: Product[] = [
     longevity: '6-8 horas', sillage: 'Bueno',
     seasons: ['Primavera', 'Verano'], occasions: ['Día', 'Trabajo', 'Deporte'],
     description: 'Fragancia fresca, limpia y energizante perfecta para comenzar el día y la oficina.',
-    sizes: [{ label: '100 ml', price: 45 }, { label: '10 ml Decant', price: 8 }, { label: '5 ml Decant', price: 5 }]
+    sizes: [{ label: '100 ml', price: 45 }, { label: '10 ml Decant', price: 10 }, { label: '5 ml Decant', price: 5 }]
   },
   {
-    id: 85, name: '9 PM Night Out', brand: 'Afnan', price: 50,
+    id: 85, name: '9 PM Night Out', brand: 'Afnan', price: 65,
     image: afnan9PMNightOut, category: 'arabic', gender: 'men', type: 'EDP', family: 'Oriental Especiado',
     rating: 4.7, reviews: 100, isNew: true,
     topNotes: ['Manzana', 'Canela', 'Bergamota'],
@@ -1211,7 +1142,7 @@ export const PRODUCTS: Product[] = [
     longevity: '8-10 horas', sillage: 'Excelente',
     seasons: ['Otoño', 'Invierno'], occasions: ['Noche', 'Clubbing'],
     description: 'La esencia nocturna por excelencia, dulce, cálida y sumamente atractiva para la noche.',
-    sizes: [{ label: '100 ml', price: 50 }, { label: '10 ml Decant', price: 9 }, { label: '5 ml Decant', price: 5 }]
+    sizes: [{ label: '100 ml', price: 65 }, { label: '10 ml Decant', price: 13 }, { label: '5 ml Decant', price: 7 }]
   },
   {
     id: 86, name: 'Ombré Leather (2018)', brand: 'Tom Ford', price: 300,
@@ -1250,7 +1181,7 @@ export const PRODUCTS: Product[] = [
     sizes: [{ label: '100 ml', price: 165 }, { label: '10 ml Decant', price: 20 }, { label: '5 ml Decant', price: 11 }]
   },
   {
-    id: 89, name: 'Donna Purple Melancholia', brand: 'Valentino', price: 120,
+    id: 89, name: 'Donna Purple Melancholia', brand: 'Valentino', price: 130,
     image: valentinoDonnaPurpleMelancholia, category: 'designer', gender: 'women', type: 'EDP', family: 'Floral Amaderado',
     rating: 4.6, reviews: 870,
     topNotes: ['Bergamota', 'Mandarina'],
@@ -1259,7 +1190,7 @@ export const PRODUCTS: Product[] = [
     longevity: '8-10 horas', sillage: 'Bueno',
     seasons: ['Primavera', 'Otoño'], occasions: ['Noche', 'Eventos', 'Romántico'],
     description: 'Una melancolía elegante. Florales profundos con una base amaderada que deja un rastro sofisticado e inolvidable.',
-    sizes: [{ label: '100 ml', price: 120 }, { label: '10 ml Decant', price: 15 }, { label: '5 ml Decant', price: 8 }]
+    sizes: [{ label: '100 ml', price: 130 }, { label: '10 ml Decant', price: 19 }, { label: '5 ml Decant', price: 9 }]
   },
   {
     id: 90, name: 'Born in Roma Extradose Donna', brand: 'Valentino', price: 140,
@@ -1271,7 +1202,7 @@ export const PRODUCTS: Product[] = [
     longevity: '10-12 horas', sillage: 'Excelente',
     seasons: ['Otoño', 'Invierno'], occasions: ['Noche', 'Eventos', 'Especial'],
     description: 'Una dosis extra de seducción con cassis embriagador, ron oscuro y una estela masiva de vainilla cremosa.',
-    sizes: [{ label: '100 ml', price: 140 }, { label: '10 ml Decant', price: 17 }, { label: '5 ml Decant', price: 9 }]
+    sizes: [{ label: '100 ml', price: 140 }, { label: '10 ml Decant', price: 19 }, { label: '5 ml Decant', price: 10 }]
   },
   {
     id: 91, name: 'Acqua di Giò Parfum', brand: 'Giorgio Armani', price: 125,
@@ -1286,7 +1217,7 @@ export const PRODUCTS: Product[] = [
     sizes: [{ label: '100 ml', price: 125 }, { label: '10 ml Decant', price: 19 }, { label: '5 ml Decant', price: 9 }]
   },
   {
-    id: 92, name: 'Wild Vetiver', brand: 'Creed', price: 320,
+    id: 92, name: 'Wild Vetiver', brand: 'Creed', price: 450,
     image: creedWildVetiver, category: 'niche', gender: 'unisex', type: 'EDP', family: 'Amaderado Floral',
     rating: 4.8, reviews: 150, isNew: true,
     topNotes: ['Pimienta Timur', 'Bergamota', 'Pimienta Rosa', 'Pimienta Negra'],
@@ -1295,10 +1226,10 @@ export const PRODUCTS: Product[] = [
     longevity: '8-10 horas', sillage: 'Excelente',
     seasons: ['Primavera', 'Verano'], occasions: ['Día', 'Trabajo', 'Firma'],
     description: 'Un vetiver luminoso y fresco, bañado en cítricos crujientes y florales verdes. Elegancia natural indomable.',
-    sizes: [{ label: '100 ml', price: 320 }, { label: '10 ml Decant', price: 35 }, { label: '5 ml Decant', price: 18 }]
+    sizes: [{ label: '100 ml', price: 450 }, { label: '10 ml Decant', price: 45 }, { label: '5 ml Decant', price: 20 }]
   },
   {
-    id: 93, name: 'Megamare', brand: 'Orto Parisi', price: 195,
+    id: 93, name: 'Megamare', brand: 'Orto Parisi', price: 220,
     image: ortoParisiMegamare, category: 'niche', gender: 'unisex', type: 'Parfum', family: 'Aromático Acuático',
     rating: 4.9, reviews: 950,
     topNotes: ['Bergamota', 'Limón'],
@@ -1307,7 +1238,122 @@ export const PRODUCTS: Product[] = [
     longevity: '12+ horas', sillage: 'Bestia',
     seasons: ['Verano', 'Primavera'], occasions: ['Día', 'Mar'],
     description: 'El océano profundo y salvaje embotellado. Duración y proyección absolutamente bestiales. Mineral, salado e inolvidable.',
-    sizes: [{ label: '50 ml', price: 195 }, { label: '10 ml Decant', price: 25 }, { label: '5 ml Decant', price: 14 }]
+    sizes: [{ label: '50 ml', price: 220 }, { label: '10 ml Decant', price: 45 }, { label: '5 ml Decant', price: 25 }]
+  },
+  // ─── Nicho: solo decants (agregados nov 2026) ─────────────────────
+  {
+    id: 95, name: 'Tropical Karma', brand: 'Lorenzo Pazzaglia', price: 45,
+    image: placeholderPerfume, category: 'niche', gender: 'unisex', type: 'Extrait de Parfum', family: 'Frutal',
+    rating: 4.8, reviews: 0, isNew: true,
+    topNotes: [], heartNotes: [], baseNotes: [],
+    longevity: '', sillage: '', seasons: [], occasions: [],
+    description: 'Fragancia nicho de Lorenzo Pazzaglia, disponible en decants de 3, 5 y 10 ml.',
+    sizes: [{ label: '10 ml Decant', price: 45 }, { label: '5 ml Decant', price: 25 }, { label: '3 ml Decant', price: 14 }]
+  },
+  {
+    id: 96, name: 'Erba Pura', brand: 'Xerjoff', price: 26,
+    image: placeholderPerfume, category: 'niche', gender: 'unisex', type: 'EDP', family: 'Frutal Ambarado',
+    rating: 4.8, reviews: 0, isNew: true,
+    topNotes: ['Naranja', 'Bergamota', 'Limón'],
+    heartNotes: ['Notas Frutales'],
+    baseNotes: ['Almizcle Blanco', 'Vainilla', 'Ámbar'],
+    longevity: '10-12 horas', sillage: 'Excelente',
+    seasons: ['Primavera', 'Verano', 'Otoño'], occasions: ['Día', 'Noche'],
+    description: 'Una explosión de cítricos mediterráneos y frutas jugosas sobre un fondo cálido de almizcle, vainilla y ámbar.',
+    sizes: [{ label: '10 ml Decant', price: 26 }, { label: '5 ml Decant', price: 13 }]
+  },
+  {
+    id: 97, name: 'Bois Impérial', brand: 'Essential Parfums', price: 25,
+    image: placeholderPerfume, category: 'niche', gender: 'unisex', type: 'EDP', family: 'Amaderado',
+    rating: 4.8, reviews: 0, isNew: true,
+    topNotes: [], heartNotes: [], baseNotes: [],
+    longevity: '', sillage: '', seasons: [], occasions: [],
+    description: 'Fragancia nicho de Essential Parfums, disponible en decants de 5 y 10 ml.',
+    sizes: [{ label: '10 ml Decant', price: 25 }, { label: '5 ml Decant', price: 13 }]
+  },
+  {
+    id: 98, name: 'Cedrat Boisé', brand: 'Mancera', price: 20,
+    image: placeholderPerfume, category: 'niche', gender: 'unisex', type: 'EDP', family: 'Cítrico Amaderado',
+    rating: 4.8, reviews: 0, isNew: true,
+    topNotes: ['Limón', 'Grosella Negra', 'Bergamota'],
+    heartNotes: ['Notas Frutales', 'Pachulí', 'Jazmín'],
+    baseNotes: ['Cuero', 'Sándalo', 'Vainilla', 'Almizcle Blanco'],
+    longevity: '8-10 horas', sillage: 'Fuerte',
+    seasons: ['Primavera', 'Verano', 'Otoño'], occasions: ['Día', 'Casual'],
+    description: 'Cítricos frescos y grosella negra sobre un fondo amaderado de cuero y sándalo. Versátil y de gran duración.',
+    sizes: [{ label: '10 ml Decant', price: 20 }, { label: '5 ml Decant', price: 10 }]
+  },
+  {
+    id: 99, name: 'Torino 22', brand: 'Xerjoff', price: 45,
+    image: placeholderPerfume, category: 'niche', gender: 'unisex', type: 'EDP', family: 'Cítrico Aromático',
+    rating: 4.8, reviews: 0, isNew: true,
+    topNotes: [], heartNotes: [], baseNotes: [],
+    longevity: '', sillage: '', seasons: [], occasions: [],
+    description: 'Fragancia nicho de Xerjoff, disponible en decants de 3, 5 y 10 ml.',
+    sizes: [{ label: '10 ml Decant', price: 45 }, { label: '5 ml Decant', price: 25 }, { label: '3 ml Decant', price: 14 }]
+  },
+  // ─── Damas diseñador: solo decants (agregados nov 2026) ───────────
+  {
+    id: 100, name: 'Power of You', brand: 'Giorgio Armani', price: 19,
+    image: placeholderPerfume, category: 'designer', gender: 'women', type: 'EDP', family: 'Floral',
+    rating: 4.8, reviews: 0, isNew: true,
+    topNotes: [], heartNotes: [], baseNotes: [],
+    longevity: '', sillage: '', seasons: [], occasions: [],
+    description: 'Emporio Armani Power of You, disponible en decants de 5 y 10 ml.',
+    sizes: [{ label: '10 ml Decant', price: 19 }, { label: '5 ml Decant', price: 9 }]
+  },
+  {
+    id: 101, name: "J'adore Absolu", brand: 'Dior', price: 20,
+    image: placeholderPerfume, category: 'designer', gender: 'women', type: 'EDP', family: 'Floral',
+    rating: 4.8, reviews: 0, isNew: true,
+    topNotes: [], heartNotes: [], baseNotes: [],
+    longevity: '', sillage: '', seasons: [], occasions: [],
+    description: "La versión más intensa del icónico J'adore de Dior, disponible en decants de 5 y 10 ml.",
+    sizes: [{ label: '10 ml Decant', price: 20 }, { label: '5 ml Decant', price: 10 }]
+  },
+  {
+    id: 102, name: 'Angel Nova Eau de Parfum', brand: 'Mugler', price: 18,
+    image: placeholderPerfume, category: 'designer', gender: 'women', type: 'EDP', family: 'Floral Frutal',
+    rating: 4.8, reviews: 0, isNew: true,
+    topNotes: [], heartNotes: [], baseNotes: [],
+    longevity: '', sillage: '', seasons: [], occasions: [],
+    description: 'Angel Nova de Mugler, disponible en decants de 5 y 10 ml.',
+    sizes: [{ label: '10 ml Decant', price: 18 }, { label: '5 ml Decant', price: 9 }]
+  },
+  {
+    id: 103, name: 'Devotion', brand: 'Dolce & Gabbana', price: 16,
+    image: placeholderPerfume, category: 'designer', gender: 'women', type: 'EDP', family: 'Floral Gourmand',
+    rating: 4.8, reviews: 0, isNew: true,
+    topNotes: ['Limón Confitado'],
+    heartNotes: ['Flor de Azahar'],
+    baseNotes: ['Vainilla'],
+    longevity: '', sillage: '', seasons: [], occasions: [],
+    description: 'Un gourmand luminoso: limón confitado y flor de azahar sobre un fondo cremoso de vainilla.',
+    sizes: [{ label: '10 ml Decant', price: 16 }, { label: '5 ml Decant', price: 8 }]
+  },
+  {
+    id: 104, name: 'Olympéa', brand: 'Paco Rabanne', price: 16,
+    image: placeholderPerfume, category: 'designer', gender: 'women', type: 'EDP', family: 'Floral Ambarado',
+    rating: 4.8, reviews: 0, isNew: true,
+    topNotes: ['Jazmín de Agua', 'Mandarina Verde', 'Flor de Jengibre'],
+    heartNotes: ['Vainilla Salada'],
+    baseNotes: ['Ámbar Gris', 'Madera de Cachemira', 'Sándalo'],
+    longevity: '8-10 horas', sillage: 'Fuerte',
+    seasons: ['Otoño', 'Invierno', 'Primavera'], occasions: ['Noche', 'Eventos'],
+    description: 'La diosa moderna de Rabanne. Una vainilla salada, sensual y luminosa sobre maderas cálidas.',
+    sizes: [{ label: '10 ml Decant', price: 16 }, { label: '5 ml Decant', price: 8 }]
+  },
+  {
+    id: 105, name: 'Black Opium', brand: 'Yves Saint Laurent', price: 17,
+    image: placeholderPerfume, category: 'designer', gender: 'women', type: 'EDP', family: 'Oriental Gourmand',
+    rating: 4.8, reviews: 0, isNew: true,
+    topNotes: ['Pimienta Rosa', 'Flor de Azahar', 'Pera'],
+    heartNotes: ['Café', 'Jazmín'],
+    baseNotes: ['Vainilla', 'Pachulí', 'Cedro'],
+    longevity: '8-10 horas', sillage: 'Fuerte',
+    seasons: ['Otoño', 'Invierno'], occasions: ['Noche', 'Eventos'],
+    description: 'El gourmand adictivo de YSL: café negro y flores blancas sobre una estela de vainilla.',
+    sizes: [{ label: '10 ml Decant', price: 17 }, { label: '5 ml Decant', price: 9 }]
   }
 ]
 
@@ -1358,51 +1404,57 @@ import imgMichaelMalul from '../assets/Marcas/MichaelMalul.png'
 import imgChanel from '../assets/Marcas/Chanel.png'
 import imgOrtoParisi from '../assets/Marcas/OrtoParisi.png'
 
-export const BRANDS = [
-  { name: 'Dior', country: 'Francia', count: 3, letter: 'D', image: imgDior },
-  { name: 'Carolina Herrera', country: 'España', count: 4, letter: 'C', image: imgCarolinaHerrera },
-  { name: 'Jimmy Choo', country: 'Reino Unido', count: 2, letter: 'J', image: imgJimmyChoo },
-  { name: 'Lancôme', country: 'Francia', count: 3, letter: 'L', image: imgLancome },
-  { name: 'Burberry', country: 'Reino Unido', count: 1, letter: 'B', image: imgBurberry },
-  { name: 'Valentino', country: 'Italia', count: 4, letter: 'V', image: imgValentino },
-  { name: 'Viktor & Rolf', country: 'Países Bajos', count: 2, letter: 'V', image: imgViktorRolf },
-  { name: 'Yves Saint Laurent', country: 'Francia', count: 3, letter: 'Y', image: imgYSL },
-  { name: 'Giorgio Armani', country: 'Italia', count: 2, letter: 'G', image: imgArmani },
-  { name: 'Jean Paul Gaultier', country: 'Francia', count: 5, letter: 'J', image: imgJPG },
-  { name: 'Rasasi', country: 'Emiratos Árabes Unidos', count: 5, letter: 'R', image: imgRasasi },
-  { name: 'Ariana Grande', country: 'Estados Unidos', count: 1, letter: 'A', image: imgArianaGrande },
-  { name: 'Cacharel', country: 'Francia', count: 1, letter: 'C', image: imgCacharel },
-  { name: 'Jennifer Lopez', country: 'Estados Unidos', count: 1, letter: 'J', image: imgJLo },
-  { name: 'Versace', country: 'Italia', count: 3, letter: 'V', image: imgVersace },
-  { name: 'Azzaro', country: 'Francia', count: 2, letter: 'A', image: imgAzzaro },
-  { name: 'Paco Rabanne', country: 'Francia', count: 3, letter: 'P', image: imgPacoRabanne },
-  { name: 'Guerlain', country: 'Francia', count: 1, letter: 'G', image: imgGuerlain },
-  { name: 'Lacoste', country: 'Francia', count: 1, letter: 'L', image: imgLacoste },
-  { name: 'Givenchy', country: 'Francia', count: 1, letter: 'G', image: imgGivenchy },
-  { name: 'Dolce & Gabbana', country: 'Italia', count: 1, letter: 'D', image: imgDolceGabbana },
-  { name: 'Issey Miyake', country: 'Japón', count: 1, letter: 'I', image: imgIsseyMiyake },
-  { name: 'Maison Margiela', country: 'Francia', count: 1, letter: 'M', image: imgMaisonMargiela },
-  { name: 'Prada', country: 'Italia', count: 1, letter: 'P', image: imgPrada },
-  { name: 'Bharara', country: 'Emiratos Árabes Unidos', count: 2, letter: 'B', image: imgBharara },
-  { name: 'Armaf', country: 'Emiratos Árabes Unidos', count: 3, letter: 'A', image: imgArmaf },
-  { name: 'Afnan', country: 'Emiratos Árabes Unidos', count: 3, letter: 'A', image: imgAfnan },
-  { name: 'Lattafa', country: 'Emiratos Árabes Unidos', count: 1, letter: 'L', image: imgLattafa },
-  { name: 'Al Haramain', country: 'Emiratos Árabes Unidos', count: 1, letter: 'A', image: imgAlHaramain },
-  { name: 'Rayhaan', country: 'Emiratos Árabes Unidos', count: 1, letter: 'R', image: imgRayhaan },
-  { name: 'Xerjoff', country: 'Italia', count: 2, letter: 'X', image: imgXerjoff },
-  { name: 'Creed', country: 'Reino Unido', count: 1, letter: 'C', image: imgCreed },
-  { name: 'Parfums de Marly', country: 'Francia', count: 2, letter: 'P', image: imgParfumsMarly },
-  { name: 'Sospiro', country: 'Italia', count: 1, letter: 'S', image: imgSospiro },
-  { name: 'BornToStandOut', country: 'Corea del Sur', count: 1, letter: 'B', image: imgBornToStandOut },
-  { name: 'Tom Ford', country: 'Estados Unidos', count: 1, letter: 'T', image: imgTomFord },
-  { name: 'Lorenzo Pazzaglia', country: 'Italia', count: 1, letter: 'L', image: imgLorenzoPazzaglia },
-  { name: 'Jo Milano', country: 'Francia', count: 1, letter: 'J', image: imgJoMilano },
-  { name: 'Matiere Premiere', country: 'Francia', count: 1, letter: 'M', image: imgMatierePremiere },
-  { name: 'Rabanne', country: 'Francia', count: 2, letter: 'R', image: imgRabanne },
-  { name: 'Michael Malul', country: 'Estados Unidos', count: 1, letter: 'M', image: imgMichaelMalul },
-  { name: 'Chanel', country: 'Francia', count: 2, letter: 'C', image: imgChanel },
-  { name: 'Orto Parisi', country: 'Italia', count: 1, letter: 'O', image: imgOrtoParisi },
+const BRAND_LIST = [
+  { name: 'Dior', country: 'Francia', letter: 'D', image: imgDior },
+  { name: 'Carolina Herrera', country: 'España', letter: 'C', image: imgCarolinaHerrera },
+  { name: 'Jimmy Choo', country: 'Reino Unido', letter: 'J', image: imgJimmyChoo },
+  { name: 'Lancôme', country: 'Francia', letter: 'L', image: imgLancome },
+  { name: 'Burberry', country: 'Reino Unido', letter: 'B', image: imgBurberry },
+  { name: 'Valentino', country: 'Italia', letter: 'V', image: imgValentino },
+  { name: 'Viktor & Rolf', country: 'Países Bajos', letter: 'V', image: imgViktorRolf },
+  { name: 'Yves Saint Laurent', country: 'Francia', letter: 'Y', image: imgYSL },
+  { name: 'Giorgio Armani', country: 'Italia', letter: 'G', image: imgArmani },
+  { name: 'Jean Paul Gaultier', country: 'Francia', letter: 'J', image: imgJPG },
+  { name: 'Rasasi', country: 'Emiratos Árabes Unidos', letter: 'R', image: imgRasasi },
+  { name: 'Ariana Grande', country: 'Estados Unidos', letter: 'A', image: imgArianaGrande },
+  { name: 'Cacharel', country: 'Francia', letter: 'C', image: imgCacharel },
+  { name: 'Jennifer Lopez', country: 'Estados Unidos', letter: 'J', image: imgJLo },
+  { name: 'Versace', country: 'Italia', letter: 'V', image: imgVersace },
+  { name: 'Azzaro', country: 'Francia', letter: 'A', image: imgAzzaro },
+  { name: 'Paco Rabanne', country: 'Francia', letter: 'P', image: imgPacoRabanne },
+  { name: 'Guerlain', country: 'Francia', letter: 'G', image: imgGuerlain },
+  { name: 'Lacoste', country: 'Francia', letter: 'L', image: imgLacoste },
+  { name: 'Givenchy', country: 'Francia', letter: 'G', image: imgGivenchy },
+  { name: 'Dolce & Gabbana', country: 'Italia', letter: 'D', image: imgDolceGabbana },
+  { name: 'Issey Miyake', country: 'Japón', letter: 'I', image: imgIsseyMiyake },
+  { name: 'Maison Margiela', country: 'Francia', letter: 'M', image: imgMaisonMargiela },
+  { name: 'Prada', country: 'Italia', letter: 'P', image: imgPrada },
+  { name: 'Bharara', country: 'Emiratos Árabes Unidos', letter: 'B', image: imgBharara },
+  { name: 'Armaf', country: 'Emiratos Árabes Unidos', letter: 'A', image: imgArmaf },
+  { name: 'Afnan', country: 'Emiratos Árabes Unidos', letter: 'A', image: imgAfnan },
+  { name: 'Lattafa', country: 'Emiratos Árabes Unidos', letter: 'L', image: imgLattafa },
+  { name: 'Al Haramain', country: 'Emiratos Árabes Unidos', letter: 'A', image: imgAlHaramain },
+  { name: 'Rayhaan', country: 'Emiratos Árabes Unidos', letter: 'R', image: imgRayhaan },
+  { name: 'Xerjoff', country: 'Italia', letter: 'X', image: imgXerjoff },
+  { name: 'Creed', country: 'Reino Unido', letter: 'C', image: imgCreed },
+  { name: 'Parfums de Marly', country: 'Francia', letter: 'P', image: imgParfumsMarly },
+  { name: 'Sospiro', country: 'Italia', letter: 'S', image: imgSospiro },
+  { name: 'BornToStandOut', country: 'Corea del Sur', letter: 'B', image: imgBornToStandOut },
+  { name: 'Tom Ford', country: 'Estados Unidos', letter: 'T', image: imgTomFord },
+  { name: 'Lorenzo Pazzaglia', country: 'Italia', letter: 'L', image: imgLorenzoPazzaglia },
+  { name: 'Jo Milano', country: 'Francia', letter: 'J', image: imgJoMilano },
+  { name: 'Matiere Premiere', country: 'Francia', letter: 'M', image: imgMatierePremiere },
+  { name: 'Rabanne', country: 'Francia', letter: 'R', image: imgRabanne },
+  { name: 'Michael Malul', country: 'Estados Unidos', letter: 'M', image: imgMichaelMalul },
+  { name: 'Chanel', country: 'Francia', letter: 'C', image: imgChanel },
+  { name: 'Orto Parisi', country: 'Italia', letter: 'O', image: imgOrtoParisi },
 ]
+
+// El número de referencias se calcula a partir del catálogo
+export const BRANDS = BRAND_LIST
+  .map(b => ({ ...b, count: PRODUCTS.filter(p => p.brand === b.name).length }))
+  .filter(b => b.count > 0)
+
 
 export const REVIEWS = [
   { id: 1, name: 'María González', rating: 5, comment: 'La calidad de los decants es impresionante. Pedí 5 fragancias y llegaron perfectamente selladas. El Miss Dior es idéntico al original.', product: 'Dior Miss Dior EDP', date: 'Julio 2025', avatar: 'MG' },

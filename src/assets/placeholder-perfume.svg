@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="600" height="800">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1c1a17"/>
+      <stop offset="1" stop-color="#0e0d0c"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#c8a45d" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#a17d34" stop-opacity="0.25"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="800" fill="url(#bg)"/>
+  <g fill="none" stroke="#c8a45d" stroke-width="4" stroke-linejoin="round">
+    <rect x="262" y="196" width="76" height="56" rx="8" fill="#c8a45d" fill-opacity="0.15"/>
+    <rect x="280" y="252" width="40" height="30"/>
+    <rect x="200" y="282" width="200" height="250" rx="28" fill="url(#glass)"/>
+  </g>
+  <text x="300" y="610" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="34" fill="#c8a45d">Foto próximamente</text>
+  <text x="300" y="652" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="18" letter-spacing="4" fill="#948b82">ELEGANT PARFUM PTY</text>
+</svg>

@@ -32,13 +32,24 @@ function loadState(): WorkState {
   try {
     const raw = localStorage.getItem(STORAGE_KEY)
     const parsed = raw ? JSON.parse(raw) : null
+    const byId = new Map(PRODUCTS.map(p => [p.id, p]))
     // Versiones anteriores guardaban un solo estado por perfume ('delete'); ahora es una lista
     const status: Record<number, Status[]> = {}
     for (const [id, v] of Object.entries(parsed?.status ?? {})) {
+      if (!byId.has(Number(id))) continue
       const list = (Array.isArray(v) ? v : [v]).filter((x): x is Status => STATUSES.includes(x as Status))
       if (list.length > 0) status[Number(id)] = [...new Set(list)].slice(0, MAX_STATUSES)
     }
-    return { status, prices: parsed?.prices ?? {} }
+    // Precios que ya se aplicaron al catálogo dejan de contar como "editados"
+    const prices: Record<number, Prices> = {}
+    for (const [id, pr] of Object.entries((parsed?.prices ?? {}) as Record<string, Prices>)) {
+      const p = byId.get(Number(id))
+      if (!p) continue
+      const orig = originalPrices(p)
+      const pending = Object.fromEntries(Object.entries(pr).filter(([k, v]) => v !== orig[k as PriceKey])) as Prices
+      if (Object.keys(pending).length > 0) prices[Number(id)] = pending
+    }
+    return { status, prices }
   } catch {
     return { status: {}, prices: {} }
   }
