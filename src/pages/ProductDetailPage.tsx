@@ -14,39 +14,70 @@ import type { Product } from '@/types'
 const additionalImages = import.meta.glob('../assets/Aditionals/*_001.png', { eager: true, import: 'default' }) as Record<string, string>;
 const brandLogos = import.meta.glob('../assets/Marcas/*.{png,jpg,jpeg}', { eager: true, import: 'default' }) as Record<string, string>;
 
+// Quita tildes antes de limpiar: "Olympéa" → "olympea" (coincide con el nombre del archivo)
+const stripAccents = (s: string) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+const norm = (s: string) => stripAccents(s).replace(/[^a-z0-9]/g, '');
+// Palabras de marca demasiado genéricas para elegir un logo ("Essential Parfums" ≠ "Parfums de Marly")
+const GENERIC_BRAND_WORDS = ['parfums', 'parfum', 'perfumes'];
+// Fotos adicionales cuyo nombre de archivo no coincide con el del perfume
+// ('' = sin foto adicional todavía; evita que tome la de otro perfume)
+const EXTRA_IMAGE_FILE: Record<number, string> = {
+  7: '', // Jimmy Choo Eau de Parfum: "Eau de Parfum" coincidía con el Bvlgari Black
+  37: 'EauDeLacostel.12_001.png',
+  39: 'Intenso_D_G__001.png',
+  67: '_Parfums_de_Marly_Valaya__001.png',
+  69: 'BornToStandOut_Drunk_Lovers__001.png',
+  71: '_Lorenzo_Pazzaglia_Gin_Fusion_001.png',
+  76: 'Fame_InLove_Rabanne_001.png',
+  79: 'Arabian_Sky_001.png',
+  80: 'SupremacyCollectors_EditionPour_001.png',
+  82: 'Ocean_Noir_001.png',
+  84: '9AM_Dive_001.png',
+  85: '9_PM_Night_Out_001.png',
+  86: 'Ombre_Leather__001.png',
+  87: 'Bleu_de_Chanel_EDP_001.png',
+  88: 'Coco_Mademoiselle_001.png',
+  92: 'Wild_Vetiver_001.png',
+  93: 'Megamare_Orto_Parisi_001.png',
+  94: 'One_Million_Black_001.png',
+  102: 'Mugler_Angel_Nova_Eau_De_Parfum_001.png',
+};
+
 function getProductImages(product: Product) {
-  const normName = product.name.toLowerCase().replace(/[^a-z0-9]/g, '');
-  const normBrand = product.brand.toLowerCase().replace(/[^a-z0-9]/g, '');
+  const normName = norm(product.name);
+  const normBrand = norm(product.brand);
   // "Torino 22" no debe tomar la foto de "Torino 21"
   const nameNumbers = product.name.match(/\d+/g) ?? [];
   const sameNumbers = (file: string) => nameNumbers.every(n => file.includes(n));
   // Sin foto propia todavía: no mostrar fotos adicionales de otro perfume
   const hasOwnPhoto = product.image !== placeholderPerfume;
 
-  let addImg = '';
+  const fixedFile = EXTRA_IMAGE_FILE[product.id];
+  const isFixed = fixedFile !== undefined;
+  let addImg = fixedFile ? additionalImages[`../assets/Aditionals/${fixedFile}`] ?? '' : '';
   // Intentar match directo
-  for (const [path, url] of hasOwnPhoto ? Object.entries(additionalImages) : []) {
-    const file = path.toLowerCase().replace(/[^a-z0-9]/g, '');
+  for (const [path, url] of hasOwnPhoto && !isFixed ? Object.entries(additionalImages) : []) {
+    const file = norm(path);
     if (file.includes(normName)) {
       addImg = url;
       break;
     }
   }
   // Fallbacks con split de palabras
-  if (!addImg && hasOwnPhoto) {
+  if (!addImg && hasOwnPhoto && !isFixed) {
     for (const [path, url] of Object.entries(additionalImages)) {
-      const file = path.toLowerCase().replace(/[^a-z0-9]/g, '');
-      const words = product.name.toLowerCase().split(' ').map(w => w.replace(/[^a-z0-9]/g, '')).filter(w => w.length > 3);
+      const file = norm(path);
+      const words = stripAccents(product.name).split(' ').map(w => w.replace(/[^a-z0-9]/g, '')).filter(w => w.length > 3);
       if (words.length > 0 && words.some(w => file.includes(w)) && file.includes(normBrand.substring(0,4)) && sameNumbers(file)) {
         addImg = url;
         break;
       }
     }
   }
-  if (!addImg && hasOwnPhoto) {
+  if (!addImg && hasOwnPhoto && !isFixed) {
     for (const [path, url] of Object.entries(additionalImages)) {
-      const file = path.toLowerCase().replace(/[^a-z0-9]/g, '');
-      const firstWord = product.name.split(' ')[0].toLowerCase().replace(/[^a-z0-9]/g, '');
+      const file = norm(path);
+      const firstWord = norm(product.name.split(' ')[0]);
       if (firstWord.length > 2 && file.includes(firstWord) && sameNumbers(file)) {
         addImg = url;
         break;
@@ -56,12 +87,12 @@ function getProductImages(product: Product) {
 
   let logoImg = '';
   for (const [path, url] of Object.entries(brandLogos)) {
-    const file = path.toLowerCase().replace(/[^a-z0-9]/g, '');
+    const file = norm(path);
     if (file.includes(normBrand) || normBrand.includes(file.replace(/png|jpg|jpeg/g, ''))) {
       logoImg = url;
       break;
     }
-    const brandWords = product.brand.toLowerCase().split(' ').map(w => w.replace(/[^a-z0-9]/g, '')).filter(w => w.length > 3);
+    const brandWords = stripAccents(product.brand).split(' ').map(w => w.replace(/[^a-z0-9]/g, '')).filter(w => w.length > 3 && !GENERIC_BRAND_WORDS.includes(w));
     if (brandWords.length > 0 && brandWords.some(w => file.includes(w))) {
       logoImg = url;
       break;

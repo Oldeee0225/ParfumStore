@@ -1,6 +1,6 @@
 # Lista de Precios — Elegant Parfum Pty
 
-100 perfumes en orden alfabético.
+104 perfumes en orden alfabético.
 
 | Perfume | Botella completa | 10 ml | 5 ml | 3 ml |
 |---|---:|---:|---:|---:|
@@ -23,6 +23,7 @@
 | Bharara Rey de Reyes | $70 | $13 | $6.50 | — |
 | BornToStandOut Drunk Lovers | $400 | $45 | $25 | — |
 | Burberry Her Elixir | $120 | $16 | $9 | — |
+| Bvlgari Black Eau de Parfum | $105 | $17 | $9 | — |
 | Carolina Herrera Forever Young | $105 | $13 | $7 | — |
 | Carolina Herrera Good Blush | $115 | $16 | $9 | — |
 | Carolina Herrera Good Girl Jasmine Absolute | $130 | $20 | $10 | — |
@@ -32,16 +33,18 @@
 | Chanel Coco Mademoiselle | $165 | $20 | $11 | — |
 | Creed Green Irish Tweed | $400 | $49.99 | $19.99 | — |
 | Creed Wild Vetiver | $450 | $45 | $20 | — |
-| Dior J'adore Absolu | — | $20 | $10 | — |
+| Dior J'adore Absolu | $160 | $20 | $10 | — |
 | Dior Miss Dior Eau de Parfum | $220 | $20 | $10 | — |
 | Dior Sauvage Eau de Parfum | $155 | $20 | $10 | — |
 | Dior Sauvage Elixir | $250 | $35 | $15 | — |
-| Dolce & Gabbana Devotion | — | $16 | $8 | — |
+| Dolce & Gabbana Devotion | $105 | $16 | $8 | — |
 | Dolce & Gabbana Intenso | $80 | $14 | $7 | — |
 | Essential Parfums Bois Impérial | — | $25 | $13 | — |
 | Giorgio Armani Acqua di Giò Parfum | $125 | $19 | $9 | — |
 | Giorgio Armani Acqua di Giò Profondo | $105 | $16 | $8 | — |
-| Giorgio Armani Power of You | — | $19 | $9 | — |
+| Giorgio Armani Power of You | $125 | $19 | $9 | — |
+| Giorgio Armani Stronger With You Intensely | $105 | $17 | $8 | — |
+| Giorgio Armani Stronger With You Powerfully | $125 | $18 | $9 | — |
 | Giorgio Armani Sí Intense | $120 | $16 | $8 | — |
 | Givenchy Gentleman Réservée Privée | $105 | $16 | $8 | — |
 | Guerlain L'Homme Idéal | $95 | $16 | $8 | — |
@@ -64,16 +67,17 @@
 | Mancera Cedrat Boisé | — | $20 | $10 | — |
 | Matiere Premiere Vanilla Powder | $280 | $38 | $18 | — |
 | Michael Malul Ocean Noir | $110 | $20 | $10 | — |
-| Mugler Angel Nova Eau de Parfum | — | $18 | $9 | — |
+| Mugler Angel Nova Eau de Parfum | $105 | $18 | $9 | — |
 | Orto Parisi Megamare | $220 | $45 | $25 | — |
 | Paco Rabanne Invictus Elixir | $130 | $16 | $8 | — |
-| Paco Rabanne Olympéa | — | $16 | $8 | — |
+| Paco Rabanne Olympéa | $80 | $16 | $8 | — |
 | Paco Rabanne One Million Black | $110 | $18 | $9 | — |
 | Paco Rabanne Phantom Le Parfum | $120 | — | — | — |
 | Parfums de Marly Layton | $350 | $35 | $15 | — |
 | Parfums de Marly Valaya | $300 | $40 | $25 | — |
-| Prada Paradoxe Intense | $140 | $19 | $9 | — |
-| Rabanne Fame in Love | $120 | $19 | $10 | — |
+| Prada Paradigme Eau de Parfum | $140 | $17 | $9 | — |
+| Prada Paradoxe Intense | $145 | $19 | $9 | — |
+| Rabanne Fame in Love | $130 | $19 | $10 | — |
 | Rabanne Invictus Parfum | $105 | $15 | $8 | — |
 | Rasasi Hawas Diva | $65 | $7 | $4 | — |
 | Rasasi Hawas Fire | $70 | $12 | $7 | — |
@@ -85,7 +89,7 @@
 | Rayhaan Italia | $50 | $13 | $7 | — |
 | Sospiro Vibrato | $380 | $30 | $16 | — |
 | Tom Ford Costa Azzurra | $350 | $22 | $12 | — |
-| Tom Ford Ombré Leather (2018) | $300 | $30 | $15 | — |
+| Tom Ford Ombré Leather (2018) | $350 | $30 | $15 | — |
 | Valentino Born in Roma Extradose Donna | $140 | $19 | $10 | — |
 | Valentino Born in Roma Intense | $125 | $17 | $8 | — |
 | Valentino Donna Born in Roma Coral Fantasy | $130 | $18 | $9 | — |
@@ -100,7 +104,7 @@
 | Xerjoff Erba Pura | — | $26 | $13 | — |
 | Xerjoff Torino 21 | $255 | $28 | $15 | — |
 | Xerjoff Torino 22 | — | $45 | $25 | $14 |
-| Yves Saint Laurent Black Opium | — | $17 | $9 | — |
+| Yves Saint Laurent Black Opium | $100 | $17 | $9 | — |
 | Yves Saint Laurent Libre | $125 | $19 | $10 | — |
 | Yves Saint Laurent MYSLF Le Parfum | $140 | $19 | $9 | — |
 | Yves Saint Laurent Y Eau de Parfum | $115 | $17 | $8 | — |
