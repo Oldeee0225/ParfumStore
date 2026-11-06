@@ -247,7 +247,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 11, name: 'Uomo Purple Melancholia', brand: 'Valentino', price: 130,
     image: valentinoMelancholia,
-    category: 'designer', gender: 'women', type: 'EDP', family: 'Floral Amaderado',
+    category: 'designer', gender: 'men', type: 'EDP', family: 'Floral Amaderado',
     rating: 4.6, reviews: 870,
     topNotes: ['Bergamota', 'Mandarina'],
     heartNotes: ['Rosa', '🪻 Lavanda'],
