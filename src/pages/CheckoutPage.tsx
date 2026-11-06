@@ -1,6 +1,7 @@
 import { useState, type CSSProperties } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useCart } from '@/providers/CartProvider'
+import { whatsappLink } from '@/data/contact'
 
 export function CheckoutPage() {
   const navigate = useNavigate()
@@ -85,7 +86,7 @@ Subtotal: $${subtotal.toFixed(2)}
 Envío: Por acordar
 *Total: $${total.toFixed(2)}*`
 
-        const whatsappUrl = `https://wa.me/50760137047?text=${encodeURIComponent(msg)}`
+        const whatsappUrl = whatsappLink(msg)
         window.open(whatsappUrl, '_blank')
         clearCart()
         setStep(4)

@@ -1,6 +1,8 @@
+import { WHATSAPP_URL } from '@/data/contact'
+
 export function WhatsAppButton() {
   return (
-    <a href="https://wa.me/15551234567" target="_blank" rel="noopener noreferrer"
+    <a href={WHATSAPP_URL} aria-label="Escríbenos por WhatsApp" target="_blank" rel="noopener noreferrer"
       style={{ position: 'fixed', bottom: 28, right: 28, zIndex: 99, width: 56, height: 56, borderRadius: '50%', background: '#25D366', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 6px 24px rgba(37,211,102,0.45)', transition: 'transform 0.2s, box-shadow 0.2s', textDecoration: 'none' }}
       onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.transform = 'scale(1.1)'; (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 8px 32px rgba(37,211,102,0.55)' }}
       onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.transform = 'scale(1)'; (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 6px 24px rgba(37,211,102,0.45)' }}>

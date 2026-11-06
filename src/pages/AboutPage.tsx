@@ -1,21 +1,18 @@
 import { SectionLabel } from '@/components/ui/SectionLabel'
 import { GoldLine } from '@/components/ui/GoldLine'
+import { LogoHeader } from '@/components/ui/LogoHeader'
 
 export function AboutPage() {
   return (
     <div style={{ minHeight: '100vh', paddingTop: 108 }}>
-      <section style={{ position: 'relative', minHeight: 400, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <img src="https://images.unsplash.com/photo-1563170351-be54748b42a4?w=1600&h=700&fit=crop&auto=format" alt="Nosotros" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
-        <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.65)' }} />
-        <div style={{ position: 'relative', textAlign: 'center', padding: '0 24px' }}>
-          <SectionLabel text="Quiénes somos" />
-          <h1 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(2rem,5vw,3.5rem)', color: '#fff', fontWeight: 600 }}>Nuestra Historia</h1>
-          <GoldLine center />
-        </div>
-      </section>
+      <LogoHeader alt="Elegant Parfum Pty" />
 
       <div style={{ maxWidth: 1000, margin: '0 auto', padding: 'clamp(48px,8vw,80px) clamp(20px,5vw,40px)' }}>
         <div style={{ textAlign: 'center', marginBottom: 64 }}>
+          <SectionLabel text="Quiénes somos" />
+          <h1 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(2rem,5vw,3.5rem)', color: 'var(--fg)', fontWeight: 600, margin: 0 }}>Nuestra Historia</h1>
+          <GoldLine center />
+          <div style={{ height: 28 }} />
           <p style={{ color: 'var(--fg2)', fontSize: '1.05rem', lineHeight: 1.9, maxWidth: 700, margin: '0 auto' }}>
             Elegant Parfum Pty nació de una pasión profunda por las fragancias de lujo y el deseo de hacer accesible lo extraordinario. Somos una perfumería especializada en ofrecer las mejores fragancias del mundo con garantía absoluta de autenticidad.
           </p>
@@ -43,7 +40,7 @@ export function AboutPage() {
             { icon: '✓', title: 'Garantía de Autenticidad', desc: 'Cada producto cuenta con certificado de autenticidad. Compramos directamente a distribuidores oficiales y casas de perfumes reconocidas mundialmente.' },
             { icon: '■', title: 'Empaque Premium', desc: 'Cada pedido se entrega en una elegante caja negra con separadores de lujo, papel tissue dorado y tarjeta de fragancia con las notas olfativas.' },
             { icon: '⚡', title: 'Envíos Seguros y Rápidos', desc: 'Procesamos tu pedido en 24 horas. Envío express en 2-3 días hábiles. Cada paquete lleva seguro de envío completo.' },
-            { icon: '✉', title: 'Atención Personalizada', desc: 'Nuestros expertos en fragancias están disponibles para asesorarte en la elección perfecta, ya sea por WhatsApp, chat o correo.' },
+            { icon: '✉', title: 'Atención Personalizada', desc: 'Nuestros expertos en fragancias están disponibles para asesorarte en la elección perfecta, ya sea por WhatsApp, Instagram o TikTok.' },
           ].map(item => (
             <div key={item.title} style={{ display: 'flex', gap: 20, padding: 24, background: 'var(--bg-card)', borderRadius: 12, border: '1px solid var(--border)' }}>
               <div style={{ width: 48, height: 48, borderRadius: '50%', border: '1.5px solid var(--gold)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--gold)', fontSize: '1.2rem', flexShrink: 0 }}>{item.icon}</div>
