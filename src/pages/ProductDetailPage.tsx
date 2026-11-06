@@ -290,7 +290,7 @@ export function ProductDetailPage() {
                         <div key={n} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, width: 72 }}>
                           {img ? (
                             <div style={{ width: 56, height: 56, borderRadius: '50%', background: 'var(--bg-card)', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-                              <img src={img} alt={cleanName} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                              <img loading="lazy" decoding="async" src={img} alt={cleanName} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                             </div>
                           ) : (
                             <div style={{ width: 56, height: 56, borderRadius: '50%', background: 'var(--bg-card)', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20 }}>

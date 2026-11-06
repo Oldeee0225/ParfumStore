@@ -46,7 +46,7 @@ export function BrandsPage() {
               onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = 'var(--gold)'; (e.currentTarget as HTMLButtonElement).style.boxShadow = 'var(--shadow)'; (e.currentTarget as HTMLButtonElement).style.transform = 'translateY(-3px)' }}
               onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = 'var(--border)'; (e.currentTarget as HTMLButtonElement).style.boxShadow = 'none'; (e.currentTarget as HTMLButtonElement).style.transform = 'translateY(0)' }}>
               <div style={{ width: 72, height: 72, borderRadius: '50%', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', border: '2px solid var(--border)', flexShrink: 0 }}>
-                <img src={b.image} alt={b.name} style={{ width: '80%', height: '80%', objectFit: 'contain' }} />
+                <img loading="lazy" decoding="async" src={b.image} alt={b.name} style={{ width: '80%', height: '80%', objectFit: 'contain' }} />
               </div>
               <div>
                 <p style={{ fontFamily: "'Playfair Display',serif", fontWeight: 600, fontSize: '0.95rem', color: 'var(--fg)', marginBottom: 4 }}>{b.name}</p>

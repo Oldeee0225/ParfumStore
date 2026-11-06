@@ -27,7 +27,7 @@ function DecantCard({ p }: { p: Product }) {
       onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = 'var(--shadow-lg)'; (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-4px)' }}
       onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = 'var(--shadow-sm)'; (e.currentTarget as HTMLDivElement).style.transform = 'translateY(0)' }}>
       <div style={{ position: 'relative', overflow: 'hidden', aspectRatio: '3/4', background: '#f0ede8' }} onClick={openProduct}>
-        <img src={p.image} alt={p.name} className="prod-img" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        <img loading="lazy" decoding="async" src={p.image} alt={p.name} className="prod-img" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
         <div className="prod-overlay" style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.45)', display: 'flex', alignItems: 'flex-end', padding: 12 }}>
           <div style={{ display: 'flex', gap: 8, width: '100%' }}>
             {decant5 && (

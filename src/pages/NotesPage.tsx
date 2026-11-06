@@ -52,7 +52,7 @@ export function NotesPage() {
             }}
           >
             <div style={{ width: '100%', height: 180, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f0ede8', padding: 20 }}>
-              <img
+              <img loading="lazy" decoding="async"
                 src={n.img}
                 alt={n.name}
                 style={{

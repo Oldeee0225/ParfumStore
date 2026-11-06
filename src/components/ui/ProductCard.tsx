@@ -42,7 +42,7 @@ export function ProductCard({ p }: { p: Product }) {
       onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = 'var(--shadow-sm)'; (e.currentTarget as HTMLDivElement).style.transform = 'translateY(0)' }}>
       <div className="prod-media" onClick={openProduct}
         style={{ position: 'relative', overflow: 'hidden', aspectRatio: '3/4', margin: 12, marginBottom: 0, borderRadius: 10, background: '#f0ede8', boxShadow: '0 4px 14px rgba(0,0,0,0.06)', cursor: 'pointer' }}>
-        <img src={p.image} alt={p.name} className="prod-img" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: p.isSoldOut ? 0.6 : 1 }} />
+        <img loading="lazy" decoding="async" src={p.image} alt={p.name} className="prod-img" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: p.isSoldOut ? 0.6 : 1 }} />
         <div style={{ position: 'absolute', top: 12, left: 12, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 6 }}>
           <span style={{ background: '#fff', color: '#17120e', border: '1px solid rgba(0,0,0,0.1)', borderRadius: 6, padding: '4px 10px', fontSize: '0.62rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', boxShadow: '0 2px 6px rgba(0,0,0,0.08)' }}>
             {GENDER_LABEL[p.gender]}

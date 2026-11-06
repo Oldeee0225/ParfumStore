@@ -152,7 +152,7 @@ function WorkCard({ p, statuses, prices, onOpen }: { p: Product; statuses: Statu
         )}
       </div>
 
-      <img
+      <img loading="lazy" decoding="async"
         src={p.image}
         alt={p.name}
         draggable={false}
@@ -280,7 +280,7 @@ function OptionsPanel({ p, statuses, prices, onToggleStatus, onPrices, onClose }
         style={{ width: '100%', maxWidth: 420, maxHeight: 'calc(100vh - 32px)', overflowY: 'auto', background: '#18181b', color: '#e4e4e7', borderRadius: 14, border: '1px solid #3f3f46', padding: 20 }}
       >
         <div style={{ display: 'flex', gap: 12, alignItems: 'center', marginBottom: 18 }}>
-          <img src={p.image} alt="" style={{ width: 56, height: 56, objectFit: 'contain', background: '#0f0f0f', borderRadius: 8 }} />
+          <img loading="lazy" decoding="async" src={p.image} alt="" style={{ width: 56, height: 56, objectFit: 'contain', background: '#0f0f0f', borderRadius: 8 }} />
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ fontSize: 11, color: genderColor(p.gender), fontWeight: 600, textTransform: 'uppercase', letterSpacing: 0.5 }}>{p.brand}</div>
             <div style={{ fontSize: 15, fontWeight: 700, lineHeight: 1.3 }}>{p.name}</div>

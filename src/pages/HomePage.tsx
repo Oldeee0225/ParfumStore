@@ -31,7 +31,7 @@ function FeaturedGrid({ items }: { items: { id: number; title: string; tagline: 
     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
       {featured.map(({ product }) => (
         <div key={product.id} style={{ borderRadius: 10, overflow: 'hidden', cursor: 'pointer' }} onClick={() => navigate(`/producto/${product.id}`)}>
-          <img src={product.image} alt={product.name} style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover' }} />
+          <img loading="lazy" decoding="async" src={product.image} alt={product.name} style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover' }} />
         </div>
       ))}
       {featured.map(({ product, title, tagline }, i) => (
@@ -227,7 +227,7 @@ export function HomePage() {
       </section>
 
       <section style={{ position: 'relative', overflow: 'hidden', minHeight: 540 }}>
-        <img src={decantsImg} alt="Decants"
+        <img loading="lazy" decoding="async" src={decantsImg} alt="Decants"
           style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(0,0,0,0.65) 30%, rgba(0,0,0,0.05) 100%)' }} />
         <div style={{ position: 'relative', maxWidth: 1280, margin: '0 auto', padding: 'clamp(64px,8vw,100px) clamp(20px,5vw,80px)', display: 'flex', alignItems: 'center', minHeight: 540 }}>
@@ -359,8 +359,8 @@ export function HomePage() {
           <div style={{ position: 'relative', overflow: 'hidden', borderRadius: 16, boxShadow: 'var(--shadow-lg)', aspectRatio: '4/3', background: '#f0ede8' }}>
             <div style={{ display: 'flex', height: '100%', transition: 'transform 0.7s cubic-bezier(0.4,0,0.2,1)', transform: `translateX(-${galleryIndex * 100}%)` }}>
               {GALLERY_IMAGES.map((img, i) => (
-                <img key={img} src={img} alt={`Galería ${i + 1}`}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', flexShrink: 0 }} loading="lazy" />
+                <img loading="lazy" decoding="async" key={img} src={img} alt={`Galería ${i + 1}`}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', flexShrink: 0 }} />
               ))}
             </div>
           </div>
