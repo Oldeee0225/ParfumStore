@@ -19,10 +19,12 @@ const stripAccents = (s: string) => s.normalize('NFD').replace(/[\u0300-\u036f]/
 const norm = (s: string) => stripAccents(s).replace(/[^a-z0-9]/g, '');
 // Palabras de marca demasiado genéricas para elegir un logo ("Essential Parfums" ≠ "Parfums de Marly")
 const GENERIC_BRAND_WORDS = ['parfums', 'parfum', 'perfumes'];
+// Logos cuyo nombre de archivo no coincide con la marca
+const BRAND_LOGO_FILE: Record<string, string> = { Azzaro: 'azaro.png' };
 // Fotos adicionales cuyo nombre de archivo no coincide con el del perfume
 // ('' = sin foto adicional todavía; evita que tome la de otro perfume)
 const EXTRA_IMAGE_FILE: Record<number, string> = {
-  7: '', // Jimmy Choo Eau de Parfum: "Eau de Parfum" coincidía con el Bvlgari Black
+  7: 'Jimmy_Choo_Eau_de_Parfum_001.png',
   37: 'EauDeLacostel.12_001.png',
   39: 'Intenso_D_G__001.png',
   67: '_Parfums_de_Marly_Valaya__001.png',
@@ -85,8 +87,9 @@ function getProductImages(product: Product) {
     }
   }
 
-  let logoImg = '';
-  for (const [path, url] of Object.entries(brandLogos)) {
+  const logoFile = BRAND_LOGO_FILE[product.brand];
+  let logoImg = logoFile ? brandLogos[`../assets/Marcas/${logoFile}`] ?? '' : '';
+  for (const [path, url] of logoImg ? [] : Object.entries(brandLogos)) {
     const file = norm(path);
     if (file.includes(normBrand) || normBrand.includes(file.replace(/png|jpg|jpeg/g, ''))) {
       logoImg = url;
