@@ -10,7 +10,6 @@ const STORAGE_KEY = 'notes-worklist-v1'
 type Layer = 'top' | 'heart' | 'base'
 type Notes = Record<Layer, string[]>
 type Edits = Record<number, Partial<Notes>>
-type Scope = 'all' | 'filtered'
 
 const LAYERS: { key: Layer; label: string; short: string }[] = [
   { key: 'top', label: 'Salida', short: 'S' },
@@ -140,6 +139,47 @@ function NoteCard({ p, edits, onOpen }: { p: Product; edits: Partial<Notes>; onO
   )
 }
 
+// Lista propia (no <datalist>) para que se vea igual en celular: todas las notas, filtradas al escribir
+function NotePicker({ query, suggestions, selected, onToggle, onAddNew }: {
+  query: string
+  suggestions: string[]
+  selected: string[]
+  onToggle: (name: string) => void
+  onAddNew: () => void
+}) {
+  const q = noteKey(query.split(',').pop() ?? '')
+  const chosen = new Set(selected.map(noteKey))
+  const list = q ? suggestions.filter(s => noteKey(s).includes(q)) : suggestions
+  const exact = q !== '' && suggestions.some(s => noteKey(s) === q)
+
+  return (
+    <div style={{ marginTop: 6, border: '1px solid #3f3f46', borderRadius: 8, background: '#0f0f0f', overflow: 'hidden' }}>
+      <div style={{ padding: '6px 10px', fontSize: 11, color: '#71717a', borderBottom: '1px solid #27272a' }}>
+        {q ? `${list.length} coincidencia${list.length === 1 ? '' : 's'}` : `${suggestions.length} notas`} · toca para agregar o quitar
+      </div>
+      <div style={{ maxHeight: 240, overflowY: 'auto', WebkitOverflowScrolling: 'touch', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: 2, padding: 4 }}>
+        {query.trim() && !exact && (
+          <button onClick={onAddNew}
+            style={{ gridColumn: '1 / -1', display: 'flex', alignItems: 'center', gap: 8, padding: '8px', borderRadius: 6, border: `1px dashed ${GOLD}`, background: 'transparent', color: GOLD, cursor: 'pointer', fontSize: 13, textAlign: 'left' }}>
+            + Agregar «{query.trim()}» como nota nueva
+          </button>
+        )}
+        {list.map(s => {
+          const on = chosen.has(noteKey(s))
+          return (
+            <button key={s} onClick={() => onToggle(s)} aria-pressed={on}
+              style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '6px 8px', borderRadius: 6, border: 'none', background: on ? '#2a2310' : 'transparent', color: on ? GOLD : '#e4e4e7', cursor: 'pointer', fontSize: 13, textAlign: 'left', minWidth: 0 }}>
+              <NoteThumb name={s} size={26} />
+              <span style={{ flex: 1, minWidth: 0, lineHeight: 1.2, overflowWrap: 'anywhere' }}>{s}</span>
+              {on && <span aria-hidden>✓</span>}
+            </button>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
 function NotesEditor({ p, edits, suggestions, onSave, onClose }: {
   p: Product
   edits: Partial<Notes>
@@ -150,6 +190,7 @@ function NotesEditor({ p, edits, suggestions, onSave, onClose }: {
   const orig = originalNotes(p)
   const [draft, setDraft] = useState<Notes>(() => currentNotes(p, edits))
   const [inputs, setInputs] = useState<Record<Layer, string>>({ top: '', heart: '', base: '' })
+  const [active, setActive] = useState<Layer | null>(null)
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
@@ -159,10 +200,7 @@ function NotesEditor({ p, edits, suggestions, onSave, onClose }: {
 
   const byKey = useMemo(() => new Map(suggestions.map(s => [noteKey(s), s])), [suggestions])
 
-  const add = (layer: Layer) => {
-    // Se pueden pegar varias separadas por coma; si ya existe en el catálogo se usa ese nombre exacto
-    const names = inputs[layer].split(',').map(s => s.trim()).filter(Boolean).map(s => byKey.get(noteKey(s)) ?? capitalize(s))
-    if (names.length === 0) return
+  const addNames = (layer: Layer, names: string[]) => {
     setDraft(d => {
       const keys = new Set(d[layer].map(noteKey))
       const fresh = names.filter(n => { const k = noteKey(n); if (!k || keys.has(k)) return false; keys.add(k); return true })
@@ -170,6 +208,20 @@ function NotesEditor({ p, edits, suggestions, onSave, onClose }: {
     })
     setInputs(i => ({ ...i, [layer]: '' }))
   }
+
+  // Se pueden pegar varias separadas por coma; si ya existe en el catálogo se usa ese nombre exacto
+  const addTyped = (layer: Layer) => {
+    const names = inputs[layer].split(',').map(s => s.trim()).filter(Boolean).map(s => byKey.get(noteKey(s)) ?? capitalize(s))
+    if (names.length > 0) addNames(layer, names)
+  }
+
+  // Quitar si ya está en la capa, agregar si no
+  const toggle = (layer: Layer, name: string) => setDraft(d => {
+    const k = noteKey(name)
+    return d[layer].some(n => noteKey(n) === k)
+      ? { ...d, [layer]: d[layer].filter(n => noteKey(n) !== k) }
+      : { ...d, [layer]: [...d[layer], name] }
+  })
 
   const remove = (layer: Layer, idx: number) => setDraft(d => ({ ...d, [layer]: d[layer].filter((_, i) => i !== idx) }))
 
@@ -226,15 +278,27 @@ function NotesEditor({ p, edits, suggestions, onSave, onClose }: {
               </div>
               <div style={{ display: 'flex', gap: 6 }}>
                 <input
-                  list="note-suggestions"
                   value={inputs[key]}
-                  placeholder="Agregar nota (Enter) · varias con coma"
-                  onChange={e => setInputs(i => ({ ...i, [key]: e.target.value }))}
-                  onKeyDown={e => { if (e.key === 'Enter') { e.preventDefault(); add(key) } }}
-                  style={{ flex: 1, minWidth: 0, padding: '9px 10px', borderRadius: 8, border: '1px solid #3f3f46', background: '#0f0f0f', color: '#fff', fontSize: 16, outline: 'none' }}
+                  placeholder={active === key ? 'Buscar o escribir nota nueva…' : 'Agregar nota (toca para ver la lista)'}
+                  autoComplete="off"
+                  onFocus={() => setActive(key)}
+                  onChange={e => { setActive(key); setInputs(i => ({ ...i, [key]: e.target.value })) }}
+                  onKeyDown={e => { if (e.key === 'Enter') { e.preventDefault(); addTyped(key) } }}
+                  style={{ flex: 1, minWidth: 0, padding: '9px 10px', borderRadius: 8, border: `1px solid ${active === key ? GOLD : '#3f3f46'}`, background: '#0f0f0f', color: '#fff', fontSize: 16, outline: 'none' }}
                 />
-                <button onClick={() => add(key)} aria-label={`Agregar a ${label}`} style={{ padding: '0 14px', borderRadius: 8, border: '1px solid #3f3f46', background: '#27272a', color: '#e4e4e7', cursor: 'pointer', fontSize: 16 }}>+</button>
+                {active === key
+                  ? <button onClick={() => { setActive(null); setInputs(i => ({ ...i, [key]: '' })) }} style={{ padding: '0 12px', borderRadius: 8, border: '1px solid #3f3f46', background: '#27272a', color: '#e4e4e7', cursor: 'pointer', fontSize: 13, fontWeight: 600 }}>Listo</button>
+                  : <button onClick={() => setActive(key)} aria-label={`Ver notas para ${label}`} style={{ padding: '0 14px', borderRadius: 8, border: '1px solid #3f3f46', background: '#27272a', color: '#e4e4e7', cursor: 'pointer', fontSize: 16 }}>+</button>}
               </div>
+              {active === key && (
+                <NotePicker
+                  query={inputs[key]}
+                  suggestions={suggestions}
+                  selected={draft[key]}
+                  onToggle={name => toggle(key, name)}
+                  onAddNew={() => addTyped(key)}
+                />
+              )}
               {changed && <p style={{ fontSize: 10, color: '#52525b', marginTop: 4 }}>Original: {orig[key].join(', ') || '—'}</p>}
             </div>
           )
@@ -255,48 +319,6 @@ function NotesEditor({ p, edits, suggestions, onSave, onClose }: {
           </button>
         </div>
       </div>
-    </div>
-  )
-}
-
-function BulkReplace({ scopeCount, countAffected, onApply }: {
-  scopeCount: Record<Scope, number>
-  countAffected: (from: string, scope: Scope) => number
-  onApply: (from: string, to: string, scope: Scope) => void
-}) {
-  const [from, setFrom] = useState('')
-  const [to, setTo] = useState('')
-  const [scope, setScope] = useState<Scope>('all')
-  const affected = from.trim() ? countAffected(from, scope) : 0
-
-  const apply = () => {
-    if (affected === 0) return
-    const what = to.trim() ? `Cambiar "${from.trim()}" por "${to.trim()}"` : `Quitar "${from.trim()}"`
-    if (!confirm(`¿${what} en ${affected} perfume${affected === 1 ? '' : 's'}?`)) return
-    onApply(from, to, scope)
-    setFrom('')
-    setTo('')
-  }
-
-  const field = { padding: '8px 10px', borderRadius: 6, border: '1px solid #3f3f46', background: '#0f0f0f', color: '#fff', fontSize: 14, outline: 'none', minWidth: 0 } as const
-
-  return (
-    <div style={{ background: '#18181b', border: '1px solid #27272a', borderRadius: 10, padding: 14, marginBottom: 20, color: '#e4e4e7' }}>
-      <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: 1, textTransform: 'uppercase', color: '#71717a', marginBottom: 10 }}>Cambio en masa</p>
-      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
-        <input list="note-suggestions" value={from} onChange={e => setFrom(e.target.value)} placeholder="Nota a cambiar" aria-label="Nota a cambiar" style={{ ...field, flex: '1 1 160px' }} />
-        <span style={{ color: '#71717a' }}>→</span>
-        <input list="note-suggestions" value={to} onChange={e => setTo(e.target.value)} placeholder="Nueva nota (vacío = quitar)" aria-label="Nueva nota" style={{ ...field, flex: '1 1 160px' }} />
-        <select value={scope} onChange={e => setScope(e.target.value as Scope)} aria-label="Aplicar a" style={{ ...field, flex: '0 1 auto' }}>
-          <option value="all">Todo el catálogo ({scopeCount.all})</option>
-          <option value="filtered">Solo los filtrados ({scopeCount.filtered})</option>
-        </select>
-        <button onClick={apply} disabled={affected === 0} className="btn-gold"
-          style={{ padding: '8px 14px', borderRadius: 6, border: 'none', cursor: affected ? 'pointer' : 'not-allowed', opacity: affected ? 1 : 0.4, fontSize: 13 }}>
-          Aplicar{from.trim() ? ` (${affected})` : ''}
-        </button>
-      </div>
-      {from.trim() !== '' && affected === 0 && <p style={{ fontSize: 11, color: '#71717a', marginTop: 8 }}>Ningún perfume tiene esa nota.</p>}
     </div>
   )
 }
@@ -388,7 +410,6 @@ export function NotesPage() {
   const notesOf = (p: Product) => currentNotes(p, edits[p.id])
   const isEdited = (p: Product) => edits[p.id] !== undefined
   const isMissing = (p: Product) => allOf(notesOf(p)).some(x => !hasImage(x))
-  const hasNote = (p: Product, k: string) => allOf(notesOf(p)).some(x => noteKey(x) === k)
 
   const q = noteKey(search)
   const visible = PRODUCTS.filter(p => {
@@ -397,35 +418,6 @@ export function NotesPage() {
   })
   const filtered = visible.filter(p => filter === 'edited' ? isEdited(p) : filter === 'missing' ? isMissing(p) : true)
   const counts: Record<Filter, number> = { all: visible.length, edited: visible.filter(isEdited).length, missing: visible.filter(isMissing).length }
-
-  const scopeList = (scope: Scope) => scope === 'all' ? PRODUCTS : filtered
-
-  const countAffected = (from: string, scope: Scope) => {
-    const k = noteKey(from)
-    return k ? scopeList(scope).filter(p => hasNote(p, k)).length : 0
-  }
-
-  const bulkApply = (from: string, to: string, scope: Scope) => {
-    const k = noteKey(from)
-    const toName = to.trim() ? (suggestions.find(s => noteKey(s) === noteKey(to)) ?? capitalize(to.trim())) : ''
-    const targets = scopeList(scope).filter(p => hasNote(p, k))
-    setEdits(prev => {
-      let next = prev
-      for (const p of targets) {
-        const cur = currentNotes(p, prev[p.id])
-        const replaced = {} as Notes
-        for (const { key } of LAYERS) {
-          const seen = new Set<string>()
-          replaced[key] = cur[key]
-            .flatMap(n => noteKey(n) === k ? (toName ? [toName] : []) : [n])
-            .filter(n => { const nk = noteKey(n); if (seen.has(nk)) return false; seen.add(nk); return true })
-        }
-        next = withEdit(next, p, replaced)
-      }
-      return next
-    })
-    setToast(`Listo: ${targets.length} perfume${targets.length === 1 ? '' : 's'} actualizado${targets.length === 1 ? '' : 's'}.`)
-  }
 
   const exportChanges = async () => {
     if (Object.keys(edits).length === 0) { setToast('No hay notas editadas para exportar.'); return }
@@ -460,16 +452,6 @@ export function NotesPage() {
           <p style={{ fontSize: 13, color: '#888', marginBottom: 16 }}>
             Mantén presionada una card para editar sus notas. Las notas con borde naranja aún no tienen foto.
           </p>
-
-          <datalist id="note-suggestions">
-            {suggestions.map(s => <option key={s} value={s} />)}
-          </datalist>
-
-          <BulkReplace
-            scopeCount={{ all: PRODUCTS.length, filtered: filtered.length }}
-            countAffected={countAffected}
-            onApply={bulkApply}
-          />
 
           <div style={{ display: 'flex', gap: 12, marginBottom: 20, flexWrap: 'wrap', alignItems: 'center' }}>
             <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
