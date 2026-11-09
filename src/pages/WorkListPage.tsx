@@ -1,10 +1,10 @@
-import { useState, useEffect, useRef } from 'react'
-import type { PointerEvent as ReactPointerEvent, MouseEvent as ReactMouseEvent } from 'react'
+import { useState, useEffect } from 'react'
 import { PRODUCTS } from '../data/products'
 import type { Product } from '@/types'
+import { useLongPress, LONG_PRESS_MS } from '@/hooks/useLongPress'
+import { fullName, genderLabel, genderColor } from '@/utils/catalog'
 
 const STORAGE_KEY = 'worklist-v2'
-const LONG_PRESS_MS = 500
 const MAX_STATUSES = 2
 
 type Status = 'delete' | 'photos' | 'decants'
@@ -64,48 +64,7 @@ function originalPrices(p: Product): Prices {
   }
 }
 
-const fullName = (p: Product) => p.name.toLowerCase().startsWith(p.brand.toLowerCase()) ? p.name : `${p.brand} ${p.name}`
 const money = (v?: number) => v === undefined ? '—' : `$${Number.isInteger(v) ? v : v.toFixed(2)}`
-const genderLabel = (g: Product['gender']) => g === 'women' ? 'Dama' : g === 'men' ? 'Caballero' : 'Unisex'
-const genderColor = (g: Product['gender']) => g === 'women' ? '#f472b6' : g === 'men' ? '#60a5fa' : '#a78bfa'
-
-// Mantener pulsado: se cancela si el dedo se mueve (scroll) o se suelta antes de tiempo
-function useLongPress(onLongPress: () => void) {
-  const timer = useRef<number | undefined>(undefined)
-  const origin = useRef<{ x: number; y: number } | null>(null)
-  const [pressing, setPressing] = useState(false)
-
-  const cancel = () => {
-    window.clearTimeout(timer.current)
-    origin.current = null
-    setPressing(false)
-  }
-
-  useEffect(() => () => window.clearTimeout(timer.current), [])
-
-  return {
-    pressing,
-    handlers: {
-      onPointerDown: (e: ReactPointerEvent) => {
-        if (e.button !== 0) return
-        origin.current = { x: e.clientX, y: e.clientY }
-        setPressing(true)
-        timer.current = window.setTimeout(() => {
-          cancel()
-          navigator.vibrate?.(30)
-          onLongPress()
-        }, LONG_PRESS_MS)
-      },
-      onPointerMove: (e: ReactPointerEvent) => {
-        if (origin.current && Math.hypot(e.clientX - origin.current.x, e.clientY - origin.current.y) > 10) cancel()
-      },
-      onPointerUp: cancel,
-      onPointerLeave: cancel,
-      onPointerCancel: cancel,
-      onContextMenu: (e: ReactMouseEvent) => e.preventDefault(),
-    },
-  }
-}
 
 // Con 2 estados, el borde y el fondo se parten en diagonal con los dos colores
 function cardColors(statuses: Status[]) {
