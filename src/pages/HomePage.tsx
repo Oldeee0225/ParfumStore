@@ -47,8 +47,6 @@ function FeaturedGrid({ items }: { items: { id: number; title: string; tagline: 
 
 export function HomePage() {
   const navigate = useNavigate()
-  const [email, setEmail] = useState('')
-  const [subscribed, setSubscribed] = useState(false)
   const [galleryIndex, setGalleryIndex] = useState(0)
   const [galleryPaused, setGalleryPaused] = useState(false)
 
@@ -385,30 +383,6 @@ export function HomePage() {
             ))}
           </div>
         </div>
-      </section>
-
-      <section style={{ background: '#111', padding: 'clamp(48px,8vw,80px) clamp(20px,5vw,80px)', textAlign: 'center' }}>
-        <SectionLabel text="Newsletter exclusivo" />
-        <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.8rem,4vw,2.6rem)', color: '#fff', fontWeight: 600, marginBottom: 12 }}>
-          Sé el primero en conocer<br />nuestras <em style={{ color: 'var(--gold)' }}>novedades</em>
-        </h2>
-        <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.92rem', marginBottom: 36, maxWidth: 480, margin: '12px auto 36px' }}>
-          Recibe acceso anticipado a nuevos lanzamientos, ofertas exclusivas y guías de fragrancias personalizadas.
-        </p>
-        {subscribed ? (
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, padding: '14px 28px', background: 'rgba(200,164,93,0.15)', border: '1px solid var(--gold)', borderRadius: 8 }}>
-            <span style={{ color: 'var(--gold)' }}>✓</span>
-            <span style={{ color: '#fff', fontSize: '0.9rem' }}>¡Gracias por suscribirte! Revisa tu correo.</span>
-          </div>
-        ) : (
-          <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', maxWidth: 480, margin: '0 auto' }}>
-            <input value={email} onChange={e => setEmail(e.target.value)} placeholder="tu@email.com"
-              style={{ flex: 1, minWidth: 240, padding: '13px 18px', background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: 6, color: '#fff', fontSize: '0.88rem', outline: 'none' }} />
-            <button onClick={() => { if (email) setSubscribed(true) }} className="btn-gold" style={{ padding: '13px 28px', borderRadius: 6, border: 'none', cursor: 'pointer' }}>
-              SUSCRIBIRME
-            </button>
-          </div>
-        )}
       </section>
     </div>
   )
