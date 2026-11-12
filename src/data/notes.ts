@@ -105,6 +105,50 @@ import imgVertiverjpg from '../assets/Notas/Vertiver.jpg';
 import imgVioletapng from '../assets/Notas/Violeta.png';
 import imgYlangYlangpng from '../assets/Notas/YlangYlang.png';
 import imgYuzupng from '../assets/Notas/Yuzu.png';
+import imgBenjuipng from '../assets/Notas/Benjui.png';
+import imgFlorDeJengibrepng from '../assets/Notas/FlorDeJengibre.png';
+import imgIsoESuperpng from '../assets/Notas/IsoESuper.png';
+import imgNotasSolarespng from '../assets/Notas/NotasSolares.png';
+import imgAkigalawoodpng from '../assets/Notas/Akigalawood.png';
+import imgAlbahacapng from '../assets/Notas/Albahaca.png';
+import imgAlgodonDeAzucarpng from '../assets/Notas/AlgodonDeAzucar.png';
+import imgAlmizcleAmbretapng from '../assets/Notas/AlmizcleAmbreta.png';
+import imgAmberwoodpng from '../assets/Notas/Amberwood.png';
+import imgCafepng from '../assets/Notas/Cafe.png';
+import imgCalonepng from '../assets/Notas/Calone.png';
+import imgCauchopng from '../assets/Notas/Caucho.png';
+import imgCerezapng from '../assets/Notas/Cereza.png';
+import imgCerezaNegrapng from '../assets/Notas/CerezaNegra.png';
+import imgCiruelapng from '../assets/Notas/Ciruela.png';
+import imgCocoNegropng from '../assets/Notas/CocoNegro.png';
+import imgDavanapng from '../assets/Notas/Davana.png';
+import imgHedionepng from '../assets/Notas/Hedione.png';
+import imgHeliotropopng from '../assets/Notas/Heliotropo.png';
+import imgJabonNegropng from '../assets/Notas/JabonNegro.png';
+import imgKiwipng from '../assets/Notas/Kiwi.png';
+import imgLadanopng from '../assets/Notas/Ladano.png';
+import imgMaderaDeAmbarpng from '../assets/Notas/MaderaDeAmbar.png';
+import imgMalvaviscoDoradopng from '../assets/Notas/MalvaviscoDorado.png';
+import imgMaracuyapng from '../assets/Notas/Maracuya.png';
+import imgMerenguepng from '../assets/Notas/Merengue.png';
+import imgMilenramapng from '../assets/Notas/Milenrama.png';
+import imgMirtopng from '../assets/Notas/Mirto.png';
+import imgMusgoDeRoblepng from '../assets/Notas/MusgoDeRoble.png';
+import imgMusgopng from '../assets/Notas/Musgo.png';
+import imgNotasMineralespng from '../assets/Notas/NotasMinerales.png';
+import imgNotasFrutalespng from '../assets/Notas/NotasFrutales.png';
+import imgOsmantoOlorosopng from '../assets/Notas/OsmantoOloroso.png';
+import imgOsmantopng from '../assets/Notas/Osmanto.png';
+import imgPaloSantopng from '../assets/Notas/PaloSanto.png';
+import imgPimientaTimurpng from '../assets/Notas/PimientaTimur.png';
+import imgPinopng from '../assets/Notas/Pino.png';
+import imgPitahayapng from '../assets/Notas/Pitahaya.png';
+import imgRosaNegrapng from '../assets/Notas/RosaNegra.png';
+import imgTangelopng from '../assets/Notas/Tangelo.png';
+import imgToffeepng from '../assets/Notas/Toffee.png';
+import imgZarzamorapng from '../assets/Notas/Zarzamora.png';
+import imgZarzamoraMoradapng from '../assets/Notas/ZarzamoraMorada.png';
+import imgAmbarGrispng from '../assets/Notas/AmbarGris.png';
 
 export const NOTE_IMAGES: Record<string, string> = {
   'abedul': imgAbedulpng,
@@ -227,6 +271,96 @@ export const NOTE_IMAGES: Record<string, string> = {
   'especias': imgEspeciasLigeraspng,
   'maderas': imgMaderapng,
   'manzana': imgManzanaRojapng,
+
+  // Mismo ingrediente con otro nombre
+  'liriodelosvalles': imgMuguetpng,
+  'rosadedamasco': imgRosaDemascenapng,
+  'rosaturca': imgRosaDemascenapng,
+  'flordenaranjo': imgFlorDeAzaharpng,
+  'neroli': imgFlorDeAzaharpng,
+  'neroliegipcio': imgFlorDeAzaharpng,
+  'esenciadeneroli': imgFlorDeAzaharpng,
+  'cassis': imgGrosellaNegrapng,
+  'enebro': imgBayaDeEnebropng,
+  'gamuza': imgAntepng,
+  'acordederon': imgRonpng,
+
+  // Variantes de un ingrediente que ya tiene foto
+  'vainilladebourbon': imgVainillapng,
+  'vainillademadagascar': imgVainillapng,
+  'vainillaabsoluta': imgVainillapng,
+  'extractodevainilla': imgVainillapng,
+  'vainillasalada': imgVainillapng,
+  'naranjaamarga': imgNaranjapng,
+  'naranjabrasilena': imgNaranjapng,
+  'almendraamarga': imgAlmendrapng,
+  'nardos': imgNardopng,
+  'maderadecedro': imgCedropng,
+  'frutasrojas': imgFrutosRojospng,
+  'bayasrojas': imgFrutosRojospng,
+  'pimientablanca': imgPimientajpg,
+  'jazminsambac': imgJazminpng,
+  'jazmindelaindia': imgJazminpng,
+  'jazmindeagua': imgJazminpng,
+  'absolutoderosa': imgRosapng,
+  'rosacentifolia': imgRosapng,
+  'aguadecoco': imgCocopng,
+  'mantecadecacao': imgCacaopng,
+  'mandarinaverde': imgMandarinapng,
+  'licordeframbuesa': imgFrambuesapng,
+  'limonconfitado': imgLimonpng,
+  'tenegro': imgTepng,
+  'hojasdevioleta': imgVioletapng,
+  'habatonkatostada': imgHabaTonkapng,
+  'floresblancas': imgFloralespng,
+  'florblanca': imgFloralespng,
+  'notasamaderadas': imgMaderapng,
+
+  // Fotos nuevas (noviembre 2026)
+  'benjui': imgBenjuipng,
+  'flordejengibre': imgFlorDeJengibrepng,
+  'isoesuper': imgIsoESuperpng,
+  'notassolares': imgNotasSolarespng,
+  'akigalawood': imgAkigalawoodpng,
+  'albahaca': imgAlbahacapng,
+  'algodondeazucar': imgAlgodonDeAzucarpng,
+  'almizcleambreta': imgAlmizcleAmbretapng,
+  'amberwood': imgAmberwoodpng,
+  'cafe': imgCafepng,
+  'calone': imgCalonepng,
+  'caucho': imgCauchopng,
+  'cereza': imgCerezapng,
+  'cerezanegra': imgCerezaNegrapng,
+  'ciruela': imgCiruelapng,
+  'coconegro': imgCocoNegropng,
+  'davana': imgDavanapng,
+  'hedione': imgHedionepng,
+  'heliotropo': imgHeliotropopng,
+  'jabonnegro': imgJabonNegropng,
+  'kiwi': imgKiwipng,
+  'ladano': imgLadanopng,
+  'maderadeambar': imgMaderaDeAmbarpng,
+  'malvaviscodorado': imgMalvaviscoDoradopng,
+  'maracuya': imgMaracuyapng,
+  'merengue': imgMerenguepng,
+  'milenrama': imgMilenramapng,
+  'mirto': imgMirtopng,
+  'musgoderoble': imgMusgoDeRoblepng,
+  'musgo': imgMusgopng,
+  'notasminerales': imgNotasMineralespng,
+  'notasfrutales': imgNotasFrutalespng,
+  'osmantooloroso': imgOsmantoOlorosopng,
+  'osmanto': imgOsmantopng,
+  'palosanto': imgPaloSantopng,
+  'pimientatimur': imgPimientaTimurpng,
+  'pino': imgPinopng,
+  'pitahaya': imgPitahayapng,
+  'rosanegra': imgRosaNegrapng,
+  'tangelo': imgTangelopng,
+  'toffee': imgToffeepng,
+  'zarzamora': imgZarzamorapng,
+  'zarzamoramorada': imgZarzamoraMoradapng,
+  'ambargris': imgAmbarGrispng,
 };
 
 export function getNoteImage(noteName: string): string | null {
