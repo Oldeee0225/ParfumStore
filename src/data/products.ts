@@ -8,7 +8,7 @@ import epBoisImperial from '../assets/Caballeros/Essential_Parfums_Bois_Imperial
 import manceraCedratBoise from '../assets/Caballeros/Mancera_Cedrat_Boise.png'
 import xerjoffTorino22 from '../assets/Caballeros/Xerjoff_Torino_22.png'
 import armaniPowerOfYou from '../assets/Damas/Giorgio_Armani_Power_Of_You.png'
-import dgDevotion from '../assets/Damas/Dolce_Gabbana_Devotion.png'
+import dgYourDevotion from '../assets/Damas/DolceGabannaYourDevotion.jpeg'
 import pacoOlympea from '../assets/Damas/Paco_Rabanne_Olympea.png'
 import yslBlackOpium from '../assets/Damas/Yves_Saint_Laurent_Black_Opium.png'
 import armaniSwyIntensely from '../assets/Caballeros/Giorgio_Armani_Stronger_With_You_Intensely.png'
@@ -1297,8 +1297,8 @@ export const PRODUCTS: Product[] = [
     sizes: [{ label: '100 ml', price: 105 }, { label: '10 ml Decant', price: 18 }, { label: '5 ml Decant', price: 9 }]
   },
   {
-    id: 103, name: 'Devotion', brand: 'Dolce & Gabbana', price: 105,
-    image: dgDevotion, category: 'designer', gender: 'women', type: 'EDP', family: 'Floral Gourmand',
+    id: 103, name: 'Your Devotion', brand: 'Dolce & Gabbana', price: 105,
+    image: dgYourDevotion, category: 'designer', gender: 'women', type: 'EDP', family: 'Floral Gourmand',
     rating: 4.8, reviews: 0, isNew: true,
     topNotes: ['Limón Confitado'],
     heartNotes: ['Flor de Azahar'],

@@ -24,6 +24,7 @@ const BRAND_LOGO_FILE: Record<string, string> = { Azzaro: 'azaro.png' };
 // Fotos adicionales cuyo nombre de archivo no coincide con el del perfume
 // ('' = sin foto adicional todavía; evita que tome la de otro perfume)
 const EXTRA_IMAGE_FILE: Record<number, string> = {
+  103: '', // Your Devotion: la foto adicional "Devotion" es del frasco rosado, otro perfume
   7: 'Jimmy_Choo_Eau_de_Parfum_001.png',
   37: 'EauDeLacostel.12_001.png',
   39: 'Intenso_D_G__001.png',
