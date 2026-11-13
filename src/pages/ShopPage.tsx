@@ -4,6 +4,7 @@ import { ProductCard } from '@/components/ui/ProductCard'
 import { SectionLabel } from '@/components/ui/SectionLabel'
 import { GoldLine } from '@/components/ui/GoldLine'
 import { PRODUCTS } from '@/data/products'
+import { searchProducts } from '@/utils/search'
 
 export function ShopPage() {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -11,7 +12,16 @@ export function ShopPage() {
   const catFromUrl = searchParams.get('categoria') || ''
   const genderFromUrl = searchParams.get('genero') || ''
 
-  const [search, setSearch] = useState('')
+  // La búsqueda vive en la URL (?q=) para que el buscador del navbar pueda abrir la tienda ya filtrada
+  const search = searchParams.get('q') ?? ''
+  const setParam = (key: string, value: string) => setSearchParams(prev => {
+    const next = new URLSearchParams(prev)
+    if (value) next.set(key, value)
+    else next.delete(key)
+    return next
+  }, { replace: true })
+  const setSearch = (v: string) => setParam('q', v)
+
   const [filters, setFilters] = useState({ brand: brandFromUrl, gender: genderFromUrl, category: catFromUrl, priceMax: 500, family: '' })
   const [sort, setSort] = useState('default')
   const [filtersOpen, setFiltersOpen] = useState(false)
@@ -27,11 +37,7 @@ export function ShopPage() {
   // Update URL when brand filter changes via the sidebar dropdown
   const updateBrandFilter = (brand: string) => {
     setFilters(f => ({ ...f, brand }))
-    if (brand) {
-      setSearchParams({ marca: brand }, { replace: true })
-    } else {
-      setSearchParams({}, { replace: true })
-    }
+    setParam('marca', brand)
   }
 
   const clearFilters = () => {
@@ -42,8 +48,8 @@ export function ShopPage() {
   const brands = [...new Set(PRODUCTS.map(p => p.brand))].sort()
   const families = [...new Set(PRODUCTS.map(p => p.family))].sort()
 
-  let filtered = PRODUCTS.filter(p => {
-    if (search && !p.name.toLowerCase().includes(search.toLowerCase()) && !p.brand.toLowerCase().includes(search.toLowerCase())) return false
+  // Con búsqueda, el orden por defecto es por relevancia
+  let filtered = searchProducts(search).filter(p => {
     if (filters.brand && p.brand !== filters.brand) return false
     if (filters.gender && p.gender !== filters.gender) return false
     if (filters.category && p.category !== filters.category) return false
@@ -138,7 +144,7 @@ export function ShopPage() {
           <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 24, flexWrap: 'wrap' }}>
             <div style={{ position: 'relative', flex: '1 1 200px', minWidth: 0 }}>
               <span style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', color: 'var(--fg3)', fontSize: 16 }}>⌕</span>
-              <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Buscar perfume o marca..."
+              <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Buscar perfume, marca o nota..."
                 style={{ width: '100%', padding: '10px 12px 10px 36px', border: '1px solid var(--border)', borderRadius: 8, background: 'var(--bg2)', color: 'var(--fg)', fontSize: '0.88rem', outline: 'none' }} />
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>

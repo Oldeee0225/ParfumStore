@@ -4,6 +4,7 @@ import { useTheme } from '@/providers/ThemeProvider'
 import { useCart } from '@/providers/CartProvider'
 import { useWishlist } from '@/providers/WishlistProvider'
 import logo from '@/assets/Logo.jpeg'
+import { SearchOverlay } from '@/components/layout/SearchOverlay'
 
 const NAV_LINKS = [
   { label: 'Tienda', path: '/tienda', sub: ['Diseñador', 'Nicho', 'Árabes', 'Decants', 'Hombre', 'Mujer', 'Unisex'] },
@@ -25,12 +26,22 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [megaMenu, setMegaMenu] = useState<string | null>(null)
   const [searchOpen, setSearchOpen] = useState(false)
-  const [searchVal, setSearchVal] = useState('')
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 40)
     window.addEventListener('scroll', fn)
     return () => window.removeEventListener('scroll', fn)
+  }, [])
+
+  // Atajos: ⌘K / Ctrl+K desde cualquier lugar, "/" cuando no se está escribiendo
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const typing = e.target instanceof HTMLElement && (e.target.isContentEditable || ['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName))
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); setSearchOpen(true) }
+      else if (e.key === '/' && !typing) { e.preventDefault(); setSearchOpen(true) }
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
   }, [])
 
   const navBg = scrolled ? 'rgba(255,255,255,0.97)' : (darkMode ? 'rgba(17,17,17,0.97)' : 'rgba(255,255,255,0.97)')
@@ -87,21 +98,15 @@ export function Navbar() {
         </div>
 
         <div className="nav-icons" style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0, marginLeft: 'auto' }}>
-          {searchOpen ? (
-            <div className="nav-search" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <input value={searchVal} onChange={e => setSearchVal(e.target.value)} placeholder="Buscar perfumes..."
-                style={{ border: '1px solid var(--border)', background: 'var(--bg2)', color: 'var(--fg)', padding: '6px 12px', borderRadius: 6, fontSize: '0.82rem', outline: 'none', width: 200 }}
-                autoFocus onBlur={() => { setSearchOpen(false); setSearchVal('') }} />
-            </div>
-          ) : (
-            <button onClick={() => setSearchOpen(true)} style={{ border: 'none', background: 'none', cursor: 'pointer', fontSize: 18, color: 'var(--fg)', padding: 4, opacity: 0.7, transition: 'opacity 0.2s', display: 'flex' }}
-              onMouseEnter={e => (e.currentTarget.style.opacity = '1')} onMouseLeave={e => (e.currentTarget.style.opacity = '0.7')}>
-              <svg viewBox="0 0 24 24" width={18} height={18} fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <circle cx="11" cy="11" r="8" />
-                <line x1="21" y1="21" x2="16.65" y2="16.65" />
-              </svg>
-            </button>
-          )}
+          <button onClick={() => { setSearchOpen(true); setMobileOpen(false) }} aria-label="Buscar (⌘K)" title="Buscar (⌘K)"
+            style={{ border: 'none', background: 'none', cursor: 'pointer', fontSize: 18, color: 'var(--fg)', padding: 4, opacity: 0.7, transition: 'opacity 0.2s', display: 'flex' }}
+            onMouseEnter={e => (e.currentTarget.style.opacity = '1')} onMouseLeave={e => (e.currentTarget.style.opacity = '0.7')}>
+            <svg viewBox="0 0 24 24" width={18} height={18} fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+          </button>
+          {searchOpen && <SearchOverlay onClose={() => setSearchOpen(false)} />}
 
           <button onClick={toggleDark} style={{ border: 'none', background: 'none', cursor: 'pointer', fontSize: 18, color: 'var(--fg)', padding: 4, opacity: 0.7, transition: 'opacity 0.2s', display: 'flex' }}>
             {darkMode ? (
